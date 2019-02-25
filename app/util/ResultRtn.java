@@ -17,3 +17,5 @@ public class ResultRtn {
 	public String msg = "ok";
 	public Map<String,Object> business=new HashMap<String,Object>();
 }
+
+

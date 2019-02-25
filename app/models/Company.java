@@ -26,7 +26,7 @@ public class Company{
     
     public String name;  //单位名称
    
-//    public String wxid;  //微信id
+    public String wxid;  //微信id
     public String addshort; //地址简称
     public String addlong;  //详细地址
     public float  lat;   //地址精度
