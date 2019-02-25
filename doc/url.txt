@@ -1,8 +1,8 @@
 ----h5----
-×ÔÑ¡¹É
+ï¿½ï¿½Ñ¡ï¿½ï¿½
 http://127.0.0.1:9000/assets/s.html
 
-µÇÂ¼
+ï¿½ï¿½Â¼
 http://127.0.0.1:9000/assets/1.html
 
 ---app-----
@@ -10,16 +10,20 @@ http://127.0.0.1:9000/myStockAdd?mid=1&StockCode=600030&userId=1
 http://127.0.0.1:9000/myStockList?mid=1&userId=1
 
 http://zhaozichuan.iask.in/myStockList?mid=1&userId=1
-µÇÂ¼
+ï¿½ï¿½Â¼
 http://127.0.0.1:9000/login?mid=1&name=zzc&pass=123
 
 
 
-Ö÷ÌâÆÀÂÛ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 http://127.0.0.1:9000/addDis?mid=1&title=zzc&content=123&userId=1
-Ìí¼ÓÆÀÂÛ
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 http://127.0.0.1:9000/disList?mid=1&max=5
 http://zhaozichuan.top/disList?mid=1&max=5
-²éÑ¯ÆÀÂÛ
+ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
+
+
+
+/manageCom?flag=1&wxid=1&adminname=zzc&admintel
