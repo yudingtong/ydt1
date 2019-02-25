@@ -25,5 +25,7 @@ http://zhaozichuan.top/disList?mid=1&max=5
 ��ѯ����
 
 
+http://127.0.0.1:9000/login?wxid=1&flag=1
 
-/manageCom?flag=1&wxid=1&adminname=zzc&admintel
+
+https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel  //新增

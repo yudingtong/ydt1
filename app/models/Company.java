@@ -7,6 +7,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import io.ebean.annotation.CreatedTimestamp;
 
@@ -21,16 +22,19 @@ public class Company{
     private static final long serialVersionUID = 1L;
    
     @Id
-    public String comid; //单位id
+    public String comid; //结构代码
     
     public String name;  //单位名称
    
-    public String wxid;  //微信id
+//    public String wxid;  //微信id
     public String addshort; //地址简称
     public String addlong;  //详细地址
     public float  lat;   //地址精度
     public float  ing;   //地址纬度
     public String tel;   //电话
+    
+//    @ManyToOne
+//    public Admin role;
     /**
      * 创建时间
      */
