@@ -28,8 +28,9 @@ http://zhaozichuan.top/disList?mid=1&max=5
 
 
 http://127.0.0.1:9000/login?flag=2&wxid=123
-#http://zhaozichuan.top/login?flag=2&wxid=123
 http://127.0.0.1:9000/queryCom?wxid=123
+
+#http://zhaozichuan.top/login?flag=2&wxid=123
 #http://zhaozichuan.top/queryCom?wxid=123
 
 https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel  //新增
