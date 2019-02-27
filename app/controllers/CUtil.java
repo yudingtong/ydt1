@@ -84,26 +84,16 @@ public class CUtil extends Controller {
 	    
          
          
-         public Result getId(String wxspAppid,String wxspSecret,String encryptedData, String iv, String code) {
+         public Result getId(String encryptedData, String iv, String code) {
         	 
         	ResultRtn resultRtn = new ResultRtn();
  	        resultRtn.errCode = 0;
- 			resultRtn.msg="login ok";
- 	    	
+ 			resultRtn.msg="ok";
  			
- 			Map remap=decodeUserInfo( wxspAppid, wxspSecret, encryptedData,  iv,  code);	    
- 				
- 				  
+ 			Map remap=decodeUserInfo( encryptedData,  iv,  code);	    
 				  
  			resultRtn.business.put("Id", remap); 
  				
- 				
- 				
- 				
- 			
- 			
- 			
- 		
  	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
          	
  	    }//end login
@@ -126,7 +116,7 @@ public class CUtil extends Controller {
           * @return
           */
        
-         public Map decodeUserInfo(String wxspAppid1,String wxspSecret1,String encryptedData, String iv, String code) {
+         public Map decodeUserInfo(String encryptedData, String iv, String code) {
 
              Map map = new HashMap();
 
@@ -144,9 +134,9 @@ public class CUtil extends Controller {
 //             //授权（必填）
              
            //小程序唯一标识   (在微信小程序管理后台获取)
-             String wxspAppid = wxspAppid1;
+             String wxspAppid = "wx3d099e67aa7ff91b";
              //小程序的 app secret (在微信小程序管理后台获取)
-             String wxspSecret = wxspSecret1;
+             String wxspSecret = "e73e90677142d3796f08b216d7a50d41";
              //授权（必填）
              
              
