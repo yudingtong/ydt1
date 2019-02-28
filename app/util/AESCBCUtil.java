@@ -104,7 +104,7 @@ public class AESCBCUtil {
  
             return new String(original);
         } catch (Exception ex) {
-            ex.printStackTrace();
+          System.out.println("AESCBCUtil decrypt1"+ex);
         }
  
         return null;

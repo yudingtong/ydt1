@@ -168,8 +168,10 @@ public class CUtil extends Controller {
              String openid = (String) json.get("openid");
 			
 			 } catch (JSONException e1) {
+				
+				 //System.out.println("JSONException"+ e1);
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					//e1.printStackTrace();
 				}
 		
              //////////////// 2、对encryptedData加密数据进行AES解密其中包含这openid和unionid ////////////////
@@ -194,7 +196,7 @@ public class CUtil extends Controller {
                      return map;
                  }
              } catch (Exception e) {
-                 e.printStackTrace();
+            	// System.out.println("AESCBCUtil"+ e);
              }
              map.put("status", 0);
              map.put("msg", "解密失败");
