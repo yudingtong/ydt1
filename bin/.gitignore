@@ -1,10 +1,17 @@
 /BrowserTest.class
 /FunctionalTest.class
+/Global.java.conf
 /ModelTest.class
 /TestSuite.class
+/application.conf
+/application.conf.old
 /controllers/
+/ebean.properties
+/logback.xml
+/messages
 /models/
 /org/
 /repository/
+/routes
 /tools/
 /util/

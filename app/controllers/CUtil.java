@@ -86,15 +86,15 @@ public class CUtil extends Controller {
          
          public Result getId(String encryptedData, String iv, String code) {
         	 
-        	ResultRtn resultRtn = new ResultRtn();
- 	        resultRtn.errCode = 0;
- 			resultRtn.msg="ok";
+//        	ResultRtn resultRtn = new ResultRtn();
+// 	        resultRtn.errCode = 0;
+// 			resultRtn.msg="ok";
  			
  			Map remap=decodeUserInfo( encryptedData,  iv,  code);	    
 				  
- 			resultRtn.business.put("Id", remap); 
+ // 		resultRtn.put("Id", remap); 
  				
- 	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 	    	return ok(Json.toJson(remap).toString().replaceAll("null", "\"\""));
          	
  	    }//end login
          
