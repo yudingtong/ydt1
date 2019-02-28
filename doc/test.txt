@@ -1,0 +1,68 @@
+login as: root
+root@zhaozichuan.top's password:
+Last login: Thu Feb 28 20:42:04 2019 from 114.249.244.237
+
+Welcome to Alibaba Cloud Elastic Compute Service !
+
+[root@izhp3e3jy9rns3w67b3yp2z ~]# screen -ls
+There is a screen on:
+        10287.play      (Detached)
+1 Socket in /var/run/screen/S-root.
+
+[root@izhp3e3jy9rns3w67b3yp2z ~]# screen -r 10287.play
+http sendappid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=001tamXt15gOee0NNJWt1oSlXt1tamXp&grant_type=authorization_code
+http get{"session_key":"X0b+kcTatEetJVdz2\/lawQ==","openid":"oCLgA5VXuhQbIxCo7ss6TzDRAzeo"}
+json{"openid":"oCLgA5VXuhQbIxCo7ss6TzDRAzeo","session_key":"X0b+kcTatEetJVdz2/lawQ=="}
+AESCBCUtil decrypt1java.security.InvalidAlgorithmParameterException: Wrong IV length: must be 16 bytes long
+http send{"msg":"Ω‚√‹ ß∞‹","status":0}
+[info] Compiling 2 Java sources to /git/ydt1/target/scala-2.12/classes...
+[info] /git/ydt1/app/controllers/CUtil.java: /git/ydt1/app/controllers/CUtil.java uses unchecked or unsafe operations.
+[info] /git/ydt1/app/controllers/CUtil.java: Recompile with -Xlint:unchecked for details.
+
+--- (RELOAD) ---
+
+[info] application - Shutting down connection pool.
+[warn] application - application.conf @ file:/git/ydt1/target/scala-2.12/classes/application.conf: 29: user is deprecated, use username instead
+[info] application - Creating Pool for datasource 'default'
+[info] p.a.d.DefaultDBApi - Database [default] connected at jdbc:mysql://cdb-nc05c3im.bj.tencentcdb.com:10027/ydt?useUnicode=true&characterEncoding=UTF-8
+[info] p.a.h.EnabledFilters - Enabled Filters (see <https://www.playframework.com/documentation/latest/Filters>):
+
+    play.filters.csrf.CSRFFilter
+
+[info] play.api.Play - Application started (Dev)
+/getId?encryptedData=111&iv=11&code=yutu
+1111appid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=yutu&grant_type=authorization_code
+sendGetappid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=yutu&grant_type=authorization_code
+null--->[HTTP/1.1 200 OK]
+Connection--->[keep-alive]
+Content-Length--->[78]
+Date--->[Thu, 28 Feb 2019 14:45:46 GMT]
+Content-Type--->[text/plain]
+http sendappid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=yutu&grant_type=authorization_code
+http get{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: wKNAh0yFe-68NBpA ]"}
+json{"errcode":40029,"errmsg":"invalid code, hints: [ req_id: wKNAh0yFe-68NBpA ]"}
+http send{"msg":"Ω‚√‹ ß∞‹","status":0}
+/getId?encryptedData=yLViSb4vOY%2F%2F2KUOOnFtOu6L%2BU3vxqifSZVQGXo%2Ff9Y0BfIByoNkSJlOBx4pHHOThZuOfiKkM7eFSgmbMQVGKAionHbJkCIjrOysJ4WAY6%2BgwBw1tyjErkovZ7BMK7oYlfX2e1XVN0VnV2CrqyWY6jvGmD7BXeZEKLpLwpfVXPb13R78tG5%2Bl8QOD95U1KgWLNdbzvRDkh9ENUma7wAAJYENimCDwWEkuOazUUPUbTAaeDcPQpuCKgst2whuaf1Cbt858ABlZnKYt2NuBR1KQ3msBOew0tWyPwWvEMaVyEadrvzoy7jDmIL3xwOny6N7c7BrC9rbmDMdQIO4fZ%2FaQozK%2Ff35F8Rkg9AK7G%2BgCdj6Oro6Bnh1jzp3HjrvBkCah8OpfAUWKs2SEBlC67Ju5RpThPAzr21dHo%2FEU05zpCdOUVXwpWd7vaRpSOtFZMze6rIevtdumRWiBOwbNS4JmriW5yMlbE4XGXIMc%2F8UVBc%3D&iv=WcFeEAvWKyzyGG6Ppp%2FRAA%3D%3D&code=071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH
+1111appid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH&grant_type=authorization_code
+sendGetappid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH&grant_type=authorization_code
+null--->[HTTP/1.1 200 OK]
+Connection--->[keep-alive]
+Content-Length--->[83]
+Date--->[Thu, 28 Feb 2019 14:46:22 GMT]
+Content-Type--->[text/plain]
+http sendappid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH&grant_type=authorization_code
+http get{"session_key":"pzZwieeD\/8OBTS6xLd+Ruw==","openid":"oCLgA5VXuhQbIxCo7ss6TzDRAzeo"}
+json{"openid":"oCLgA5VXuhQbIxCo7ss6TzDRAzeo","session_key":"pzZwieeD/8OBTS6xLd+Ruw=="}
+http send{"msg":"Ω‚√‹ ß∞‹","status":0}
+/getId?encryptedData=e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D&iv=iAp8V4AhRH7fUUu5rJcsFg%3D%3D&code=0611XG3d1kgGxy03a51d14np3d11XG3r
+1111appid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=0611XG3d1kgGxy03a51d14np3d11XG3r&grant_type=authorization_code
+sendGetappid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=0611XG3d1kgGxy03a51d14np3d11XG3r&grant_type=authorization_code
+null--->[HTTP/1.1 200 OK]
+Connection--->[keep-alive]
+Content-Length--->[83]
+Date--->[Thu, 28 Feb 2019 14:46:24 GMT]
+Content-Type--->[text/plain]
+http sendappid=wx3d099e67aa7ff91b&secret=e73e90677142d3796f08b216d7a50d41&js_code=0611XG3d1kgGxy03a51d14np3d11XG3r&grant_type=authorization_code
+http get{"session_key":"pzZwieeD\/8OBTS6xLd+Ruw==","openid":"oCLgA5VXuhQbIxCo7ss6TzDRAzeo"}
+json{"openid":"oCLgA5VXuhQbIxCo7ss6TzDRAzeo","session_key":"pzZwieeD/8OBTS6xLd+Ruw=="}
+http send{"msg":"Ω‚√‹ ß∞‹","status":0}

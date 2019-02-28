@@ -1,6 +1,7 @@
 package util;
  
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.AlgorithmParameters;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -89,9 +90,14 @@ public class AESCBCUtil {
  
     
     
-    public static String decrypt2(String data, String key, String iv, String encodingFormat) throws Exception {
+    public static String decrypt2(String data1, String key1, String iv1, String encodingFormat) throws Exception {
 //      initialize();
 
+    	 String data=URLDecoder.decode(data1, "UTF-8");
+    	 String key=URLDecoder.decode(key1, "UTF-8");
+    	 
+    	 String iv=URLDecoder.decode(iv1, "UTF-8");
+    	
       //被加密的数据
       byte[] dataByte = Base64.decodeBase64(data);
       //加密秘钥
