@@ -86,6 +86,8 @@ public class CUtil extends Controller {
          
          public Result getId(String encryptedData, String iv, String code) {
         	 
+        	 
+        	 System.out.println(this.request().uri());
 //        	ResultRtn resultRtn = new ResultRtn();
 // 	        resultRtn.errCode = 0;
 // 			resultRtn.msg="ok";
