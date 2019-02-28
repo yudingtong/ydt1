@@ -21,6 +21,8 @@ public class HttpRequest {
      * @return URL 所代表远程资源的响应结果
      */
     public static String sendGet(String url, String param) {
+    	
+    	System.out.println("sendGet"+param);
         String result = "";
         BufferedReader in = null;
         try {

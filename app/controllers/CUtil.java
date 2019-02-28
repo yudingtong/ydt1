@@ -147,6 +147,8 @@ public class CUtil extends Controller {
              //请求参数
              String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type;
              //发送请求
+             System.out.println("1111"+params);
+             
              String sr = HttpRequest.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
              
              System.out.println("http send"+ params);
