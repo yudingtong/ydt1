@@ -34,3 +34,6 @@ http://127.0.0.1:9000/queryCom?wxid=123
 #http://zhaozichuan.top/queryCom?wxid=123
 #https://zhaozichuan.top/getId?encryptedData=111&iv=11&code=1
 https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel  //新增
+
+
+http://127.0.0.1:9000/getId?encryptedData=iDhUIre2b7mTzBRVcveFFVuqP7NXOMiSP%2Fujr0p0vW%2BDjUrWx1E%2FKksry1s%2Fd99RM0AK1SyP8JGVtda3r5ko%2BV8kkp2yr5hu0fTiwX9d0CvgfrzV8sSAQbuau0qwYhPZuzYWFAHrUOT5u%2B94%2B3LuOU2LMJgqmvmF9Aa19c8gSI57KfPltbUBA4DeETEvuImBhWBYj9jj8qrouYqyZOJfnPndHzoVIzbyTxCndQYCe5VT7AE%2FWzuui7vqlZBxJj94FIsxe6%2FleVyH%2BeeaE%2BtI%2BZBQ2oReJMFVM34F%2FT6sL%2B3HFdkGx%2BPFonVScj8ZLppOsds9ZjmFPgmKiJwlVKIfdQ9ZKpfXvAIVg7ffymAN17bxYUfG%2BC%2BYQmGgq9TnxMWQEzqMHyE6m6a4kfiKkP7xsIkA94nucJF%2FRcqckIUVymtMQAHAw9Eyi0s3deGoBlevjwwASNq3hz2GUrFHPFa3L5QVQmBSOn83RZabBW3cCZo%3D&iv=PtRkJG0JH9yTX0OLsCzbGg%3D%3D&code=001tamXt15gOee0NNJWt1oSlXt1tamXp

@@ -178,8 +178,10 @@ public class CUtil extends Controller {
 		
              //////////////// 2、对encryptedData加密数据进行AES解密其中包含这openid和unionid ////////////////
              try {
-                 String result = AESCBCUtil.decrypt1(encryptedData, session_key, iv, "UTF-8");
-                 if (null != result && result.length() > 0) {
+               //  String result = AESCBCUtil.decrypt1(encryptedData, session_key, iv, "UTF-8");
+            	 String result = AESCBCUtil.decrypt2(encryptedData, session_key, iv, "UTF-8");
+                 
+            	 if (null != result && result.length() > 0) {
                      map.put("status", 1);
                      map.put("msg", "解密成功");
 
