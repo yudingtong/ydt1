@@ -93,7 +93,7 @@ public class CUtil extends Controller {
  			Map remap=decodeUserInfo( encryptedData,  iv,  code);	    
 				  
  // 		resultRtn.put("Id", remap); 
- 				
+ 			System.out.println("http send"+ Json.toJson(remap).toString().replaceAll("null", "\"\""));	
  	    	return ok(Json.toJson(remap).toString().replaceAll("null", "\"\""));
          	
  	    }//end login
@@ -148,6 +148,10 @@ public class CUtil extends Controller {
              String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type;
              //发送请求
              String sr = HttpRequest.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
+             
+             System.out.println("http send"+ params);
+             
+             System.out.println("http get"+ sr);
              //解析相应内容（转换成json对象）
              JSONObject json;
              String session_key="";
@@ -155,7 +159,7 @@ public class CUtil extends Controller {
 			 try {
 				json = new JSONObject(sr);
 			
-			            
+				System.out.println("json"+json);      
              //获取会话密钥（session_key）
              session_key = json.getString("session_key");
              //用户的唯一标识（openid）
