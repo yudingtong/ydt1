@@ -96,7 +96,8 @@ public class AESCBCUtil {
             SecretKeySpec skeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
  
  
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7PADDING");
+            //Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7PADDING");
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
             cipher.init(Cipher.DECRYPT_MODE, skeySpec, ivParameterSpec);
  
             byte[] bytes = hexStr2Bytes(encryptedStr);
