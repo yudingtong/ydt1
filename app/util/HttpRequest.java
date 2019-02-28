@@ -53,15 +53,15 @@ public class HttpRequest {
             e.printStackTrace();
         }
         // 使用finally块来关闭输入流
-        finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (Exception e2) {
-                e2.printStackTrace();
-            }
-        }
+//        finally {
+//            try {
+//                if (in != null) {
+//                    in.close();
+//                }
+//            } catch (Exception e2) {
+//                e2.printStackTrace();
+//            }
+//        }
         return result;
     }
 
