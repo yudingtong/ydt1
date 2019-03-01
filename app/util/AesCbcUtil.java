@@ -57,20 +57,29 @@ public class AesCbcUtil {
 			}
 			return null;
 		} catch (NoSuchAlgorithmException e) {
+			System.out.println("e1"+e);
 			//e.printStackTrace();
 		} catch (NoSuchPaddingException e) {
+			System.out.println("e2"+e);
 			//e.printStackTrace();
 		} catch (InvalidParameterSpecException e) {
+			System.out.println("e3"+e);
 			//e.printStackTrace();
 		} catch (InvalidKeyException e) {
+			System.out.println("e4"+e);
 			//e.printStackTrace();
 		} catch (InvalidAlgorithmParameterException e) {
+			System.out.println("e5"+e);
+			
 			//e.printStackTrace();
 		} catch (IllegalBlockSizeException e) {
+			System.out.println("e6"+e);
 			//e.printStackTrace();
 		} catch (BadPaddingException e) {
+			System.out.println("e7"+e);
 			//e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
+			System.out.println("e8"+e);
 			//e.printStackTrace();
 		}
 		return null;

@@ -66,24 +66,24 @@ public class CUtil extends Controller {
     
 	public static void main(String[] args) {
 		
-//		String encryptedData1="e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D";
-//				String iv1="iAp8V4AhRH7fUUu5rJcsFg%3D%3D";
-//				String code1="071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH";
-//				String session_key1="pzZwieeD\\/8OBTS6xLd+Ruw==";
-//				//System.out.println(getId1(encryptedData,iv,code));
-//				
-//				 try {
-//					 String iv=URLDecoder.decode(iv1, "UTF-8");
-//			    	 String encryptedData=URLDecoder.decode(encryptedData1, "UTF-8");
-//			    	 
-//			    	 String session_key=URLDecoder.decode(session_key1, "UTF-8");
-//					 
-//					String result = AesCbcUtil.decrypt(encryptedData, session_key1, iv, "UTF-8");
-//					System.out.println("result" +result);
-//				} catch (Exception e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+		String encryptedData1="e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D";
+				String iv1="iAp8V4AhRH7fUUu5rJcsFg%3D%3D";
+				String code1="071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH";
+				String session_key1="pzZwieeD\\/8OBTS6xLd+Ruw==";
+				//System.out.println(getId1(encryptedData,iv,code));
+				
+				 try {
+					 String iv=URLDecoder.decode(iv1, "UTF-8");
+			    	 String encryptedData=URLDecoder.decode(encryptedData1, "UTF-8");
+			    	 
+			    	 String session_key=URLDecoder.decode(session_key1, "UTF-8");
+					 
+					String result = AesCbcUtil.decrypt(encryptedData, session_key1, iv, "UTF-8");
+					System.out.println("result" +result);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		// TODO Auto-generated method stub
 
 	}
