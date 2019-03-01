@@ -24,3 +24,4 @@ GET     /disList                         controllers.Cdiscuss.disList(mid:String
 GET    /login                            controllers.Clogin.login(flag:Integer,wxid:String ) 
 GET    /queryCom                         controllers.CCommpay.queryCom(wxid:String ) 
 GET    /getId                            controllers.CUtil.getId(encryptedData:String,iv:String,code:String)
+GET    /getId1                            controllers.CUtil.getId1()
