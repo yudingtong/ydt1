@@ -281,7 +281,7 @@ public class CUtil extends Controller {
                      userInfo.put("province", userInfoJSON.get("province"));
                      userInfo.put("country", userInfoJSON.get("country"));
                      userInfo.put("avatarUrl", userInfoJSON.get("avatarUrl"));
-                     userInfo.put("unionId", userInfoJSON.get("unionId"));
+                    // userInfo.put("unionId", userInfoJSON.get("unionId"));
                      map.put("userInfo", userInfo);
                      return map;
                  }
