@@ -208,8 +208,9 @@ public class CUtil extends Controller {
             	 
                //  String result = AESCBCUtil.decrypt1(encryptedData, session_key, iv, "UTF-8");
             	// String result = AESCBCUtil_old.decrypt2(encryptedData, session_key, iv, "UTF-8");
+            	 //String result = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
             	 String result = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
-                 
+				 System.out.println("result" +result); 
             	 if (null != result && result.length() > 0) {
                      map.put("status", 1);
                      map.put("msg", "解密成功");
