@@ -66,24 +66,47 @@ public class CUtil extends Controller {
     
 	public static void main(String[] args) {
 		
-				String encryptedData1="e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D";
-				String iv1="iAp8V4AhRH7fUUu5rJcsFg%3D%3D";
-				String code1="071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH";
-				String session_key1="pzZwieeD\\/8OBTS6xLd+Ruw==";
-				//System.out.println(getId1(encryptedData,iv,code));
-				
-				 try {
-					 String iv=URLDecoder.decode(iv1, "UTF-8");
-			    	 String encryptedData=URLDecoder.decode(encryptedData1, "UTF-8");
-			    	 
-			    	 String session_key=URLDecoder.decode(session_key1, "UTF-8");
-					 
-					String result = AesCbcUtil.decrypt(encryptedData, session_key1, iv, "UTF-8");
-					System.out.println("result" +result);
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				String encryptedData1="e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D";
+//				String encryptedData2="y6WfQNTNFHfhm0zMzHOSaE2FF90g2UK6VEWfHZi%2F1UeIMx7T4y%2FkC3zXwyoFPDMK20HXfoyOO9Ml1FCeiJXudq6eIWWrjVw8iM3D5zAeW2KB9SFGrfYG%2BNc7xdVoQ2HxnRs41Y7JT6reVfDgnEuoipR3BXZcSuZuRTO9ZdCNYoIhI1ZEttVxMIWrtuqCyHFzkFFxZoufRoyJ70duVjp6Re9Fgbu2zhBK6eU4%2Ba1OGQEghW3Rz4eSGcLX%2FpnPOH7T5tHI3cowcsVISMdFPzboTpX0hjYpUzLg6%2FWj%2B69YzbhhPOr3b1et0kj%2BUmN0HuALOXx9FysoSE0uqGMcNg48dxTqJKBTuN%2Bbq%2BUHMWl7u5hjHbMXh%2FewLhteUBarEFOm2yujs9Yk1QPAW6gBcIrGYpbveNQWcoEV6mvTCgEt50rOMPriRO3G07sbBced%2BQowpEZXK8TKkJRnkLSQMRNxa%2BeedkzhAodpyanOuHcBfqs%3D";
+//				
+//				String iv1="iAp8V4AhRH7fUUu5rJcsFg%3D%3D";
+//				String code1="071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH";
+//				
+//				String iv2="auAMVlSqXeZRQ7T8CXNIzg%3D%3D";
+//						
+//				
+//				String session_key1="pzZwieeD\\/8OBTS6xLd+Ruw==";
+//				String session_key2="C\\/KyyrZhxkDi1l9VJyTykA==";
+//				//System.out.println(getId1(encryptedData,iv,code));
+//				
+//				 try {
+//					 String iv=URLDecoder.decode(iv2, "UTF-8");
+//			    	 String encryptedData=URLDecoder.decode(encryptedData2, "UTF-8");
+//			    	 
+//			    	 //String session_key=URLDecoder.decode(session_key1, "UTF-8");
+//					 
+//					String result = AesCbcUtil.decrypt(encryptedData, session_key2, iv, "UTF-8");
+//					System.out.println("result" +result);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+		
+		 //解析相应内容（转换成json对象）
+        JSONObject json;
+        String sr="{\"session_key\":\"C\\/KyyrZhxkDi1l9VJyTykA==\",\"openid\":\"oCLgA5VXuhQbIxCo7ss6TzDRAzeo\"}";
+        System.out.println("JSONObject"+ string2Json(sr));
+        String session_key="";
+        try {
+			json = new JSONObject( string2Json(sr));
+			 System.out.println("JSONObject"+ json);
+            //获取会话密钥（session_key）
+           session_key = json.getString("session_key");
+           
+           System.out.println("===>"+ session_key);
+        
+        }catch(Exception e) {}
+        
 		// TODO Auto-generated method stub
 
 	}
@@ -111,7 +134,11 @@ public class CUtil extends Controller {
 //		resultRtn.msg="ok";
 		
  	String encryptedData1="e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D";
-	String iv1="iAp8V4AhRH7fUUu5rJcsFg%3D%3D";
+	
+ 	String encryptedData2="y6WfQNTNFHfhm0zMzHOSaE2FF90g2UK6VEWfHZi%2F1UeIMx7T4y%2FkC3zXwyoFPDMK20HXfoyOO9Ml1FCeiJXudq6eIWWrjVw8iM3D5zAeW2KB9SFGrfYG%2BNc7xdVoQ2HxnRs41Y7JT6reVfDgnEuoipR3BXZcSuZuRTO9ZdCNYoIhI1ZEttVxMIWrtuqCyHFzkFFxZoufRoyJ70duVjp6Re9Fgbu2zhBK6eU4%2Ba1OGQEghW3Rz4eSGcLX%2FpnPOH7T5tHI3cowcsVISMdFPzboTpX0hjYpUzLg6%2FWj%2B69YzbhhPOr3b1et0kj%2BUmN0HuALOXx9FysoSE0uqGMcNg48dxTqJKBTuN%2Bbq%2BUHMWl7u5hjHbMXh%2FewLhteUBarEFOm2yujs9Yk1QPAW6gBcIrGYpbveNQWcoEV6mvTCgEt50rOMPriRO3G07sbBced%2BQowpEZXK8TKkJRnkLSQMRNxa%2BeedkzhAodpyanOuHcBfqs%3D";
+	
+ 	
+ 	String iv1="iAp8V4AhRH7fUUu5rJcsFg%3D%3D";
 	String code1="071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH";
 	String session_key1="pzZwieeD\\/8OBTS6xLd+Ruw==";
 	//System.out.println(getId1(encryptedData,iv,code));
@@ -211,10 +238,12 @@ public class CUtil extends Controller {
              String session_key="";
 				
 			 try {
-				json = new JSONObject(sr);
-			
+				json = new JSONObject(string2Json(sr));
+				 System.out.println("JSONObject"+ json);
              //获取会话密钥（session_key）
              session_key = json.getString("session_key");
+             
+             System.out.println("session_key"+ session_key);
              //用户的唯一标识（openid）
              String openid = (String) json.get("openid");
 			
@@ -262,7 +291,46 @@ public class CUtil extends Controller {
              return map;
          }         
          
-         
+         /**
+          * JSON字符串特殊字符处理，比如：“\A1;1300”
+          * @param s
+          * @return String
+          */
+         public static String string2Json(String s) {      
+             StringBuffer sb = new StringBuffer();      
+             for (int i=0; i<s.length(); i++) {
+             	char c = s.charAt(i);  
+             	 switch (c){
+//             	 case '\':      
+//                      sb.append("\\\"");      
+//                      break;      
+                  case '\\':      
+                      sb.append("\\\\");      
+                      break;      
+                  case '/':      
+                      sb.append("\\/");      
+                      break;      
+                  case '\b':      
+                      sb.append("\\b");      
+                      break;      
+                  case '\f':      
+                      sb.append("\\f");      
+                      break;      
+                  case '\n':      
+                      sb.append("\\n");      
+                      break;      
+                  case '\r':      
+                      sb.append("\\r");      
+                      break;      
+                  case '\t':      
+                      sb.append("\\t");      
+                      break;      
+                  default:      
+                      sb.append(c);   
+             	 }
+              }    
+             return sb.toString();   
+             }
            
          
          
