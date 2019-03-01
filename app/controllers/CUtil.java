@@ -165,7 +165,7 @@ public class CUtil extends Controller {
     }//end login
          
          
-         public Result getId(String encryptedData, String iv, String code) {
+         public Result getId_decode(String encryptedData, String iv, String code) {
         	 
         	 System.out.println(this.request().uri());
 //        	ResultRtn resultRtn = new ResultRtn();
@@ -181,7 +181,38 @@ public class CUtil extends Controller {
  	    }//end login
          
         
-         
+         public Result getId(String encryptedData, String iv, String code) {
+        	 
+        	 System.out.println(this.request().uri());
+//        	ResultRtn resultRtn = new ResultRtn();
+// 	        resultRtn.errCode = 0;
+// 			resultRtn.msg="ok";
+        	  //登录凭证不能为空
+            
+             
+           //小程序唯一标识   (在微信小程序管理后台获取)
+             String wxspAppid = "wx3d099e67aa7ff91b";
+             //小程序的 app secret (在微信小程序管理后台获取)
+             String wxspSecret = "e73e90677142d3796f08b216d7a50d41";
+             //授权（必填）
+             
+             
+             String grant_type = "authorization_code";
+
+
+             //////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
+             //请求参数
+             String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type;
+             //发送请求
+             
+             String sr = HttpRequest2.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
+             
+             System.out.println("http send"+ params);
+             
+             System.out.println("http get"+ sr);
+ 	    	return ok(sr);
+         	
+ 	    }//end login
          
          
          
@@ -292,6 +323,10 @@ public class CUtil extends Controller {
              map.put("msg", "解密失败");
              return map;
          }         
+         
+         
+            
+         
          
          /**
           * JSON字符串特殊字符处理，比如：“\A1;1300”
