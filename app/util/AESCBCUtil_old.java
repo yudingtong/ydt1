@@ -31,7 +31,7 @@ import org.apache.commons.codec.binary.Base64;
  *           String decrypt = AESCBCUtil.decrypt(encrypt);
  * 验证方式：http://tool.chacuo.net/cryptaes（在线AES加密解密）
  */
-public class AESCBCUtil {
+public class AESCBCUtil_old {
  
     //密码
     private static  String key = "12345678901234567890123456789012";

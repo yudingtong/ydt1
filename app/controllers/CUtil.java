@@ -12,10 +12,13 @@ import models.User_stock_r;
 import play.mvc.Controller;
 import play.mvc.Result;
 import repository.DatabaseExecutionContext;
-import util.AESCBCUtil;
+import util.AESCBCUtil_old;
+import util.AesCbcUtil;
 import util.HttpRequest;
+import util.HttpRequest2;
 import util.ResultRtn;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Base64.Decoder;
 import java.util.HashMap;
@@ -62,6 +65,25 @@ public class CUtil extends Controller {
 	}
     
 	public static void main(String[] args) {
+		
+//		String encryptedData1="e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D";
+//				String iv1="iAp8V4AhRH7fUUu5rJcsFg%3D%3D";
+//				String code1="071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH";
+//				String session_key1="pzZwieeD\\/8OBTS6xLd+Ruw==";
+//				//System.out.println(getId1(encryptedData,iv,code));
+//				
+//				 try {
+//					 String iv=URLDecoder.decode(iv1, "UTF-8");
+//			    	 String encryptedData=URLDecoder.decode(encryptedData1, "UTF-8");
+//			    	 
+//			    	 String session_key=URLDecoder.decode(session_key1, "UTF-8");
+//					 
+//					String result = AesCbcUtil.decrypt(encryptedData, session_key1, iv, "UTF-8");
+//					System.out.println("result" +result);
+//				} catch (Exception e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 		// TODO Auto-generated method stub
 
 	}
@@ -86,7 +108,6 @@ public class CUtil extends Controller {
          
          public Result getId(String encryptedData, String iv, String code) {
         	 
-        	 
         	 System.out.println(this.request().uri());
 //        	ResultRtn resultRtn = new ResultRtn();
 // 	        resultRtn.errCode = 0;
@@ -100,7 +121,7 @@ public class CUtil extends Controller {
          	
  	    }//end login
          
-         
+        
          
          
          
@@ -118,9 +139,14 @@ public class CUtil extends Controller {
           * @return
           */
        
-         public Map decodeUserInfo(String encryptedData, String iv, String code) {
+         public Map decodeUserInfo(String encryptedData1, String iv1, String code) {
 
-             Map map = new HashMap();
+            
+        	 
+        	 
+        	 
+        	 
+        	 Map map = new HashMap();
 
              //登录凭证不能为空
              if (code == null || code.length() == 0) {
@@ -149,9 +175,8 @@ public class CUtil extends Controller {
              //请求参数
              String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type;
              //发送请求
-             System.out.println("1111"+params);
              
-             String sr = HttpRequest.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
+             String sr = HttpRequest2.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
              
              System.out.println("http send"+ params);
              
@@ -163,7 +188,6 @@ public class CUtil extends Controller {
 			 try {
 				json = new JSONObject(sr);
 			
-				System.out.println("json"+json);      
              //获取会话密钥（session_key）
              session_key = json.getString("session_key");
              //用户的唯一标识（openid）
@@ -171,15 +195,20 @@ public class CUtil extends Controller {
 			
 			 } catch (JSONException e1) {
 				
-				 //System.out.println("JSONException"+ e1);
+				 System.out.println("JSONException"+ e1);
 					// TODO Auto-generated catch block
 					//e1.printStackTrace();
-				}
+			 }
 		
              //////////////// 2、对encryptedData加密数据进行AES解密其中包含这openid和unionid ////////////////
              try {
+            	 
+            	 String iv=URLDecoder.decode(iv1, "UTF-8");
+    	    	 String encryptedData=URLDecoder.decode(encryptedData1, "UTF-8");
+            	 
                //  String result = AESCBCUtil.decrypt1(encryptedData, session_key, iv, "UTF-8");
-            	 String result = AESCBCUtil.decrypt2(encryptedData, session_key, iv, "UTF-8");
+            	// String result = AESCBCUtil_old.decrypt2(encryptedData, session_key, iv, "UTF-8");
+            	 String result = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
                  
             	 if (null != result && result.length() > 0) {
                      map.put("status", 1);
@@ -200,7 +229,7 @@ public class CUtil extends Controller {
                      return map;
                  }
              } catch (Exception e) {
-            	// System.out.println("AESCBCUtil"+ e);
+            	 System.out.println("AESCBCUtil"+ e);
              }
              map.put("status", 0);
              map.put("msg", "解密失败");
@@ -208,6 +237,7 @@ public class CUtil extends Controller {
          }         
          
          
+           
          
          
 }
