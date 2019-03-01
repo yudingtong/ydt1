@@ -57,21 +57,21 @@ public class AesCbcUtil {
 			}
 			return null;
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (NoSuchPaddingException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (InvalidParameterSpecException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (InvalidKeyException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (InvalidAlgorithmParameterException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IllegalBlockSizeException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (BadPaddingException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return null;
 	}
