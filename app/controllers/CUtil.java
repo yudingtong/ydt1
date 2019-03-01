@@ -171,11 +171,6 @@ public class CUtil extends Controller {
        
          public Map decodeUserInfo(String encryptedData1, String iv1, String code) {
 
-            
-        	 
-        	 
-        	 
-        	 
         	 Map map = new HashMap();
 
              //登录凭证不能为空

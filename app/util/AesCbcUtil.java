@@ -37,6 +37,10 @@ public class AesCbcUtil {
 	 * @throws Exception
 	 */
 	public static String decrypt(String data, String key, String iv, String encodingFormat) throws Exception {
+		
+		System.out.println("1:"+data);
+		System.out.println("2:"+key);
+		System.out.println("3:"+iv);
 		// initialize();
 		// 被加密的数据
 		byte[] dataByte = Base64.decodeBase64(data);
