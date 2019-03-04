@@ -19,7 +19,6 @@ import util.HttpRequest2;
 import util.ResultRtn;
 
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Base64.Decoder;
 import java.util.HashMap;
@@ -39,7 +38,7 @@ import io.ebean.EbeanServer;
 
 
 
-public class CUtil extends Controller {
+public class CUtil2 extends Controller {
 	
 	
 	public  class bookView{
@@ -67,24 +66,17 @@ public class CUtil extends Controller {
     
 	public static void main(String[] args) {
 		
-				
-				
-				String encryptedData2="CH0TLWUYa%2BCm7jbHIR%2Bksfs9Yl9gcw%2FjzbDKy4Iu%2F6Q3bFPrsVdN7BhFViD0WgZrxFU4S1pFDPTgK6YAoPmGNCGDxCF3kWJ6RXgmCPHjyHMqiWq3%2BHy6bi01lVataLrwMbFvTQOhVj%2FBua%2FpDr1tQftp0vFUAOdqaTbyCoJ3p%2B9f5GM%2FQyiOm2TPPWaXJAMQ3I14zNhYJdhAsZ5Gs7D23jPv5qYwY%2FCH8e7BHQsSOYbZl3G%2FjwTpxRCsaU32B2e4%2FUYOJdmThaX69K3d%2FsDZ6ENm0%2B1DGOsZfrLMo64SvF1pPWzoDqJNRvgLOaVq%2BgsUdChbfD2MpMoZAUOdCpfJt5ym6f7VFjSFKAoxfevcd4uiSFFdb7zqLJSpGHq%2BtVBILZW4OrjklajeiU1tnuRhycBkBTGc94T1SxynH%2BvPQCGI7iFqIzj1vvXAkllfqw2ObVSCOST6e7EvixjmDdhTPilaXDt%2BvYJ7KkEEgqzEung%3D";
-	 			//+ "&iv=RxleqHBN0LGF41vAYSFxAg%3D%3D&code=0712ge5028xBQT0FVM202wpd5022ge5l";
-		
-	 	
-	 	String iv2="RxleqHBN0LGF41vAYSFxAg%3D%3D";
-		String session_key1="n8GavmojeyfipP9oX96aMw==";
-				
-				
-				String session_key2="C\\/KyyrZhxkDi1l9VJyTykA==";
+		String encryptedData1="e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D";
+				String iv1="iAp8V4AhRH7fUUu5rJcsFg%3D%3D";
+				String code1="071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH";
+				String session_key1="pzZwieeD\\/8OBTS6xLd+Ruw==";
 				//System.out.println(getId1(encryptedData,iv,code));
 				
 				 try {
-					 String iv=URLDecoder.decode(iv2, "UTF-8");
-			    	 String encryptedData=URLDecoder.decode(encryptedData2, "UTF-8");
+					 String iv=URLDecoder.decode(iv1, "UTF-8");
+			    	 String encryptedData=URLDecoder.decode(encryptedData1, "UTF-8");
 			    	 
-			    	 //String session_key=URLDecoder.decode(session_key1, "UTF-8");
+			    	 String session_key=URLDecoder.decode(session_key1, "UTF-8");
 					 
 					String result = AesCbcUtil.decrypt(encryptedData, session_key1, iv, "UTF-8");
 					System.out.println("result" +result);
@@ -92,22 +84,6 @@ public class CUtil extends Controller {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-		
-//		 //解析相应内容（转换成json对象）
-//        JSONObject json;
-//        String sr="{\"session_key\":\"C\\/KyyrZhxkDi1l9VJyTykA==\",\"openid\":\"oCLgA5VXuhQbIxCo7ss6TzDRAzeo\"}";
-//        System.out.println("JSONObject"+ string2Json(sr));
-//        String session_key="";
-//        try {
-//			json = new JSONObject( string2Json(sr));
-//			 System.out.println("JSONObject"+ json);
-//            //获取会话密钥（session_key）
-//           session_key = json.getString("session_key");
-//           
-//           System.out.println("===>"+ session_key);
-//        
-//        }catch(Exception e) {}
-//        
 		// TODO Auto-generated method stub
 
 	}
@@ -116,7 +92,7 @@ public class CUtil extends Controller {
 	private final EbeanServer ebeanServer;
 
     @Inject
-    public CUtil(EbeanConfig ebeanConfig, DatabaseExecutionContext executionContext) {
+    public CUtil2(EbeanConfig ebeanConfig, DatabaseExecutionContext executionContext) {
         this.ebeanServer = Ebean.getServer(ebeanConfig.defaultServer());
     }
 
@@ -127,45 +103,10 @@ public class CUtil extends Controller {
 	     * requests by an entry in the <code>routes</code> config file.
 	     */
 
-    public Result getId1() {
-   	 
-   	 System.out.println(this.request().uri());
-    	ResultRtn resultRtn = new ResultRtn();
-//        resultRtn.errCode = 0;
-//		resultRtn.msg="ok";
-		
- 	String encryptedData1="e4pD3Lb%2FAVqlstXBgZMJNsup218gjAlXGwmnAQKCM3hbH8TOykV5TkByGQFihNUjHz3eTUACPDFqZhvFUutI5R%2FUzVYBQkiFb600nZux0mKOlKvrHcrltoMtX58LoRcvlTLZ2WeHhLoz0ZRJWxbp79%2BGj42PXlOxmqjjRGfb5oCpw5mjbX1M3nrCLK2HQCTgeb%2B06BCJwTFxczYMFluUfD9N%2FXWxBhOx8lRSXmTkaSVGNKv81LmBv3hvfxgmwk7%2B2IngBpbWwmGitchyrecBn9E6OvulSLshyEfaT3GoHYKsSuy7lqQ5mfxLQA%2FQR1R6WTMUjqJThn%2FK6GRTCRU%2Bi1eNLI4AeJLhlKBCq36Nl%2F3kRfu342210UplvNO2uXdYGw1CxbB51R6PoPOySbZm6VerYc7G47cLzyfPj21boiTfeBcI59YR9gzfEg%2B1J7LxgXvnGI7CMwL3gYl9tDKpVZ71o6KO6I45SFytCCbKPdE%3D";
-	
- 	String encryptedData2="CH0TLWUYa%2BCm7jbHIR%2Bksfs9Yl9gcw%2FjzbDKy4Iu%2F6Q3bFPrsVdN7BhFViD0WgZrxFU4S1pFDPTgK6YAoPmGNCGDxCF3kWJ6RXgmCPHjyHMqiWq3%2BHy6bi01lVataLrwMbFvTQOhVj%2FBua%2FpDr1tQftp0vFUAOdqaTbyCoJ3p%2B9f5GM%2FQyiOm2TPPWaXJAMQ3I14zNhYJdhAsZ5Gs7D23jPv5qYwY%2FCH8e7BHQsSOYbZl3G%2FjwTpxRCsaU32B2e4%2FUYOJdmThaX69K3d%2FsDZ6ENm0%2B1DGOsZfrLMo64SvF1pPWzoDqJNRvgLOaVq%2BgsUdChbfD2MpMoZAUOdCpfJt5ym6f7VFjSFKAoxfevcd4uiSFFdb7zqLJSpGHq%2BtVBILZW4OrjklajeiU1tnuRhycBkBTGc94T1SxynH%2BvPQCGI7iFqIzj1vvXAkllfqw2ObVSCOST6e7EvixjmDdhTPilaXDt%2BvYJ7KkEEgqzEung%3D";
- 			//+ "&iv=RxleqHBN0LGF41vAYSFxAg%3D%3D&code=0712ge5028xBQT0FVM202wpd5022ge5l";
-	
- 	
- 	String iv1="=RxleqHBN0LGF41vAYSFxAg%3D%3D";
-	String code1="071Gw0iQ1N3tz21vwYiQ1KgfiQ1Gw0iH";
-	String session_key1="n8GavmojeyfipP9oX96aMw==";
-	//System.out.println(getId1(encryptedData,iv,code));
-	String result ="";
-	 try {
-		 String iv=URLDecoder.decode(iv1, "UTF-8");
-    	 String encryptedData=URLDecoder.decode(encryptedData1, "UTF-8");
-    	 
-    	 String session_key=URLDecoder.decode(session_key1, "UTF-8");
-		 
-		 result = AesCbcUtil.decrypt(encryptedData, session_key1, iv, "UTF-8");
-		System.out.println("result" +result);
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		//e.printStackTrace();
-	}    
-			  
-		resultRtn.business.put("Id", result); 
-		//System.out.println("http send"+ Json.toJson(result).toString().replaceAll("null", "\"\""));	
-    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-    	
-    }//end login
+	    
          
          
-         public Result getId_decode(String encryptedData, String iv, String code) {
+         public Result getId(String encryptedData, String iv, String code) {
         	 
         	 System.out.println(this.request().uri());
 //        	ResultRtn resultRtn = new ResultRtn();
@@ -181,38 +122,7 @@ public class CUtil extends Controller {
  	    }//end login
          
         
-         public Result getId(String encryptedData, String iv, String code) {
-        	 
-        	 System.out.println(this.request().uri());
-//        	ResultRtn resultRtn = new ResultRtn();
-// 	        resultRtn.errCode = 0;
-// 			resultRtn.msg="ok";
-        	  //登录凭证不能为空
-            
-             
-           //小程序唯一标识   (在微信小程序管理后台获取)
-             String wxspAppid = "wx3d099e67aa7ff91b";
-             //小程序的 app secret (在微信小程序管理后台获取)
-             String wxspSecret = "e73e90677142d3796f08b216d7a50d41";
-             //授权（必填）
-             
-             
-             String grant_type = "authorization_code";
-
-
-             //////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
-             //请求参数
-             String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type;
-             //发送请求
-             
-             String sr = HttpRequest2.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
-             
-             System.out.println("http send"+ params);
-             
-             System.out.println("http get"+ sr);
- 	    	return ok(sr);
-         	
- 	    }//end login
+         
          
          
          
@@ -231,6 +141,7 @@ public class CUtil extends Controller {
        
          public Map decodeUserInfo(String encryptedData1, String iv1, String code) {
 
+        	 
         	 Map map = new HashMap();
 
              //登录凭证不能为空
@@ -271,12 +182,10 @@ public class CUtil extends Controller {
              String session_key="";
 				
 			 try {
-				json = new JSONObject(string2Json(sr));
-				 System.out.println("JSONObject"+ json);
+				json = new JSONObject(sr);
+			
              //获取会话密钥（session_key）
              session_key = json.getString("session_key");
-             
-             System.out.println("session_key"+ session_key);
              //用户的唯一标识（openid）
              String openid = (String) json.get("openid");
 			
@@ -291,7 +200,7 @@ public class CUtil extends Controller {
              try {
             	 
             	 String iv=URLDecoder.decode(iv1, "UTF-8");
-    	    	 String encryptedData=URLDecoder.decode(URLEncoder.encode(encryptedData1, "UTF-8"), "UTF-8");
+    	    	 String encryptedData=URLDecoder.decode(encryptedData1, "UTF-8");
             	 
                //  String result = AESCBCUtil.decrypt1(encryptedData, session_key, iv, "UTF-8");
             	// String result = AESCBCUtil_old.decrypt2(encryptedData, session_key, iv, "UTF-8");
@@ -301,7 +210,7 @@ public class CUtil extends Controller {
             	 if (null != result && result.length() > 0) {
                      map.put("status", 1);
                      map.put("msg", "解密成功");
-
+                    
                     // JSONObject userInfoJSON = JSONObject.fromObject(result);
                      JSONObject userInfoJSON =new JSONObject(result);
                      Map userInfo = new HashMap();
@@ -312,7 +221,7 @@ public class CUtil extends Controller {
                      userInfo.put("province", userInfoJSON.get("province"));
                      userInfo.put("country", userInfoJSON.get("country"));
                      userInfo.put("avatarUrl", userInfoJSON.get("avatarUrl"));
-                    // userInfo.put("unionId", userInfoJSON.get("unionId"));
+                     userInfo.put("unionId", userInfoJSON.get("unionId"));
                      map.put("userInfo", userInfo);
                      return map;
                  }
@@ -325,7 +234,7 @@ public class CUtil extends Controller {
          }         
          
          
-         public Result getIdNew(String encryptedData1, String iv1, String code) throws JSONException {
+ public Result getIdNew(String encryptedData1, String iv1, String code) throws JSONException {
 
 			 Map map = new HashMap();
 		
@@ -397,50 +306,6 @@ public class CUtil extends Controller {
 		
 			       
          
-   }         
-         
-         
-         /**
-          * JSON字符串特殊字符处理，比如：“\A1;1300”
-          * @param s
-          * @return String
-          */
-         public static String string2Json(String s) {      
-             StringBuffer sb = new StringBuffer();      
-             for (int i=0; i<s.length(); i++) {
-             	char c = s.charAt(i);  
-             	 switch (c){
-//             	 case '\':      
-//                      sb.append("\\\"");      
-//                      break;      
-                  case '\\':      
-                      sb.append("\\\\");      
-                      break;      
-                  case '/':      
-                      sb.append("\\/");      
-                      break;      
-                  case '\b':      
-                      sb.append("\\b");      
-                      break;      
-                  case '\f':      
-                      sb.append("\\f");      
-                      break;      
-                  case '\n':      
-                      sb.append("\\n");      
-                      break;      
-                  case '\r':      
-                      sb.append("\\r");      
-                      break;      
-                  case '\t':      
-                      sb.append("\\t");      
-                      break;      
-                  default:      
-                      sb.append(c);   
-             	 }
-              }    
-             return sb.toString();   
-             }
-           
-         
-         
+   }
+ 
 }
