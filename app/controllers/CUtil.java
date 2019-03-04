@@ -361,7 +361,7 @@ public class CUtil extends Controller {
              //解析相应内容（转换成json对象）
              JSONObject json=new JSONObject(sr);
              String openid ="";
-             String errcode ="";
+             String errcode ="0";
              String errmsg ="";
 			 try {
 				
