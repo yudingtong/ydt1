@@ -371,16 +371,15 @@ public class CUtil extends Controller {
              //用户的唯一标识（openid）
               
 			
-                errcode =String.valueOf( json.get("errcode"));
-             
-             
-                errmsg = (String) json.get("errmsg");
+              
                
                 if(json.has("openid"))
                 	openid = (String)json.get("openid");
-                else
-                	openid = "";          	
-             
+                else {
+                	openid = "";   
+                	errcode =String.valueOf( json.get("errcode"));
+                    errmsg = (String) json.get("errmsg");
+                }
 			 } catch (JSONException e1) {
 				
 				 System.out.println("JSONException"+ e1);
