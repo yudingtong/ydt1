@@ -70,7 +70,8 @@ create table comment (
 );
 
 create table company (
-  comid                         varchar(255) not null,
+  id                            bigint auto_increment not null,
+  comid                         varchar(255),
   name                          varchar(255),
   wxid                          varchar(255),
   addshort                      varchar(255),
@@ -82,7 +83,7 @@ create table company (
   createtime                    datetime(6) not null,
   checktime                     datetime(6) not null,
   modifytime                    datetime(6) not null,
-  constraint pk_company primary key (comid)
+  constraint pk_company primary key (id)
 );
 
 create table computer (
@@ -90,7 +91,7 @@ create table computer (
   name                          varchar(255),
   introduced                    datetime(6),
   discontinued                  datetime(6),
-  company_comid                 varchar(255),
+  company_id                    bigint,
   constraint pk_computer primary key (id)
 );
 
@@ -207,8 +208,8 @@ create table user_stock_r (
 
 alter table avatar add constraint fk_avatar_user_id foreign key (user_id) references user (id) on delete restrict on update restrict;
 
-alter table computer add constraint fk_computer_company_comid foreign key (company_comid) references company (comid) on delete restrict on update restrict;
-create index ix_computer_company_comid on computer (company_comid);
+alter table computer add constraint fk_computer_company_id foreign key (company_id) references company (id) on delete restrict on update restrict;
+create index ix_computer_company_id on computer (company_id);
 
 alter table user add constraint fk_user_role_id foreign key (role_id) references role (id) on delete restrict on update restrict;
 create index ix_user_role_id on user (role_id);
@@ -224,8 +225,8 @@ create index ix_user_stock_r_stock_id on user_stock_r (stock_id);
 
 alter table avatar drop foreign key fk_avatar_user_id;
 
-alter table computer drop foreign key fk_computer_company_comid;
-drop index ix_computer_company_comid on computer;
+alter table computer drop foreign key fk_computer_company_id;
+drop index ix_computer_company_id on computer;
 
 alter table user drop foreign key fk_user_role_id;
 drop index ix_user_role_id on user;
