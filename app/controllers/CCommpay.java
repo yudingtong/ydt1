@@ -16,6 +16,7 @@ import util.ResultRtn;
 
 import java.util.ArrayList;
 import java.util.Base64.Decoder;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,7 +78,7 @@ public class CCommpay extends Controller {
 	    
          
          
-         public Result queryCom(String wxid) {
+         public Result queryCom(String comid) {
         	 
         	ResultRtn resultRtn = new ResultRtn();
  	        resultRtn.errCode = 0;
@@ -91,7 +92,7 @@ public class CCommpay extends Controller {
  				  
  				  
  				  Optional<Company> company= 
-						  ebeanServer.find(Company.class).where().eq("wxid", wxid).findOneOrEmpty();
+						  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
  				 
  				 if(company.isPresent()) {
  					resultRtn.business.put("name", company); 
@@ -123,5 +124,52 @@ public class CCommpay extends Controller {
  		
  	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
          	
- 	    }//end login
+ 	    }//end queryComm
+         
+         
+         
+  public Result  manageCom(int flag,String wxid,String adminname,String admintel,String comid,String name,String addshort,String addlong,float lat,float lng,String tel){
+        	 
+	  
+		      ResultRtn resultRtn = new ResultRtn();
+		      resultRtn.errCode = 0;
+			  resultRtn.msg="Comm add ok";
+			  Company company= null;
+			  Optional<Company> company1= 
+					  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
+				 
+				 if(company1.isPresent()) {
+					
+					 //company = company1.get();
+					 resultRtn.errCode = 201;
+					 resultRtn.msg="该单位统一社会信用代码已存在";
+					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+				 }
+			  
+			 
+			  if(flag==1&!company1.isPresent()) {
+        	  
+			  
+		          company =  new Company();
+		          company.wxid = wxid;
+		          //company.adminname=adminname;
+		          //company.addlong
+		          company.comid =comid;
+		          company.name =name;
+		          company.addshort  =addshort;
+		          
+		          company.addlong=addlong;
+		          company.lat=lat;
+		          company.ing=lng;
+		          company.tel=tel;
+		          company.status=0; //0 默认为正常状态
+		          company.createtime =new Date();
+		          
+		          company.save();
+	          
+			  }
+			  
+        	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+        	 
+         } 
 }

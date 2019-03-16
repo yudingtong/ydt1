@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import io.ebean.Model;
 import io.ebean.annotation.CreatedTimestamp;
 
 
@@ -16,12 +17,12 @@ import io.ebean.annotation.CreatedTimestamp;
 /**
  * Company entity managed by Ebean
  */
-@Entity 
-public class Company{
+@Entity  
+public class Company extends BaseModel{
 
-    private static final long serialVersionUID = 1L;
    
-    @Id
+   
+
     public String comid; //结构代码
     
     public String name;  //单位名称

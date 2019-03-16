@@ -28,11 +28,16 @@ http://zhaozichuan.top/disList?mid=1&max=5
 
 
 http://127.0.0.1:9000/login?flag=2&wxid=123
-http://127.0.0.1:9000/queryCom?wxid=123
+http://127.0.0.1:9000/queryCom?comid=com321
 http://127.0.0.1:9000/getId?encryptedData=111&iv=11&code=1
+http://127.0.0.1:9000/manageCom?flag=1&wxid=1&adminname=zzc&admintel=13810169858&comid=com321&name=icbcsdc&addshort=xisanqi&addlong=xisanqijiancaicheng&lat=12.3&lng=56&tel=18600457240
+
+
 #http://zhaozichuan.top/login?flag=2&wxid=123
-#http://zhaozichuan.top/queryCom?wxid=123
+#http://zhaozichuan.top/queryCom?comid=com321
 #https://zhaozichuan.top/getId?encryptedData=111&iv=11&code=1
-https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel  //新增
+https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel=13810169858  //新增
+https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel=13810169858&comid=com321&name=icbcsdc&addshort=xisanqi&addlong=xisanqijiancaicheng&lat=12.3&lng=56&tel=18600457240
+
 
 
