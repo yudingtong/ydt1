@@ -78,11 +78,11 @@ public class CCommpay extends Controller {
 	    
          
          
-         public Result queryCom(String comid) {
+         public Result queryCom(String wxid) {
         	 
         	ResultRtn resultRtn = new ResultRtn();
  	        resultRtn.errCode = 0;
- 			resultRtn.msg="login ok";
+ 			resultRtn.msg="query ok";
  	    	
  			List<bookView> bookviewList =new ArrayList();
  			
@@ -91,13 +91,18 @@ public class CCommpay extends Controller {
  			   try {     
  				  
  				  
- 				  Optional<Company> company= 
-						  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
+ 				  List<Company> companyList= 
+						  ebeanServer.find(Company.class).where().eq("wxid", wxid).findList();
  				 
- 				 if(company.isPresent()) {
- 					resultRtn.business.put("name", company); 
+ 				 if(companyList.size()>0) {
+ 					resultRtn.business.put("Company", companyList); 
  					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
  	 				   
+ 				 }else {
+ 					 
+ 					 resultRtn.errCode = 401;
+					 resultRtn.msg="没有可以管理的单位";
+					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
  				 }
  				 
  				    
@@ -113,16 +118,6 @@ public class CCommpay extends Controller {
  	 	        }
  	 	        
  				
- 				 
- 				
- 				
- 				
- 				
- 			
- 			
- 			
- 		
- 	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
          	
  	    }//end queryComm
          
