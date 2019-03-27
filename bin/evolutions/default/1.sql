@@ -151,7 +151,7 @@ create table res (
   d11                           varchar(255),
   d2                            integer not null,
   d3                            double not null,
-  time                          datetime(6) not null,
+  starttime                     datetime(6) not null,
   endtime                       datetime(6) not null,
   createtime                    datetime(6) not null,
   modifytime                    datetime(6) not null,
