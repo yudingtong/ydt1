@@ -43,7 +43,7 @@ public class Res extends BaseModel{
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
     @CreatedTimestamp
     public Date starttime; //审核时间
-    
+       
     
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
     @CreatedTimestamp

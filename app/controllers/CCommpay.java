@@ -15,6 +15,8 @@ import play.mvc.Result;
 import repository.DatabaseExecutionContext;
 import util.ResultRtn;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64.Decoder;
 import java.util.Date;
@@ -122,7 +124,46 @@ public class CCommpay extends Controller {
          	
  	    }//end queryComm
          
+       
          
+         public Result queryRes(String resid) {
+        	 
+         	ResultRtn resultRtn = new ResultRtn();
+  	        resultRtn.errCode = 0;
+  			resultRtn.msg="query ok";
+  	    	
+  			   try {     
+  				  
+  				  
+  				  List<Res> resList= 
+ 						  ebeanServer.find(Res.class).where().eq("resid", resid).findList();
+  				 
+  				 if(resList.size()>0) {
+  					resultRtn.business.put("res", resList); 
+  					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  	 				   
+  				 }else {
+  					 
+  					 resultRtn.errCode = 401;
+ 					 resultRtn.msg="没有可以管理的资源";
+ 					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  				 }
+  				 
+  				    
+  				
+  				  
+ 				  
+  	 	        
+  	 	        }catch(Exception e) {
+  	 	        	
+  	 	        	resultRtn.errCode = 1;
+  	           	    resultRtn.msg =e.getMessage();
+  	           	    return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  	 	        }
+  	 	        
+  				
+          	
+  	    }//end queryRes
          
   public Result  manageCom(int flag,String wxid,String adminname,String admintel,String comid,String name,String addshort,String addlong,float lat,float lng,String tel){
         	 
@@ -174,10 +215,13 @@ public class CCommpay extends Controller {
   
   
 //public Result  manageRes(int flag,String wxid,String adminname,String admintel,String comid,String name,String addshort,String addlong,float lat,float lng,String tel){
-	  public Result  manageRes(int flag,String wxid,String comid,String resid,int type,String name,int size, String starttime,String endtime,String des)
+	  public Result  manageRes(int flag,String wxid,String comid,String resid,int type,String name,int size, String starttime,String endtime,String des) throws ParseException
 	 
 	  {
       
+		  SimpleDateFormat sdf =   new SimpleDateFormat( "yyyyMMddHHmmss" );
+		  
+		  
 		  ResultRtn resultRtn = new ResultRtn();
 	      resultRtn.errCode = 0;
 		  resultRtn.msg="Res add ok";
@@ -207,8 +251,8 @@ public class CCommpay extends Controller {
           
 		   res.type=type;
 		   res.size=size;
-		   res.starttime= new Date(starttime);
-		   res.endtime=new Date(endtime);
+		   res.starttime=  sdf.parse(starttime);
+		   res.endtime=sdf.parse(endtime);
 		   res.status=0; //0 默认为正常状态
 		   res.des =des;
 		   res.createtime =new Date();

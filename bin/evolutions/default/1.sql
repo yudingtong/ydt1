@@ -136,6 +136,28 @@ create table news (
   constraint pk_news primary key (id)
 );
 
+create table res (
+  id                            bigint auto_increment not null,
+  type                          integer not null,
+  resid                         varchar(255),
+  comid                         varchar(255),
+  size                          integer not null,
+  status                        integer not null,
+  name                          varchar(255),
+  projector                     tinyint(1) default 0,
+  camera                        tinyint(1) default 0,
+  validdate                     varchar(255),
+  des                           varchar(255),
+  d11                           varchar(255),
+  d2                            integer not null,
+  d3                            double not null,
+  time                          datetime(6) not null,
+  endtime                       datetime(6) not null,
+  createtime                    datetime(6) not null,
+  modifytime                    datetime(6) not null,
+  constraint pk_res primary key (id)
+);
+
 create table role (
   id                            integer auto_increment not null,
   name                          varchar(255),
@@ -258,6 +280,8 @@ drop table if exists discuss;
 drop table if exists favor;
 
 drop table if exists news;
+
+drop table if exists res;
 
 drop table if exists role;
 
