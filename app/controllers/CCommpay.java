@@ -8,6 +8,7 @@ import models.ResultData.MystockView;
 import models.Admin;
 import models.Book;
 import models.Company;
+import models.Res;
 import models.User_stock_r;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -173,51 +174,52 @@ public class CCommpay extends Controller {
   
   
 //public Result  manageRes(int flag,String wxid,String adminname,String admintel,String comid,String name,String addshort,String addlong,float lat,float lng,String tel){
-//	  public Result  manageRes(int flag,String wxid,String comid,String resid,int type,String name,String size, String starttime,String endtime,String des)
-//	 
-//	  {
-//      
-//		  ResultRtn resultRtn = new ResultRtn();
-//	      resultRtn.errCode = 0;
-//		  resultRtn.msg="Res add ok";
-//		  Company company= null;
-//		  Optional<Company> company1= 
-//				  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
-//			 
-//		 if(company1.isPresent()) {
-//			
-//			 //company = company1.get();
-//			 resultRtn.errCode = 201;
-//			 resultRtn.msg="该单位统一社会信用代码已存在";
-//			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-//		 }
-//	  
-//	 
-//	  if(flag==1&!company1.isPresent()) {
-//	  
-//	  
-//          company =  new Company();
-//          company.wxid = wxid;
-//          //company.adminname=adminname;
-//          //company.addlong
-//          company.comid =comid;
-//          company.name =name;
-//          company.addshort  =addshort;
-//          
-//          company.addlong=addlong;
-//          company.lat=lat;
-//          company.ing=lng;
-//          company.tel=tel;
-//          company.status=0; //0 默认为正常状态
-//          company.createtime =new Date();
-//          
-//          company.save();
-//      
-//	  }
-//	  
-//	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-//	 
-// } 
+	  public Result  manageRes(int flag,String wxid,String comid,String resid,int type,String name,int size, String starttime,String endtime,String des)
+	 
+	  {
+      
+		  ResultRtn resultRtn = new ResultRtn();
+	      resultRtn.errCode = 0;
+		  resultRtn.msg="Res add ok";
+		  Res res= null;
+		  Optional<Res> res1= 
+				  ebeanServer.find(Res.class).where().eq("comid", comid).findOneOrEmpty();
+			 
+		 if(res1.isPresent()) {
+			
+			 //company = company1.get();
+			 resultRtn.errCode = 301;
+			 resultRtn.msg="此资源已存在";
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+		 }
+	  
+	 
+	   if(flag==1&!res1.isPresent()) {
+	  
+	  
+		   res =  new Res();
+		   res.d11 = wxid;
+          //company.adminname=adminname;
+          //company.addlong
+		   res.comid =comid;
+		   res.name =name;
+		   res.resid  =resid;
+          
+		   res.type=type;
+		   res.size=size;
+		   res.starttime= new Date(starttime);
+		   res.endtime=new Date(endtime);
+		   res.status=0; //0 默认为正常状态
+		   res.des =des;
+		   res.createtime =new Date();
+          
+		   res.save();
+      
+	  }
+	  
+	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+	 
+ } 
   
   
 }
