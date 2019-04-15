@@ -11,10 +11,13 @@ import models.Company;
 import models.Res;
 import models.User_stock_r;
 import play.mvc.Controller;
+import play.mvc.Http;
 import play.mvc.Result;
+import play.mvc.Http.Request;
 import repository.DatabaseExecutionContext;
 import util.ResultRtn;
 
+import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,6 +38,12 @@ import io.ebean.EbeanServer;
 public class CCommpay extends Controller {
 	
 	
+	  
+   public static Request request() {
+	   System.out.println("---->");
+	   return Http.Context.current().request();
+	    }
+
 	public  class bookView{
 		   
 		   
@@ -219,7 +228,9 @@ public class CCommpay extends Controller {
 	 
 	  {
       
-		  SimpleDateFormat sdf =   new SimpleDateFormat( "yyyyMMddHHmmss" );
+		  String starttime1=java.net.URLDecoder.decode(starttime);
+		  String endtime1=java.net.URLDecoder.decode(endtime);
+		  SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
 		  
 		  
 		  ResultRtn resultRtn = new ResultRtn();
@@ -251,8 +262,8 @@ public class CCommpay extends Controller {
           
 		   res.type=type;
 		   res.size=size;
-		   res.starttime=  sdf.parse(starttime);
-		   res.endtime=sdf.parse(endtime);
+		   res.starttime=  sdf.parse(starttime1);
+		   res.endtime=sdf.parse(endtime1);
 		   res.status=0; //0 默认为正常状态
 		   res.des =des;
 		   res.createtime =new Date();

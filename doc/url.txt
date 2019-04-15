@@ -40,6 +40,7 @@ http://127.0.0.1:9000/manageRes?flag=1&wxid=11&&comid=com321&resid=12&type=1&nam
 #https://zhaozichuan.top/getId?encryptedData=111&iv=11&code=1
 https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel=13810169858  //新增
 https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel=13810169858&comid=com321&name=icbcsdc&addshort=xisanqi&addlong=xisanqijiancaicheng&lat=12.3&lng=56&tel=18600457240
+https://zhaozichuan.top//manageRes?flag=1&wxid=11&&comid=com321&resid=12&type=1&name=%E4%BC%9A%E8%AE%AE%E5%AE%A4101&size=100&starttime=20190327111213&endtime=20190327111213&des=12qweqw
 
 
 
