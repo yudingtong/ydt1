@@ -237,20 +237,21 @@ public class CCommpay extends Controller {
 	      resultRtn.errCode = 0;
 		  resultRtn.msg="Res add ok";
 		  Res res= null;
-		  Optional<Res> res1= 
-				  ebeanServer.find(Res.class).where().eq("comid", comid).findOneOrEmpty();
-			 
-		 if(res1.isPresent()) {
-			
-			 //company = company1.get();
-			 resultRtn.errCode = 301;
-			 resultRtn.msg="此资源已存在";
-			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-		 }
-	  
-	 
-	   if(flag==1&!res1.isPresent()) {
-	  
+		  
+		  
+		  if(flag==1) {//新增
+		  
+			   Optional<Company> com1= 
+				  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
+		
+		  
+			  if(!com1.isPresent()) {
+				
+				 //company = company1.get();
+				 resultRtn.errCode = 301;
+				 resultRtn.msg="此资源所属机构不存在";
+				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+			  }
 	  
 		   res =  new Res();
 		   res.d11 = wxid;
@@ -258,8 +259,10 @@ public class CCommpay extends Controller {
           //company.addlong
 		   res.comid =comid;
 		   res.name =name;
-		   res.resid  =resid;
-          
+		   
+		  // long time = System.currentTimeMillis();
+
+		   res.resid  =String.valueOf(System.currentTimeMillis());
 		   res.type=type;
 		   res.size=size;
 		   res.starttime=  sdf.parse(starttime1);
@@ -270,9 +273,62 @@ public class CCommpay extends Controller {
           
 		   res.save();
       
-	  }
+		
+		  }else {
+			  
+		  Optional<Res> res1= 
+				  ebeanServer.find(Res.class).where().eq("comid", resid).findOneOrEmpty();
+		
+			  if(!res1.isPresent()) {
+					
+					 //company = company1.get();
+					 resultRtn.errCode = 301;
+					 resultRtn.msg="此资源不存在";
+					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+				  }
+			  
+		  
+			  Res res2=  res1.get();
+		  
+			  if(flag==3) {
+				  res2.delete(); 
+				  resultRtn.errCode = 0;
+				  resultRtn.msg="资源已经删除";
+			      return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+			      
+			  }else if(flag==2){
+				  
+				  res2.d11 = wxid;
+		          //company.adminname=adminname;
+		          //company.addlong
+				   res2.comid =comid;
+				   res2.name =name;
+				   
+				  // long time = System.currentTimeMillis();
+
+				   res2.resid  =resid;
+				   res2.type=type;
+				   res2.size=size;
+				   res2.starttime=  sdf.parse(starttime1);
+				   res2.endtime=sdf.parse(endtime1);
+				   res2.status=0; //0 默认为正常状态
+				   res2.des =des;
+				   res2.createtime =new Date();
+		          
+				   res2.save();
+				  
+			  }
+
+				  
+				  
+			  
+			 
+			  
+		  
+		  }//flag =2
+		  
 	  
-	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+		  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
 	 
  } 
   

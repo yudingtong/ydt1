@@ -32,8 +32,7 @@ http://127.0.0.1:9000/queryCom?wxid=oCLgA5VXuhQbIxCo7ss6TzDRAzeo
 http://127.0.0.1:9000/queryRes?resid=oCLgA5VXuhQbIxCo7ss6TzDRAzeo
 http://127.0.0.1:9000/getId?encryptedData=111&iv=11&code=1
 http://127.0.0.1:9000/manageCom?flag=1&wxid=1&adminname=zzc&admintel=13810169858&comid=com321&name=icbcsdc&addshort=xisanqi&addlong=xisanqijiancaicheng&lat=12.3&lng=56&tel=18600457240
-http://127.0.0.1:9000/manageRes?flag=1&wxid=11&&comid=com321&resid=12&type=1&name=%E4%BC%9A%E8%AE%AE%E5%AE%A4101&size=100&starttime=20190327111213&endtime=20190327111213&des=12qweqw
-
+http://127.0.0.1:9000/manageRes?flag=1&wxid=oCLgA5VXuhQbIxCo7ss6TzDRAzeo&comid=3&resid=1&type=1&name=101&size=10&des=%E6%9C%89&starttime=9%3A00&endtime=18%3A00
 
 #http://zhaozichuan.top/login?flag=2&wxid=123
 #http://zhaozichuan.top/queryCom?comid=com321
