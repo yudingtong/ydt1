@@ -1,11 +1,13 @@
 package controllers;
 
+import play.data.format.Formats;
 import play.db.ebean.EbeanConfig;
 import play.libs.Json;
 import models.ResultData;
 import models.User;
 import models.ResultData.MystockView;
 import models.Admin;
+import models.BaseModel;
 import models.Book;
 import models.Company;
 import models.Res;
@@ -30,6 +32,7 @@ import javax.inject.Inject;
 
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
+import io.ebean.annotation.CreatedTimestamp;
 
 
 
@@ -44,6 +47,20 @@ public class CCommpay extends Controller {
 	   return Http.Context.current().request();
 	    }
 
+	public  class resView{
+		   
+		   
+		public String resid; //资源编码
+	    public String validdate;  //可用日期
+	    public String name;  //单位名称
+	    public String des;   //电话
+	    public int size; //容纳人数
+	    public int status; //资源状态
+	    public Date starttime; //审核时间
+	    public Date endtime; //审核时间
+	}
+	
+	
 	public  class bookView{
 		   
 		   
@@ -61,10 +78,29 @@ public class CCommpay extends Controller {
 		   public String attendee;
 		   public String maillist;
 		   public String booktime;
-		  
+		   
 		   
 		
 		
+	}
+	
+	
+	
+	public class ComView {
+
+	    public String comid; //结构代码
+	    public String name;  //单位名称
+	    public String wxid;  //微信id
+	    public String addshort; //地址简称
+	    public String addlong;  //详细地址
+	    public float  lat;   //地址精度
+	    public float  ing;   //地址纬度
+	    public String tel;   //电话
+	    public Date createtime;
+	    public int  status;  //单位状态
+	    public Date checktime; //审核时间
+	    public Date modifytime; //修改时间
+	    public List<Res> resList;
 	}
     
 	public static void main(String[] args) {
@@ -96,18 +132,44 @@ public class CCommpay extends Controller {
  	        resultRtn.errCode = 0;
  			resultRtn.msg="query ok";
  	    	
- 			List<bookView> bookviewList =new ArrayList();
- 			
  			
  				
  			   try {     
  				  
+ 				  List<ComView> comviewList=new ArrayList(); 
+						 
+ 				   
  				  
  				  List<Company> companyList= 
 						  ebeanServer.find(Company.class).where().eq("wxid", wxid).findList();
  				 
  				 if(companyList.size()>0) {
- 					resultRtn.business.put("Company", companyList); 
+ 					 
+ 					for(int i=0; i<companyList.size(); i++) {
+ 						
+ 						ComView comview=new ComView();
+ 						comview.comid= companyList.get(i).comid;
+ 						comview.wxid= companyList.get(i).wxid;
+ 						comview.name= companyList.get(i).name;
+ 						comview.addshort= companyList.get(i).addshort;
+ 						comview.addlong= companyList.get(i).addlong;
+ 						comview.lat= companyList.get(i).lat;
+ 						comview.ing= companyList.get(i).ing;
+ 						comview.tel= companyList.get(i).tel;
+ 						comview.createtime= companyList.get(i).createtime;
+ 						comview.status= companyList.get(i).status;
+ 						comview.checktime= companyList.get(i).checktime;
+ 						comview.modifytime= companyList.get(i).modifytime;
+ 						
+ 						
+ 						List<Res> resList1 = 
+ 								  ebeanServer.find(Res.class).where().eq("comid", comview.comid).findList(); 
+ 						comview.resList = resList1;
+ 						comviewList.add(comview);
+ 					}
+ 					 
+ 					 
+ 					 resultRtn.business.put("Company", comviewList); 
  					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
  	 				   
  				 }else {
