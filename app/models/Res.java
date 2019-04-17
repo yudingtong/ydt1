@@ -41,12 +41,10 @@ public class Res extends BaseModel{
     
     
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
-    @CreatedTimestamp
     public Date starttime; //审核时间
        
     
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
-    @CreatedTimestamp
     public Date endtime; //审核时间
     
 //    @ManyToOne
@@ -61,7 +59,6 @@ public class Res extends BaseModel{
    
         
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
-    @CreatedTimestamp
     public Date modifytime; //修改时间
     
     public String d11;   //电话
