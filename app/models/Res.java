@@ -40,12 +40,12 @@ public class Res extends BaseModel{
     
     
     
-    @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
-    public Date starttime; //审核时间
+    //@Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
+    public String starttime; //审核时间
        
     
-    @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
-    public Date endtime; //审核时间
+    //@Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
+    public String endtime; //审核时间
     
 //    @ManyToOne
 //    public Admin role;

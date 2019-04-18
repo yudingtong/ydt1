@@ -56,8 +56,8 @@ public class CCommpay extends Controller {
 	    public String des;   //电话
 	    public int size; //容纳人数
 	    public int status; //资源状态
-	    public Date starttime; //审核时间
-	    public Date endtime; //审核时间
+	    public String starttime; //审核时间
+	    public String endtime; //审核时间
 	}
 	
 	
@@ -131,8 +131,7 @@ public class CCommpay extends Controller {
         	ResultRtn resultRtn = new ResultRtn();
  	        resultRtn.errCode = 0;
  			resultRtn.msg="query ok";
- 	    	
- 			
+ 			SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
  				
  			   try {     
  				  
@@ -165,6 +164,11 @@ public class CCommpay extends Controller {
  						List<Res> resList1 = 
  								  ebeanServer.find(Res.class).where().eq("comid", comview.comid).findList(); 
  						comview.resList = resList1;
+ 						
+ 			 			
+ 						
+ 						
+ 						
  						comviewList.add(comview);
  					}
  					 
@@ -290,8 +294,8 @@ public class CCommpay extends Controller {
 	 
 	  {
       
-		  String starttime1=java.net.URLDecoder.decode(starttime);
-		  String endtime1=java.net.URLDecoder.decode(endtime);
+		  //String starttime1=java.net.URLDecoder.decode(starttime);
+		  //String endtime1=java.net.URLDecoder.decode(endtime);
 		  SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
 		  
 		  
@@ -327,8 +331,8 @@ public class CCommpay extends Controller {
 		   res.resid  =String.valueOf(System.currentTimeMillis());
 		   res.type=type;
 		   res.size=size;
-		   res.starttime=  sdf.parse(starttime1);
-		   res.endtime=sdf.parse(endtime1);
+		   res.starttime=  starttime;
+		   res.endtime=endtime;
 		   res.status=0; //0 默认为正常状态
 		   res.des =des;
 		   res.createtime =new Date();
@@ -371,8 +375,8 @@ public class CCommpay extends Controller {
 				   res2.resid  =resid;
 				   res2.type=type;
 				   res2.size=size;
-				   res2.starttime=  sdf.parse(starttime1);
-				   res2.endtime=sdf.parse(endtime1);
+				   res2.starttime=  starttime;
+				   res2.endtime= endtime;
 				   res2.status=0; //0 默认为正常状态
 				   res2.des =des;
 				   res2.createtime =new Date();
