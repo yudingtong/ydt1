@@ -148,13 +148,13 @@ create table res (
   camera                        tinyint(1) default 0,
   validdate                     varchar(255),
   des                           varchar(255),
+  starttime                     varchar(255),
+  endtime                       varchar(255),
+  modifytime                    datetime(6),
   d11                           varchar(255),
   d2                            integer not null,
   d3                            double not null,
-  starttime                     datetime(6) not null,
-  endtime                       datetime(6) not null,
   createtime                    datetime(6) not null,
-  modifytime                    datetime(6) not null,
   constraint pk_res primary key (id)
 );
 

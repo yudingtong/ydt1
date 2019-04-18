@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import io.ebean.Model;
 import io.ebean.annotation.CreatedTimestamp;
 
@@ -52,12 +54,13 @@ public class Res extends BaseModel{
     /**
      * 创建时间
      */
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")   
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
     @CreatedTimestamp
     public Date createtime;
     
    
-        
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")   
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date modifytime; //修改时间
     

@@ -131,7 +131,8 @@ public class CCommpay extends Controller {
         	ResultRtn resultRtn = new ResultRtn();
  	        resultRtn.errCode = 0;
  			resultRtn.msg="query ok";
- 			SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
+ 			//SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
+ 			SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
  				
  			   try {     
  				  
@@ -163,11 +164,13 @@ public class CCommpay extends Controller {
  						
  						List<Res> resList1 = 
  								  ebeanServer.find(Res.class).where().eq("comid", comview.comid).findList(); 
+// 						for(i=0; i<resList1.size(); i++) {
+// 							
+// 							resList1.get(i).createtime=sdf1.format(resList1.get(i).createtime);
+// 							
+// 						}
+ 						
  						comview.resList = resList1;
- 						
- 			 			
- 						
- 						
  						
  						comviewList.add(comview);
  					}
