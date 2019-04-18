@@ -96,10 +96,10 @@ public class CCommpay extends Controller {
 	    public float  lat;   //地址精度
 	    public float  ing;   //地址纬度
 	    public String tel;   //电话
-	    public Date createtime;
+	    public String createtime;
 	    public int  status;  //单位状态
-	    public Date checktime; //审核时间
-	    public Date modifytime; //修改时间
+	    public String checktime; //审核时间
+	    public String modifytime; //修改时间
 	    public List<Res> resList;
 	}
     
@@ -156,10 +156,10 @@ public class CCommpay extends Controller {
  						comview.lat= companyList.get(i).lat;
  						comview.ing= companyList.get(i).ing;
  						comview.tel= companyList.get(i).tel;
- 						comview.createtime= companyList.get(i).createtime;
+ 						comview.createtime= sdf1.format(companyList.get(i).createtime);
  						comview.status= companyList.get(i).status;
- 						comview.checktime= companyList.get(i).checktime;
- 						comview.modifytime= companyList.get(i).modifytime;
+ 						comview.checktime= sdf1.format(companyList.get(i).checktime);
+ 						comview.modifytime= sdf1.format(companyList.get(i).modifytime);
  						
  						
  						List<Res> resList1 = 
