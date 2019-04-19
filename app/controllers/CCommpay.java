@@ -243,6 +243,12 @@ public class CCommpay extends Controller {
           	
   	    }//end queryRes
          
+         
+         
+         
+         
+         
+         
   public Result  manageCom(int flag,String wxid,String adminname,String admintel,String comid,String name,String addshort,String addlong,float lat,float lng,String tel){
         	 
 	  
@@ -253,18 +259,19 @@ public class CCommpay extends Controller {
 			  Optional<Company> company1= 
 					  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
 				 
-				 if(company1.isPresent()) {
-					
-					 //company = company1.get();
-					 resultRtn.errCode = 201;
-					 resultRtn.msg="该单位统一社会信用代码已存在";
-					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-				 }
+				
 			  
 			 
-			  if(flag==1&!company1.isPresent()) {
+			  if(flag==1) {  //新增
         	  
-			  
+				  if(company1.isPresent()) {
+						
+						 //company = company1.get();
+						 resultRtn.errCode = 201;
+						 resultRtn.msg="该单位统一社会信用代码已存在";
+						  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+					 }
+				  
 		          company =  new Company();
 		          company.wxid = wxid;
 		          //company.adminname=adminname;
@@ -282,10 +289,75 @@ public class CCommpay extends Controller {
 		          
 		          company.save();
 	          
+			  }else if(flag==2) { //修改
+				  
+//				  Optional<Company> company1= 
+//						  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
+				  
+				  if(company1.isPresent()) {
+						
+						 //company = company1.get();
+						 resultRtn.errCode = 201;
+						 resultRtn.msg="该单位统一社会信用代码已存在";
+						  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+					 }
+				  
+//				  Company company2= 
+//						  ebeanServer.find(Company.class).where().eq("wxid", wxid)
+//						                                         .eq("comid", comid)
+//						                                         .eq("admintel", admintel)
+//						                                         .findOne();
+				  company1.get().wxid = wxid;
+				  company1.get().admintel = admintel;
+				  company1.get().adminname = adminname;
+				  
+//				  Optional<Admin>   admin1= 
+//						  ebeanServer.find(Admin.class).where().eq("wxid", wxid)
+//									                           .eq("adminname", adminname)
+//									                           .eq("admintel", admintel)
+//						                                        .findOneOrEmpty();
+					 
+				  
+				  
+				  
+			  }else if(flag==3) { //删除
+				  
+//				  Optional<Company> company1= 
+//						  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
+				  
+				  if(company1.isPresent()) {
+						
+						 //company = company1.get();
+						 resultRtn.errCode = 201;
+						 resultRtn.msg="该单位统一社会信用代码已存在";
+						  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+					 }
+			  
+				  try{
+					  
+					 Company company2= 
+				     
+							 ebeanServer.find(Company.class).where().eq("wxid", wxid)
+				                                         .eq("comid", comid)
+				                                         .findOne();
+					 company2.delete();
+				        
+				  }catch (Exception e) {
+					// TODO: handle exception
+					  resultRtn.errCode = 301;
+					  resultRtn.msg="delete fail,more than one result was found";
+					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+				  }
+				  
+		
+				  
+				  
+				 
+			  
 			  }
 			  
-        	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-        	 
+			  
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
          } 
   
   

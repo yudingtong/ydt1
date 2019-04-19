@@ -35,6 +35,8 @@ public class Company extends BaseModel{
     public float  lat;   //地址精度
     public float  ing;   //地址纬度
     public String tel;   //电话
+    public String admintel;   //电话
+    public String adminname;   //电话
     
 //    @ManyToOne
 //    public Admin role;

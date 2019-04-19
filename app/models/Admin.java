@@ -16,10 +16,10 @@ import io.ebean.annotation.CreatedTimestamp;
  * Company entity managed by Ebean
  */
 @Entity 
-public class Admin{
+public class Admin extends BaseModel{
 
    
-    @Id
+
     public String wxid;  //微信id
     
     public String name;  //姓名
