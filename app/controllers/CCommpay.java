@@ -42,10 +42,7 @@ public class CCommpay extends Controller {
 	
 	
 	  
-   public static Request request() {
-	   System.out.println("---->");
-	   return Http.Context.current().request();
-	    }
+   
 
 	public  class resView{
 		   
@@ -418,7 +415,7 @@ public class CCommpay extends Controller {
 		  }else {
 			  
 		  Optional<Res> res1= 
-				  ebeanServer.find(Res.class).where().eq("comid", resid).findOneOrEmpty();
+				  ebeanServer.find(Res.class).where().eq("resid", resid).findOneOrEmpty();
 		
 			  if(!res1.isPresent()) {
 					

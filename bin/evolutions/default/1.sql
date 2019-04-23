@@ -4,12 +4,13 @@
 # --- !Ups
 
 create table admin (
-  wxid                          varchar(255) not null,
+  id                            bigint auto_increment not null,
+  wxid                          varchar(255),
   name                          varchar(255),
   type                          integer not null,
   tel                           varchar(255),
   regdate                       datetime(6) not null,
-  constraint pk_admin primary key (wxid)
+  constraint pk_admin primary key (id)
 );
 
 create table analyst_member (
@@ -79,6 +80,8 @@ create table company (
   lat                           float not null,
   ing                           float not null,
   tel                           varchar(255),
+  admintel                      varchar(255),
+  adminname                     varchar(255),
   status                        integer not null,
   createtime                    datetime(6) not null,
   checktime                     datetime(6) not null,
