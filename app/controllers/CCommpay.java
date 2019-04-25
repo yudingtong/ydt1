@@ -201,7 +201,105 @@ public class CCommpay extends Controller {
          
        
          
-         public Result queryRes(String resid) {
+         
+         public Result queryres(String keyword,int lat,int lng,int pagesize,int page) {
+        	 
+         	ResultRtn resultRtn = new ResultRtn();
+  	        resultRtn.errCode = 0;
+  			resultRtn.msg="query ok";
+  			//SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
+  			SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
+  				
+  			   try {     
+  				  
+  				  List<ComView> comviewList=new ArrayList(); 
+  				  
+  				  List<Company> companyList= 
+ 						  ebeanServer.find(Company.class).where().like("name", keyword)
+								 						   .setFirstRow(page)
+								 					       .setMaxRows(pagesize)
+								 					       .findList();
+  				 
+  				 if(companyList.size()>0) {
+  					 
+  					for(int i=0; i<companyList.size(); i++) {
+  						
+  						ComView comview=new ComView();
+  						comview.comid= companyList.get(i).comid;
+  						comview.wxid= companyList.get(i).wxid;
+  						comview.name= companyList.get(i).name;
+  						comview.addshort= companyList.get(i).addshort;
+  						comview.addlong= companyList.get(i).addlong;
+  						comview.lat= companyList.get(i).lat;
+  						comview.ing= companyList.get(i).ing;
+  						comview.tel= companyList.get(i).tel;
+  						comview.createtime= sdf1.format(companyList.get(i).createtime);
+  						comview.status= companyList.get(i).status;
+  						comview.checktime= sdf1.format(companyList.get(i).checktime);
+  						comview.modifytime= sdf1.format(companyList.get(i).modifytime);
+  						
+  						
+  						List<Res> resList1 = 
+  								  ebeanServer.find(Res.class).where().eq("comid", comview.comid).findList(); 
+  						
+  						//resList1.sort();
+//  						for(i=0; i<resList1.size(); i++) {
+//  							
+//  							resList1.get(i).createtime=sdf1.format(resList1.get(i).createtime);
+//  							
+//  						}
+  						
+  						comview.resList = resList1;
+  						
+  						comviewList.add(comview);
+  						
+//  						Comparable c =new Comparable<Res>() {
+//  						  public int compare(Res o1, Res o2) {
+//  			                return o2. - o1;
+//  						};
+//  						
+//  						
+//  						comviewList.sort(c);
+//  					 
+  					 
+  					}
+  					
+  				    resultRtn.business.put("Company", comviewList); 
+   					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  	 				   
+  				 }else {
+  					 
+  					 resultRtn.errCode = 401;
+ 					 resultRtn.msg="没有可以管理的单位";
+ 					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  				 }
+  				 
+  				    
+  				
+  				  
+ 				  
+  	 	        
+  	 	        }catch(Exception e) {
+  	 	        	
+  	 	        	resultRtn.errCode = 1;
+  	           	    resultRtn.msg =e.getMessage();
+  	           	    return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+  	 	        }
+  	 	        
+  				
+          	
+  	    }//end queryComm
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         public Result queryRes1(String resid) {
         	 
          	ResultRtn resultRtn = new ResultRtn();
   	        resultRtn.errCode = 0;

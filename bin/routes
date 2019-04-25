@@ -23,7 +23,7 @@ GET     /disList                         controllers.Cdiscuss.disList(mid:String
 #ydt
 GET    /login                            controllers.Clogin.login(flag:Integer,wxid:String ) 
 GET    /queryCom                         controllers.CCommpay.queryCom(wxid:String ) 
-GET    /queryRes                         controllers.CCommpay.queryRes(resid:String ) 
+GET    /queryRes1                         controllers.CCommpay.queryRes(resid:String ) 
 GET    /getId                            controllers.CUtil.getIdNew(encryptedData:String,iv:String,code:String)
 GET    /getId1                           controllers.CUtil.getId1()
 GET    /manageCom                        controllers.CCommpay.manageCom(flag:Integer,wxid:String,adminname:String,admintel:String,comid:String,name:String,addshort:String,addlong:String,lat:Float,lng:Float,tel:String) 
