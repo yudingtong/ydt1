@@ -266,21 +266,25 @@ public class CCommpay extends Controller {
   						
   						//comviewList.sort(Comparator.comparing(ComView::)) {
   						Collections.sort(comviewList, new Comparator<ComView>() {
-  				         
-
-							@Override
-							public int compare(ComView o1, ComView o2) {
-								// TODO Auto-generated method stub
-								double var1 = (o1.lng - lng) * (o1.lng - lng)+(o1.lat - lat) * (o1.lat - lat);
-								double var2 = (o2.lng - lng) * (o2.lng - lng)+(o2.lat - lat) * (o2.lat - lat);
-								
-								System.out.println(var1-var2);
-								if(var1-var2 > 0)
-								  return 1;
-								
-								return 0;
-							}
-  				        });
+															@Override
+															public int compare(ComView o1, ComView o2) {
+																
+																System.out.println("O1"+o1.lng);
+																System.out.println("O2"+o2.lng);
+																
+																// TODO Auto-generated method stub
+																double var1 = (o1.lng - lng) * (o1.lng - lng)+(o1.lat - lat) * (o1.lat - lat);
+																double var2 = (o2.lng - lng) * (o2.lng - lng)+(o2.lat - lat) * (o2.lat - lat);
+																
+																System.out.println(var1-var2);
+																if(var1-var2 > 0)
+																  return 1;
+																
+																return -1;
+															}
+								  				        }
+  						
+  						);
   					 
   					}
   					
