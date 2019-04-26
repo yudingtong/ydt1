@@ -18,7 +18,6 @@ import play.mvc.Result;
 import play.mvc.Http.Request;
 import repository.DatabaseExecutionContext;
 import util.ResultRtn;
-import util.ResultRtn2;
 
 import java.net.URL;
 import java.text.ParseException;
@@ -207,7 +206,7 @@ public class CCommpay extends Controller {
          
          public Result queryRes(String keyword,float lat,float lng,int pagesize,int page) {
         	 
-         	ResultRtn2 resultRtn = new ResultRtn2();
+         	ResultRtn resultRtn = new ResultRtn();
   	        resultRtn.errCode = 0;
   			resultRtn.msg="query ok";
   			//SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
@@ -289,7 +288,7 @@ public class CCommpay extends Controller {
   					 
   					}
   					
-  				    resultRtn.business=comviewList; 
+  				    resultRtn.business.put("Company", comviewList); 
    					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
   	 				   
   				 }else {
