@@ -1,11 +1,16 @@
 # Routes
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
-GET    /public/                         staticDir:public
+
 
 
 
 # zzc 2018-1-16
+
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+
+
 GET     /qq		                   		 controllers.Cstock.q(sName:String )
 GET     /q1		                   		 controllers.Cstock.q1(code:String )
 GET     /k		                   		 controllers.Cstock_k.k(mid:String,code:String,kType:String )
