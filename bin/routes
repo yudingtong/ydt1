@@ -22,8 +22,8 @@ GET     /disList                         controllers.Cdiscuss.disList(mid:String
 
 #ydt
 GET    /login                            controllers.Clogin.login(flag:Integer,wxid:String ) 
-GET    /queryCom                         controllers.CCommpay.queryCom(wxid:String ) 
-GET    /queryRes                         controllers.CCommpay.queryRes(keyword:String,lat:Integer,lng:Integer,pagesize:Integer,page:Integer) 
+GET    /queryCom                         controllers.CCommpay.queryCom(flag:Integer,wxid:String ) 
+GET    /queryRes                         controllers.CCommpay.queryRes(keyword:String,lat:Float,lng:Float,pagesize:Integer,page:Integer) 
 GET    /queryRes1                         controllers.CCommpay.queryRes1(resid:String ) 
 GET    /getId                            controllers.CUtil.getIdNew(encryptedData:String,iv:String,code:String)
 GET    /getId1                           controllers.CUtil.getId1()

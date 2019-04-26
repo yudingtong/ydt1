@@ -125,7 +125,7 @@ public class CCommpay extends Controller {
 	    
          
          
-         public Result queryCom(String wxid) {
+         public Result queryCom(int flag,String wxid) {
         	 
         	ResultRtn resultRtn = new ResultRtn();
  	        resultRtn.errCode = 0;
@@ -204,7 +204,7 @@ public class CCommpay extends Controller {
        
          
          
-         public Result queryRes(String keyword,int lat,int lng,int pagesize,int page) {
+         public Result queryRes(String keyword,float lat,float lng,int pagesize,int page) {
         	 
          	ResultRtn resultRtn = new ResultRtn();
   	        resultRtn.errCode = 0;
