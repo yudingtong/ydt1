@@ -24,6 +24,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64.Decoder;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -91,7 +93,7 @@ public class CCommpay extends Controller {
 	    public String addshort; //地址简称
 	    public String addlong;  //详细地址
 	    public float  lat;   //地址精度
-	    public float  ing;   //地址纬度
+	    public float  lng;   //地址纬度
 	    public String tel;   //电话
 	    public String createtime;
 	    public int  status;  //单位状态
@@ -151,7 +153,7 @@ public class CCommpay extends Controller {
  						comview.addshort= companyList.get(i).addshort;
  						comview.addlong= companyList.get(i).addlong;
  						comview.lat= companyList.get(i).lat;
- 						comview.ing= companyList.get(i).ing;
+ 						comview.lng= companyList.get(i).ing;
  						comview.tel= companyList.get(i).tel;
  						comview.createtime= sdf1.format(companyList.get(i).createtime);
  						comview.status= companyList.get(i).status;
@@ -174,7 +176,7 @@ public class CCommpay extends Controller {
  					 
  					 
  					 resultRtn.business.put("Company", comviewList); 
- 					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 					 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
  	 				   
  				 }else {
  					 
@@ -202,7 +204,7 @@ public class CCommpay extends Controller {
        
          
          
-         public Result queryres(String keyword,int lat,int lng,int pagesize,int page) {
+         public Result queryRes(String keyword,int lat,int lng,int pagesize,int page) {
         	 
          	ResultRtn resultRtn = new ResultRtn();
   	        resultRtn.errCode = 0;
@@ -213,7 +215,7 @@ public class CCommpay extends Controller {
   			   try {     
   				  
   				  List<ComView> comviewList=new ArrayList(); 
-  				  
+  			      keyword="%"+keyword+"%";
   				  List<Company> companyList= 
  						  ebeanServer.find(Company.class).where().like("name", keyword)
 								 						   .setFirstRow(page)
@@ -231,7 +233,7 @@ public class CCommpay extends Controller {
   						comview.addshort= companyList.get(i).addshort;
   						comview.addlong= companyList.get(i).addlong;
   						comview.lat= companyList.get(i).lat;
-  						comview.ing= companyList.get(i).ing;
+  						comview.lng= companyList.get(i).ing;
   						comview.tel= companyList.get(i).tel;
   						comview.createtime= sdf1.format(companyList.get(i).createtime);
   						comview.status= companyList.get(i).status;
@@ -253,14 +255,32 @@ public class CCommpay extends Controller {
   						
   						comviewList.add(comview);
   						
-//  						Comparable c =new Comparable<Res>() {
+//  						Comparable c =new Comparable<comview>() {
 //  						  public int compare(Res o1, Res o2) {
 //  			                return o2. - o1;
 //  						};
-//  						
+//  					   }	
 //  						
 //  						comviewList.sort(c);
 //  					 
+  						
+  						//comviewList.sort(Comparator.comparing(ComView::)) {
+  						Collections.sort(comviewList, new Comparator<ComView>() {
+  				         
+
+							@Override
+							public int compare(ComView o1, ComView o2) {
+								// TODO Auto-generated method stub
+								double var1 = (o1.lng - lng) * (o1.lng - lng)+(o1.lat - lat) * (o1.lat - lat);
+								double var2 = (o2.lng - lng) * (o2.lng - lng)+(o2.lat - lat) * (o2.lat - lat);
+								
+								System.out.println(var1-var2);
+								if(var1-var2 > 0)
+								  return 1;
+								
+								return 0;
+							}
+  				        });
   					 
   					}
   					

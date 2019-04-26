@@ -1,5 +1,13 @@
-/log4j.properties
-/log4j2.properties.bak
+/AesCbcUtil.class
+/BrowserTest.class
+/FunctionalTest.class
+/ModelTest.class
+/T1.class
+/TestSuite.class
 /controllers/
-/application2.conf
+/models/
+/org/
+/repository/
+/tools/
 /util/
+/zzc/
