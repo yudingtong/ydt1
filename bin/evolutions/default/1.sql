@@ -40,8 +40,9 @@ create table avatar (
 );
 
 create table book (
-  resid_id                      bigint,
-  bookid                        varchar(255),
+  bookid                        varchar(255) not null,
+  resid                         bigint,
+  comid                         varchar(255),
   wxid                          varchar(255),
   name                          varchar(255),
   tel                           varchar(255),
@@ -54,7 +55,8 @@ create table book (
   starttime                     datetime(6) not null,
   endtime                       datetime(6) not null,
   booktime                      datetime(6) not null,
-  chektime                      datetime(6) not null
+  chektime                      datetime(6) not null,
+  constraint pk_book primary key (bookid)
 );
 
 create table comment (
@@ -232,8 +234,11 @@ create table user_stock_r (
 
 alter table avatar add constraint fk_avatar_user_id foreign key (user_id) references user (id) on delete restrict on update restrict;
 
-alter table book add constraint fk_book_resid_id foreign key (resid_id) references res (id) on delete restrict on update restrict;
-create index ix_book_resid_id on book (resid_id);
+alter table book add constraint fk_book_resid foreign key (resid) references res (id) on delete restrict on update restrict;
+create index ix_book_resid on book (resid);
+
+alter table book add constraint fk_book_comid foreign key (comid) references company (comid) on delete restrict on update restrict;
+create index ix_book_comid on book (comid);
 
 alter table computer add constraint fk_computer_company_comid foreign key (company_comid) references company (comid) on delete restrict on update restrict;
 create index ix_computer_company_comid on computer (company_comid);
@@ -255,8 +260,11 @@ create index ix_user_stock_r_stock_id on user_stock_r (stock_id);
 
 alter table avatar drop foreign key fk_avatar_user_id;
 
-alter table book drop foreign key fk_book_resid_id;
-drop index ix_book_resid_id on book;
+alter table book drop foreign key fk_book_resid;
+drop index ix_book_resid on book;
+
+alter table book drop foreign key fk_book_comid;
+drop index ix_book_comid on book;
 
 alter table computer drop foreign key fk_computer_company_comid;
 drop index ix_computer_company_comid on computer;
