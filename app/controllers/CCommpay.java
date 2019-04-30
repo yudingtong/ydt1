@@ -32,6 +32,7 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
+import controllers.CCommpay.ComView;
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
 import io.ebean.annotation.CreatedTimestamp;
@@ -135,12 +136,18 @@ public class CCommpay extends Controller {
  				
  			   try {     
  				  
- 				  List<ComView> comviewList=new ArrayList(); 
-						 
- 				   
+ 				  List<ComView> comviewList=new ArrayList<ComView>(); 
  				  
- 				  List<Company> companyList= 
-						  ebeanServer.find(Company.class).where().eq("wxid", wxid).findList();
+ 				
+ 				 if(flag==1) {
+ 				 
+ 					 List<Company> companyList= 
+						  ebeanServer.find(Company.class).where().eq("wxid", wxid)
+																 .or()
+										                        	.eq("status", 0)
+										                        	.eq("status", 1)
+										                         .endOr()
+						                                         .findList();
  				 
  				 if(companyList.size()>0) {
  					 
@@ -178,17 +185,38 @@ public class CCommpay extends Controller {
  					 resultRtn.business.put("Company", comviewList); 
  					 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
  	 				   
+	 				 }else {
+	 					 
+	 					 resultRtn.errCode = 401;
+						 resultRtn.msg="没有可以管理的单位";
+						  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+	 				 }
+	 				 
+ 				    
+ 				 }else if(flag==2) {//end flag==1
+ 				  
+ 					List<Res> resList= 
+ 							  ebeanServer.find(Res.class)
+ 							                             .fetch("comid")   
+ 							                             .where()
+ 							                             .eq("comid.wxid", wxid)
+ 							                             .or()
+ 							                             	.eq("status", 0)
+ 							                             	.eq("status", 1)
+ 							                             .endOr()
+ 							                             .findList();
+ 					
+ 					resultRtn.business.put("res", resList); 
+ 					  
+ 					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 				 
  				 }else {
  					 
- 					 resultRtn.errCode = 401;
-					 resultRtn.msg="没有可以管理的单位";
-					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 					resultRtn.errCode = 501;
+					 resultRtn.msg="flag标志错误";
+					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
+ 					 
  				 }
- 				 
- 				    
- 				
- 				  
-				  
  	 	        
  	 	        }catch(Exception e) {
  	 	        	

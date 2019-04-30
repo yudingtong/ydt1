@@ -40,7 +40,7 @@ create table avatar (
 );
 
 create table book (
-  resid                         varchar(255) not null,
+  resid_id                      bigint,
   bookid                        varchar(255),
   wxid                          varchar(255),
   name                          varchar(255),
@@ -54,8 +54,7 @@ create table book (
   starttime                     datetime(6) not null,
   endtime                       datetime(6) not null,
   booktime                      datetime(6) not null,
-  chektime                      datetime(6) not null,
-  constraint pk_book primary key (resid)
+  chektime                      datetime(6) not null
 );
 
 create table comment (
@@ -71,8 +70,7 @@ create table comment (
 );
 
 create table company (
-  id                            bigint auto_increment not null,
-  comid                         varchar(255),
+  comid                         varchar(255) not null,
   name                          varchar(255),
   wxid                          varchar(255),
   addshort                      varchar(255),
@@ -82,11 +80,12 @@ create table company (
   tel                           varchar(255),
   admintel                      varchar(255),
   adminname                     varchar(255),
+  admin_id                      varchar(255),
   status                        integer not null,
   createtime                    datetime(6) not null,
   checktime                     datetime(6) not null,
   modifytime                    datetime(6) not null,
-  constraint pk_company primary key (id)
+  constraint pk_company primary key (comid)
 );
 
 create table computer (
@@ -94,7 +93,7 @@ create table computer (
   name                          varchar(255),
   introduced                    datetime(6),
   discontinued                  datetime(6),
-  company_id                    bigint,
+  company_comid                 varchar(255),
   constraint pk_computer primary key (id)
 );
 
@@ -233,8 +232,14 @@ create table user_stock_r (
 
 alter table avatar add constraint fk_avatar_user_id foreign key (user_id) references user (id) on delete restrict on update restrict;
 
-alter table computer add constraint fk_computer_company_id foreign key (company_id) references company (id) on delete restrict on update restrict;
-create index ix_computer_company_id on computer (company_id);
+alter table book add constraint fk_book_resid_id foreign key (resid_id) references res (id) on delete restrict on update restrict;
+create index ix_book_resid_id on book (resid_id);
+
+alter table computer add constraint fk_computer_company_comid foreign key (company_comid) references company (comid) on delete restrict on update restrict;
+create index ix_computer_company_comid on computer (company_comid);
+
+alter table res add constraint fk_res_comid foreign key (comid) references company (comid) on delete restrict on update restrict;
+create index ix_res_comid on res (comid);
 
 alter table user add constraint fk_user_role_id foreign key (role_id) references role (id) on delete restrict on update restrict;
 create index ix_user_role_id on user (role_id);
@@ -250,8 +255,14 @@ create index ix_user_stock_r_stock_id on user_stock_r (stock_id);
 
 alter table avatar drop foreign key fk_avatar_user_id;
 
-alter table computer drop foreign key fk_computer_company_id;
-drop index ix_computer_company_id on computer;
+alter table book drop foreign key fk_book_resid_id;
+drop index ix_book_resid_id on book;
+
+alter table computer drop foreign key fk_computer_company_comid;
+drop index ix_computer_company_comid on computer;
+
+alter table res drop foreign key fk_res_comid;
+drop index ix_res_comid on res;
 
 alter table user drop foreign key fk_user_role_id;
 drop index ix_user_role_id on user;
