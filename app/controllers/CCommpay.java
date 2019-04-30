@@ -199,11 +199,12 @@ public class CCommpay extends Controller {
  							  ebeanServer.find(Res.class)
  							                             .fetch("comid")   
  							                             .where()
- 							                             .eq("comid.wxid", wxid)
+ 							                             .eq("d11", wxid)
  							                             .or()
  							                             	.eq("status", 0)
  							                             	.eq("status", 1)
  							                             .endOr()
+ 							                             .having()
  							                             .findList();
  					
  					resultRtn.business.put("res", resList); 

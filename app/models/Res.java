@@ -4,6 +4,7 @@ import play.data.format.Formats;
 import play.data.validation.Constraints;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,8 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.ebean.Model;
 import io.ebean.annotation.CreatedTimestamp;
@@ -28,7 +31,8 @@ public class Res extends BaseModel{
    
 	public int type; //资源编码
 	public String resid; //资源编码
-    
+	
+    @JsonIgnore
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="comid")
 	public Company comid; //结构代码
@@ -75,6 +79,9 @@ public class Res extends BaseModel{
     public int d2;   //电话
     
     public double d3;   //电话
+    
+    @Transient 
+    public List<Book> bookList; 
     
 }
 

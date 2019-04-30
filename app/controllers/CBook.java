@@ -160,19 +160,27 @@ public class CBook extends Controller {
   	  List<Book> bookList= null;
   	  
   	  List<queryBook> qbList= new ArrayList();
-  	  
+  	//先查询所有资源的预定情况
+  	  List<Res> resList1 = 
+			  ebeanServer.find(Res.class).where().eq("comid.comid",comid).findList(); 
   	  
   	 
-  		  
-  		    bookList= 
-  				  ebeanServer.find(Book.class)   //.fetch("Res.comid.name")
-  				                                      .fetch("comid")
+      for(int i=0;i<resList1.size();i++) {
+  		
+    	  resList1.get(i).bookList=
+    	  
+  				  ebeanServer.find(Book.class)   //.fetch("resid")
+  				                                 //     .fetch("comid")
   				                                      .where()
   				                                      .ne("status", 3)
-  				                                       .eq("comid.comid", comid)
+  				                                       .eq("resid.resid",  resList1.get(i).resid)
   				  									   //.("status", status)
-                                                         .between("bookdate", startdate1, enddate1)  
+                                                       //.between("bookdate", startdate1, enddate1)  
   				                                       .findList();
+      
+      
+    	  
+      }	 
   			 
 //  		  if(book1.isPresent()) {
 //  				
@@ -198,12 +206,12 @@ public class CBook extends Controller {
 //  		    }
   		    
   	  
-  	  if(bookList.size()==0) {
+  	  if(resList1.size()==0) {
   		  resultRtn.errCode = -1;
   		  resultRtn.msg="没有符合条件的记录 ";
   		  
   	  }
-  	  resultRtn.business.put("booked", bookList);
+  	  resultRtn.business.put("res", resList1);
   	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	  
   	  
     }
