@@ -270,7 +270,7 @@ public class CCommpay extends Controller {
   						
   						
   						List<Res> resList1 = 
-  								  ebeanServer.find(Res.class).where().eq("comid", comview.comid).findList(); 
+  								  ebeanServer.find(Res.class).where().eq("comid.comid", comview.comid).findList(); 
   						
   						//resList1.sort();
 //  						for(i=0; i<resList1.size(); i++) {
