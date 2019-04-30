@@ -42,5 +42,5 @@ https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel=138101698
 https://zhaozichuan.top/manageCom?flag=1&wxid=1&adminname=zzc&admintel=13810169858&comid=com321&name=icbcsdc&addshort=xisanqi&addlong=xisanqijiancaicheng&lat=12.3&lng=56&tel=18600457240
 https://zhaozichuan.top/manageRes?flag=1&resid=0&wxid=oCLgA5VXuhQbIxCo7ss6TzDRAzeo&comid=&type=1&name=101&size=10&des=%E6%9C%89&starttime=9%3A00&endtime=18%3A00 
 http://127.0.0.1:9000/queryRes?keyword=中&lat=22&lng=10&pagesize=10&page=1
-
+http://127.0.0.1:9000/queryBook?flag=1&wxid=oCLgA5VXuhQbIxCo7ss6TzDRAzeo&status=0&startdate=20100121&enddate=20200121
 

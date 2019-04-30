@@ -40,10 +40,19 @@ import io.ebean.annotation.CreatedTimestamp;
 
 
 
-public class CCommpay extends Controller {
+public class CBook extends Controller {
 	
 	
-	  
+	public  class queryBook{
+		public String comid; //资源编码
+		public String comname; //资源编码
+		public String resid; //资源编码
+		public String resname; //资源编码
+		public Book bookVeiw; //资源编码
+		
+		
+		
+	}
    
 
 	public  class resView{
@@ -111,7 +120,7 @@ public class CCommpay extends Controller {
 	private final EbeanServer ebeanServer;
 
     @Inject
-    public CCommpay(EbeanConfig ebeanConfig, DatabaseExecutionContext executionContext) {
+    public CBook(EbeanConfig ebeanConfig, DatabaseExecutionContext executionContext) {
         this.ebeanServer = Ebean.getServer(ebeanConfig.defaultServer());
     }
 
@@ -204,7 +213,7 @@ public class CCommpay extends Controller {
        
          
          
-         public Result queryRes(String keyword,float lat,float lng,int pagesize,int page) {
+         public Result queryBook(String keyword,float lat,float lng,int pagesize,int page) {
         	 
          	ResultRtn resultRtn = new ResultRtn();
   	        resultRtn.errCode = 0;
@@ -484,113 +493,189 @@ public class CCommpay extends Controller {
   
   
 //public Result  manageRes(int flag,String wxid,String adminname,String admintel,String comid,String name,String addshort,String addlong,float lat,float lng,String tel){
-	  public Result  manageRes(int flag,String wxid,String comid,String resid,int type,String name,int size, String starttime,String endtime,String des) throws ParseException
-	 
-	  {
-      
+//	  public Result  bookRes(String wxid,String resid,String bookdate,String starttime, String endtime, String name,String tel,String title,String des) 
+//	 
+//	  {
+//      
 		  //String starttime1=java.net.URLDecoder.decode(starttime);
 		  //String endtime1=java.net.URLDecoder.decode(endtime);
-		  SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
-		  
-		  
-		  ResultRtn resultRtn = new ResultRtn();
-	      resultRtn.errCode = 0;
-		  resultRtn.msg="Res add ok";
-		  Res res= null;
-		  Optional<Company> com1= 
-				  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
-		  
-		  if(flag==1) {//新增
-		  
-			  
-		
-		  
-			  if(!com1.isPresent()) {
-				
-				 //company = company1.get();
-				 resultRtn.errCode = 301;
-				 resultRtn.msg="此资源所属机构不存在";
-				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-			  }
-	  
-		   res =  new Res();
-		   res.d11 = wxid;
-          //company.adminname=adminname;
-          //company.addlong
-		   res.comid =com1.get();
-		   res.name =name;
-		   
-		  // long time = System.currentTimeMillis();
-
-		   res.resid  =String.valueOf(System.currentTimeMillis());
-		   res.type=type;
-		   res.size=size;
-		   res.starttime=  starttime;
-		   res.endtime=endtime;
-		   res.status=0; //0 默认为正常状态
-		   res.des =des;
-		   res.createtime =new Date();
-          
-		   res.save();
-      
-		
-		  }else {
-			  
-		  Optional<Res> res1= 
-				  ebeanServer.find(Res.class).where().eq("resid", resid).findOneOrEmpty();
-		
-			  if(!res1.isPresent()) {
-					
-					 //company = company1.get();
-					 resultRtn.errCode = 301;
-					 resultRtn.msg="此资源不存在";
-					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-				  }
-			  
-		  
-			  Res res2=  res1.get();
-		  
-			  if(flag==3) {
-				  res2.delete(); 
-				  resultRtn.errCode = 0;
-				  resultRtn.msg="资源已经删除";
-			      return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
-			      
-			  }else if(flag==2){
-				  
-				  res2.d11 = wxid;
-		          //company.adminname=adminname;
-		          //company.addlong
-				   res2.comid =com1.get();
-				   res2.name =name;
-				   
-				  // long time = System.currentTimeMillis();
-
-				   res2.resid  =resid;
-				   res2.type=type;
-				   res2.size=size;
-				   res2.starttime=  starttime;
-				   res2.endtime= endtime;
-				   res2.status=0; //0 默认为正常状态
-				   res2.des =des;
-				   res2.createtime =new Date();
-		          
-				   res2.save();
-				  
-			  }
-
-				  
-				  
-			  
-			 
-			  
-		  
-		  }//flag =2
-		  
-	  
-		  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//		  SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
+//		  
+//		  
+//		  ResultRtn resultRtn = new ResultRtn();
+//	      resultRtn.errCode = 0;
+//		  resultRtn.msg="Res add ok";
+//		  Res res= null;
+//		  
+//		  
+//		  if(1==1) {//新增
+//		  
+//			   Optional<Book> resid1= 
+//				  ebeanServer.find(Book.class).where().eq("resid", resid).findOneOrEmpty();
+//		
+//		  
+//			  if(!resid1.isPresent()) {
+//				
+//				 //company = company1.get();
+//				 resultRtn.errCode = 301;
+//				 resultRtn.msg="此资源所属机构不存在";
+//				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//			  }
+//	  
+//		   res =  new Res();
+//		   res.d11 = wxid;
+//          //company.adminname=adminname;
+//          //company.addlong
+//		   res.comid =comid;
+//		   res.name =name;
+//		   
+//		  // long time = System.currentTimeMillis();
+//
+//		   res.resid  =String.valueOf(System.currentTimeMillis());
+//		   res.type=type;
+//		   res.size=size;
+//		   res.starttime=  starttime;
+//		   res.endtime=endtime;
+//		   res.status=0; //0 默认为正常状态
+//		   res.des =des;
+//		   res.createtime =new Date();
+//          
+//		   res.save();
+//      
+//		
+//		  }else {
+//			  
+//		  Optional<Res> res1= 
+//				  ebeanServer.find(Res.class).where().eq("resid", resid).findOneOrEmpty();
+//		
+//			  if(!res1.isPresent()) {
+//					
+//					 //company = company1.get();
+//					 resultRtn.errCode = 301;
+//					 resultRtn.msg="此资源不存在";
+//					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//				  }
+//			  
+//		  
+//			  Res res2=  res1.get();
+//		  
+//			  if(flag==3) {
+//				  res2.delete(); 
+//				  resultRtn.errCode = 0;
+//				  resultRtn.msg="资源已经删除";
+//			      return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//			      
+//			  }else if(flag==2){
+//				  
+//				  res2.d11 = wxid;
+//		          //company.adminname=adminname;
+//		          //company.addlong
+//				   res2.comid =comid;
+//				   res2.name =name;
+//				   
+//				  // long time = System.currentTimeMillis();
+//
+//				   res2.resid  =resid;
+//				   res2.type=type;
+//				   res2.size=size;
+//				   res2.starttime=  starttime;
+//				   res2.endtime= endtime;
+//				   res2.status=0; //0 默认为正常状态
+//				   res2.des =des;
+//				   res2.createtime =new Date();
+//		          
+//				   res2.save();
+//				  
+//			  }
+//
+//				  
+//				  
+//			  
+//			 
+//			  
+//		  
+//		  }//flag =2
+//		  
+//	  
+//		  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//	 
+// } 
+  
+  
+  public Result   queryBook(int flag,String wxid,int status,String startdate,String enddate)   
+  {
 	 
- } 
+	  ResultRtn resultRtn = new ResultRtn();
+      resultRtn.errCode = 0;
+	  resultRtn.msg="ok";
+	  Res res= null;
+	  
+	  SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
+	  Date startdate1 =null;
+	  Date enddate1=null;
+	
+	  try {
+		
+		 startdate1 = sdf1.parse(startdate);
+		 enddate1=sdf1.parse(enddate);
+		 
+	  } catch (ParseException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	  }
+	  
+	  
+	  System.out.println("--->1"+startdate1);
+	  System.out.println("--->2"+enddate1);
+	  List<Book> bookList= null;
+	  
+	  List<queryBook> qbList= new ArrayList();
+	  
+	  
+	  if(flag==1) {
+		  
+		    bookList= 
+				  ebeanServer.find(Book.class)   //.fetch("Res.comid.name")
+				                                  .fetch("resid")
+				                                      .where().eq("wxid", wxid)
+				  									  .eq("status", status)
+                                                       .between("bookdate", startdate1, enddate1)  
+				                                       .findList();
+			 
+//		  if(book1.isPresent()) {
+//				
+//				 //company = company1.get();
+//				 resultRtn.errCode = 201;
+//				 resultRtn.msg="该单位统一社会信用代码已存在";
+//				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//			 }
+//		  
+//       company =  new Company();
+//       company.wxid = wxid;  
+//		  
+//		  
+		    
+		    for(int i=0; i<bookList.size();i++) {
+		    	queryBook qb=new queryBook();	
+		    	qb.comid =bookList.get(i).resid.comid.comid;
+		    	qb.comname =bookList.get(i).resid.comid.name;
+		    	qb.resid =bookList.get(i).resid.resid;
+		    	qb.resname =bookList.get(i).resid.name;
+		    	qb.bookVeiw =bookList.get(i);
+		    	qbList.add(qb);
+		    }
+		    
+	  }
+	  
+	  if(bookList.size()==0) {
+		  resultRtn.errCode = -1;
+		  resultRtn.msg="没有符合条件的记录 ";
+		  
+	  }
+	  resultRtn.business.put("book", qbList);
+	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	  
+	  
+  }
   
   
 }

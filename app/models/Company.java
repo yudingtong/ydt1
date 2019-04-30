@@ -20,11 +20,11 @@ import io.ebean.annotation.CreatedTimestamp;
  * Company entity managed by Ebean
  */
 @Entity  
-public class Company extends BaseModel{
+public class Company extends Model{
 
    
    
-
+    @Id
     public String comid; //结构代码
     
     public String name;  //单位名称
@@ -37,6 +37,7 @@ public class Company extends BaseModel{
     public String tel;   //电话
     public String admintel;   //电话
     public String adminname;   //电话
+    public String adminId;   //电话
     
 //    @ManyToOne
 //    public Admin role;

@@ -117,7 +117,7 @@ public class Clogin extends Controller {
  				     for(int i=0;i<bl.size();i++) {
  				    	 
  				    	bookView bv=new bookView();
- 				    	bv.resid=  bl.get(i).resid;
+ 				    	bv.resid=  bl.get(i).resid.resid;
  				    	bv.attendee = bl.get(i).attendee;
  				    	bv.bookdate = bl.get(i).bookdate.toString();
  				    	bv.bookid = bl.get(i).bookid;

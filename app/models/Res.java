@@ -6,7 +6,10 @@ import play.data.validation.Constraints;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -25,7 +28,10 @@ public class Res extends BaseModel{
    
 	public int type; //资源编码
 	public String resid; //资源编码
-    public String comid; //结构代码
+    
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="comid")
+	public Company comid; //结构代码
     
     public int size; //容纳人数
     public int status; //资源状态

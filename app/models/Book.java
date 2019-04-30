@@ -6,8 +6,12 @@ import play.data.validation.Constraints;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.ebean.annotation.CreatedTimestamp;
 
@@ -19,10 +23,11 @@ import io.ebean.annotation.CreatedTimestamp;
 @Entity 
 public class Book{
 
-   
-    @Id
-    public String resid; //资源编号
+    @JsonIgnore
+	@ManyToOne
+    public Res resid; //资源编号
     
+	@GeneratedValue(strategy = GenerationType.AUTO)
     public String bookid;  //预约编号
    
     
