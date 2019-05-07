@@ -151,15 +151,15 @@ public class CBook extends Controller {
 	  	// int [1440] time2 ;
 	  	// Vector time =new Vector();
 
-	  	int time2[] = new int[60*24];
-	  	 
-	  	 for(int i=0;i<time2.length;i++) {
-	  		 
-	  		time2[i]=0;
-	  		 
-	  	 }
-	  	
-	  	 String s = Arrays.toString(time2);
+//	  	int time2[] = new int[60*24];
+//	  	 
+//	  	 for(int i=0;i<time2.length;i++) {
+//	  		 
+//	  		time2[i]=0;
+//	  		 
+//	  	 }
+//	  	
+//	  	 String s = Arrays.toString(time2);
 	  	 
 //	  	 int starthour=starttime1.getHours();
 //    	 int endhour=endtime1.getHours();
