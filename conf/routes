@@ -34,7 +34,7 @@ GET    /getId                            controllers.CUtil.getIdNew(encryptedDat
 GET    /getId1                           controllers.CUtil.getId1()
 GET    /manageCom                        controllers.CCommpay.manageCom(flag:Integer,wxid:String,adminname:String,admintel:String,comid:String,name:String,addshort:String,addlong:String,lat:Float,lng:Float,tel:String) 
 GET    /manageRes                        controllers.CCommpay.manageRes(flag:Integer,wxid:String,comid:String,resid:String,type:Integer,name:String,size:Integer,starttime:String,endtime:String,des:String) 
-#GET    /bookRes                          controllers.CBook.bookRes(wxid:String,resid:String,bookdate:String,starttime:String,endtime:String,name:String,tel:String,title:String,des:String) 
+GET    /bookRes                          controllers.CBook.bookRes(wxid:String,resid:String,bookdate:String,starttime:String,endtime:String,name:String,tel:String,title:String,des:String) 
 GET    /queryBook                        controllers.CBook.queryBook(flag:Integer,wxid:String,status:Integer,startdate:String,enddate:String) 
 GET    /queryBooked                      controllers.CBook.queryBooked(comid:String,startdate:String,enddate:String) 
 

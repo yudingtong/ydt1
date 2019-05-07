@@ -74,7 +74,12 @@ public class Res extends BaseModel{
     @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
     public Date modifytime; //修改时间
     
-    public String d11;   //电话
+    public String d11;   //微信id
+    
+    public String d12;   //备用2
+    
+    public String d13;   //备用3
+    
     
     public int d2;   //电话
     

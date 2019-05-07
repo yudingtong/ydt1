@@ -44,4 +44,6 @@ https://zhaozichuan.top/manageRes?flag=1&resid=0&wxid=oCLgA5VXuhQbIxCo7ss6TzDRAz
 http://127.0.0.1:9000/queryRes?keyword=中&lat=22&lng=10&pagesize=10&page=1
 http://127.0.0.1:9000/queryBook?flag=1&wxid=oCLgA5VXuhQbIxCo7ss6TzDRAzeo&status=0&startdate=20100121&enddate=20200121
 http://127.0.0.1:9000/queryBooked?comid=1234567890&startdate=20100121&enddate=20200121
+http://127.0.0.1:9000/bookRes?wxid=1111&resid=1555656720429&bookdate=20190506&starttime=16:55&endtime=16:56&name=zzc&tel=13810169858&title=yyy&des=iii
+
 

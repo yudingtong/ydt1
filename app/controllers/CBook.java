@@ -23,12 +23,15 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Base64.Decoder;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Vector;
 
 import javax.inject.Inject;
 
@@ -129,8 +132,140 @@ public class CBook extends Controller {
 	     * count. The result is plain text. This action is mapped to
 	     * <code>GET</code> requests with a path of <code>/count</code>
 	     * requests by an entry in the <code>routes</code> config file.
+	     * @throws ParseException 
 	     */
+    public Result   bookRes(String wxid,String resid,String bookdate,String starttime,String endtime,String name,String tel,String title,String des) throws ParseException  
+    {
+    	 ResultRtn resultRtn = new ResultRtn();
+         resultRtn.errCode = 0;
+	   	 resultRtn.msg="ok";
+	     SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
+	     
+	     SimpleDateFormat sdf2 =   new SimpleDateFormat( "HH:mm" );
+	     
+	     SimpleDateFormat sdf3 =   new SimpleDateFormat( "HH:mm" );
+	     
+//	  	 Date starttime1 =sdf2.parse(starttime);
+//	  	 Date endtime1 =sdf2.parse(endtime);
+	  	 
+	  	// int [1440] time2 ;
+	  	// Vector time =new Vector();
 
+	  	int time2[] = new int[60*24];
+	  	 
+	  	 for(int i=0;i<time2.length;i++) {
+	  		 
+	  		time2[i]=0;
+	  		 
+	  	 }
+	  	
+	  	 String s = Arrays.toString(time2);
+	  	 
+//	  	 int starthour=starttime1.getHours();
+//    	 int endhour=endtime1.getHours();
+//
+//    	 for(int i =0;i<endhour-starthour;i++){
+//    	 
+//    		 time.add(starthour,1);
+//    		 
+//    	 }
+    	 
+    	 
+    	 //System.out.println("starthour:"+starthour+"endhour"+endhour +"time"+time);
+	  	  //	  	  List<queryBook> qbList= new ArrayList();
+//	    	//先查询所有资源的预定情况
+	  	  
+	  	  
+	  	  
+	  	 if(starttime.compareTo(endtime)>0) {
+	  		  resultRtn.errCode = 301;
+			  resultRtn.msg="starttime 大于 endtime，参数不对 ";
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
+	  		 
+	  		 
+	  	 }
+	  	 
+	  	 
+	  	Optional<Res> res1= 
+				  ebeanServer.find(Res.class).where().eq("resid", resid)
+				                                      .findOneOrEmpty();
+	  	 
+	  	 if(!res1.isPresent()) {
+				
+			 //company = company1.get();
+			  resultRtn.errCode = 304;
+			  resultRtn.msg="此资源不存在或者不可用";
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+		  }	  
+	  	
+	  	
+	  	 if(starttime.compareTo(res1.get().starttime) < 0 || endtime.compareTo(res1.get().endtime)>0) {
+	  		 
+	  		  resultRtn.errCode = 702;
+			  resultRtn.msg="该时间段不可用,超过资源边界";
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+	  		 
+	  		 
+	  	 }
+	  	 
+	  	 
+	  	if(res1.get().status!=1) {
+	  		 
+	  		  resultRtn.errCode = 703;
+			  resultRtn.msg="该资源状态异常，目前无法预定";
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+	  		 
+	  		 
+	  	 }
+	  	 
+	  	 Optional<Book> book1= 
+				  ebeanServer.find(Book.class).where().eq("resid.resid", resid) 
+				                                      //.eq("bookdate", sdf1.parse(bookdate))
+				                                 .or()
+				  									.and()
+				  									  .lt("starttime", starttime)
+				  									  .gt("endtime", starttime)
+				  									.endAnd()
+				  									.and()
+				  									  .lt("starttime", endtime)
+				  									  .gt("endtime", endtime)
+				  									.endAnd() 
+				  									.and()
+				  									  .ge("starttime", starttime)
+				  									  .le("endtime", endtime)
+				  									.endAnd() 
+				  								.endOr()    
+				  								.findOneOrEmpty();
+	  	  
+	  	 if(book1.isPresent()) {
+				
+			 //company = company1.get();
+			  resultRtn.errCode = 701;
+			  resultRtn.msg="该时间段已被预定";
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+		  }	 
+	  	 
+	  	// res1.get().d12="111";
+	  	 
+	  	// res1.get().save();
+	  	 
+	  	Book nbook =new Book();
+	  	nbook.comid = res1.get().comid;
+	  	nbook. wxid =wxid;
+	  	nbook. starttime =starttime;
+	  	nbook. endtime =endtime;
+	  	nbook. name =name;
+	  	nbook. tel =tel;
+	  	nbook. title =title;
+	  	nbook. des =des;
+	  	nbook.bookid = "B"+System.currentTimeMillis();
+	  	nbook.resid =res1.get();
+	  	nbook.status =1;
+	  	nbook.save();
+	  	
+	   	 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	  
+	    	
+    }
 	    
     public Result   queryBooked(String comid,String startdate,String enddate)   
     {
@@ -138,7 +273,6 @@ public class CBook extends Controller {
   	  ResultRtn resultRtn = new ResultRtn();
         resultRtn.errCode = 0;
   	  resultRtn.msg="ok";
-  	  Res res= null;
   	  
   	  SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
   	  Date startdate1 =null;

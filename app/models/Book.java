@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.ebean.Model;
 import io.ebean.annotation.CreatedTimestamp;
 import jdk.nashorn.internal.ir.annotations.Ignore;
 
@@ -25,7 +26,7 @@ import jdk.nashorn.internal.ir.annotations.Ignore;
  * Company entity managed by Ebean
  */
 @Entity 
-public class Book{
+public class Book  extends Model{
 
     @JsonIgnore
 	@ManyToOne
@@ -52,13 +53,11 @@ public class Book{
     public Date bookdate;
     
     
-    @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
-    @CreatedTimestamp
-    public Date starttime; //审核时间
+   
+    public String starttime; //审核时间
         
-    @Formats.DateTime(pattern = "yyyy-MM-dd HH:mm:ss")
-    @CreatedTimestamp
-    public Date endtime; //修改时间
+  
+    public String endtime; //修改时间
 
     public String wxid; //微信id
     public String name;  //详细地址
