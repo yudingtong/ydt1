@@ -214,6 +214,8 @@ public class CUtil extends Controller {
          	
  	    }//end login
          
+        
+ 
          
          
  //        （服务端 java）自己的服务器发送code到微信服务器获取openid（用户唯一标识）和session_key（会话密钥），最后将encryptedData、iv、session_key通过AES解密获取到用户敏感数据
@@ -398,6 +400,80 @@ public class CUtil extends Controller {
          
    }         
          
+         
+         
+         public Result getId2(String encryptedData1, String iv1, String code) throws JSONException {
+
+			 Map map = new HashMap();
+		
+		     //登录凭证不能为空
+		     if (code == null || code.length() == 0) {
+		         map.put("errcode", 0);
+		         map.put("errmsg", "code 不能为空");
+		         map.put(" oid", "");
+		         return ok(Json.toJson(map).toString().replaceAll("null", "\"\"")); 
+		     }        
+	 
+	 
+           //小程序唯一标识   (在微信小程序管理后台获取)
+             String wxspAppid = "wx3d099e67aa7ff91b";
+             //小程序的 app secret (在微信小程序管理后台获取)
+             String wxspSecret = "e73e90677142d3796f08b216d7a50d41";
+             //授权（必填）
+             
+             
+             String grant_type = "authorization_code";
+
+
+             //////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
+             //请求参数
+             String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type;
+             //发送请求
+             
+             String sr = HttpRequest2.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
+             
+             System.out.println("http send"+ params);
+             
+             System.out.println("http get"+ sr);
+             //解析相应内容（转换成json对象）
+             JSONObject json=new JSONObject(sr);
+             String openid ="";
+             String errcode ="0";
+             String errmsg ="";
+			 try {
+				
+			
+             //获取会话密钥（session_key）
+             //session_key = json.getString("session_key");
+             //用户的唯一标识（openid）
+              
+			
+              
+               
+                if(json.has("openid"))
+                	openid = (String)json.get("openid");
+                else {
+                	openid = "";   
+                	errcode =String.valueOf( json.get("errcode"));
+                    errmsg = (String) json.get("errmsg");
+                }
+			 } catch (JSONException e1) {
+				
+				 System.out.println("JSONException"+ e1);
+					// TODO Auto-generated catch block
+					//e1.printStackTrace();
+			 }
+			 
+			
+			 
+			 map.put("errcode", errcode);
+	         map.put("errmsg", errmsg);
+	         map.put("oid", openid);
+	         return ok(Json.toJson(map).toString().replaceAll("null", "\"\""));  
+		
+			       
+         
+   }           
          
          /**
           * JSON字符串特殊字符处理，比如：“\A1;1300”

@@ -32,6 +32,7 @@ GET    /queryRes                         controllers.CCommpay.queryRes(keyword:S
 GET    /queryRes1                         controllers.CCommpay.queryRes1(resid:String ) 
 GET    /getId                            controllers.CUtil.getIdNew(encryptedData:String,iv:String,code:String)
 GET    /getId1                           controllers.CUtil.getId1()
+GET    /getId2                            controllers.CUtil.getId2(encryptedData:String,iv:String,code:String)
 GET    /manageCom                        controllers.CCommpay.manageCom(flag:Integer,wxid:String,adminname:String,admintel:String,comid:String,name:String,addshort:String,addlong:String,lat:Float,lng:Float,tel:String) 
 GET    /manageRes                        controllers.CCommpay.manageRes(flag:Integer,wxid:String,comid:String,resid:String,type:Integer,name:String,size:Integer,starttime:String,endtime:String,des:String) 
 GET    /bookRes                          controllers.CBook.bookRes(wxid:String,resid:String,bookdate:String,starttime:String,endtime:String,name:String,tel:String,title:String,des:String) 
