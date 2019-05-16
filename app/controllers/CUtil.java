@@ -416,9 +416,9 @@ public class CUtil extends Controller {
 	 
 	 
            //小程序唯一标识   (在微信小程序管理后台获取)
-             String wxspAppid = "wx3d099e67aa7ff91b";
+             String wxspAppid = "wx964e02850dd92fc7";
              //小程序的 app secret (在微信小程序管理后台获取)
-             String wxspSecret = "e73e90677142d3796f08b216d7a50d41";
+             String wxspSecret = "73fed17d7d96fc185fc1455194f7282e";
              //授权（必填）
              
              
@@ -427,7 +427,7 @@ public class CUtil extends Controller {
 
              //////////////// 1、向微信服务器 使用登录凭证 code 获取 session_key 和 openid ////////////////
              //请求参数
-             String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type;
+             String params = "appid=" + wxspAppid + "&secret=" + wxspSecret + "&js_code=" + code + "&grant_type=" + grant_type + "&connect_redirect=1";
              //发送请求
              
              String sr = HttpRequest2.sendGet("https://api.weixin.qq.com/sns/jscode2session", params);
