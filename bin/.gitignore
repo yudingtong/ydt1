@@ -1,14 +1,13 @@
+/controllers/
+/models/
 /AesCbcUtil.class
 /BrowserTest.class
 /FunctionalTest.class
 /ModelTest.class
 /T1.class
 /TestSuite.class
-/controllers/
-/models/
 /org/
 /repository/
 /tools/
 /util/
 /zzc/
-/evolutions/
