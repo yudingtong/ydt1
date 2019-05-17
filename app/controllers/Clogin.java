@@ -95,11 +95,11 @@ public class Clogin extends Controller {
  				  Optional<Admin> admin= 
  						  ebeanServer.find(Admin.class).where().eq("wxid", wxid).findOneOrEmpty();
  				  
- 				 Optional<Company> company= 
-						  ebeanServer.find(Company.class).where().eq("wxid", wxid).findOneOrEmpty();
+ 				 List<Company> companyL= 
+						  ebeanServer.find(Company.class).where().eq("wxid", wxid).findList();
  				 
- 				 if(company.isPresent()) {
- 					LComid =company.get().comid;
+ 				 if(!companyL.isEmpty()) {
+ 					LComid =companyL.get(0).comid;
  					 
  				 }
  				 
