@@ -635,7 +635,7 @@ public class CCommpay extends Controller {
 		   res.size=size;
 		   res.starttime=  starttime;
 		   res.endtime=endtime;
-		   res.status=0; //0 默认为正常状态
+		   res.status=1; //0 默认为正常状态
 		   res.des =des;
 		   res.createtime =new Date();
           
