@@ -397,7 +397,7 @@ public class CBook extends Controller {
 	  
 	  System.out.println("--->1"+startdate1);
 	  System.out.println("--->2"+enddate1);
-	  List<Book> bookList= null;
+	  List<Book> bookList= new ArrayList();
 	  
 	  List<queryBook> qbList= new ArrayList();
 	  
@@ -411,6 +411,19 @@ public class CBook extends Controller {
 				  									  .eq("status", status)
                                                        .between("bookdate", startdate1, enddate1)  
 				                                       .findList();
+		    
+	  }else if(flag==1) {
+		  
+		  bookList= 
+				  ebeanServer.find(Book.class)   //.fetch("Res.comid.name")
+				                                  .fetch("resid")
+				                                      .where().eq("comid.wxid", wxid)
+				  									  .eq("status", status)
+                                                       .between("bookdate", startdate1, enddate1)  
+				                                       .findList();
+		  
+		  
+	  }
 			 
 //		  if(book1.isPresent()) {
 //				
@@ -435,7 +448,7 @@ public class CBook extends Controller {
 		    	qbList.add(qb);
 		    }
 		    
-	  }
+	  
 	  
 	  if(bookList.size()==0) {
 		  resultRtn.errCode = -1;
