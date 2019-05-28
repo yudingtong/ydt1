@@ -204,24 +204,67 @@ public class CCommpay extends Controller {
 	 				 
  				    
  				 }else if(flag==2) {//end flag==1
- 				  
- 					List<Res> resList= 
- 							  ebeanServer.find(Res.class)
- 							                             .fetch("comid")   
- 							                             .where()
- 							                             .eq("d11", wxid)
- 							                             .or()
- 							                             	.eq("status", 0)
- 							                             	.eq("status", 1)
- 							                             .endOr()
- 							                             .having()
- 							                             .findList();
- 					
- 					resultRtn.business.put("res", resList); 
- 					  
- 					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
- 				 
- 				 }else {
+ 					 
+ 					 
+ 					List<Book> bl=  ebeanServer.find(Book.class)   //.fetch("resid")
+ 														.where()
+ 														.ne("status", 3)
+ 														//.("status", status)
+ 															//.between("bookdate", startdate1, enddate1)  
+ 														.findList();
+ 					if(bl.size()>0) {	 
+ 					 
+		 					 for(int i=0;i<bl.size();i++) {
+		 						
+		 						
+		 						
+		 						ComView comview =new ComView();
+		 						comview.comid= bl.get(i).comid.comid;
+		 						comview.wxid= bl.get(i).comid.wxid;
+		 						comview.name= bl.get(i).comid.name;
+		 						comview.addshort= bl.get(i).comid.addshort;
+		 						comview.addlong= bl.get(i).comid.addlong;
+		 						comview.lat= bl.get(i).comid.lat;
+		 						comview.lng= bl.get(i).comid.ing;
+		 						comview.tel= bl.get(i).comid.tel;
+		 						comview.createtime= sdf1.format(bl.get(i).comid.createtime);
+		 						comview.status= bl.get(i).comid.status;
+		 						comview.checktime= sdf1.format(bl.get(i).comid.checktime);
+		 						comview.modifytime= sdf1.format(bl.get(i).comid.modifytime);
+		 						
+		 						List<Res> resList1 = 
+										  ebeanServer.find(Res.class).where().eq("comid.comid", comview.comid).findList(); 
+		// 						List<Res> resList= 
+		// 	 							  ebeanServer.find(Res.class)
+		// 	 							                             .fetch("comid")   
+		// 	 							                             .where()
+		// 	 							                             .eq("d11", wxid)
+		// 	 							                             .or()
+		// 	 							                             	.eq("status", 0)
+		// 	 							                             	.eq("status", 1)
+		// 	 							                             .endOr()
+		// 	 							                             .having()
+		// 	 							                             .findList();
+		 						
+		 						comview.resList = resList1;
+		 						comviewList.add(comview);
+		 						
+		 						 
+		 					   }
+	 					resultRtn.business.put("Company", comviewList); 
+	 					return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 					 
+ 					 } else {
+	 					 
+	 					 resultRtn.errCode = 401;
+						 resultRtn.msg="没有可以管理的单位";
+						  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+ 					 }
+ 					 
+ 					 
+ 					 
+ 					 
+ 				 }else { //end flag=2
  					 
  					resultRtn.errCode = 501;
 					 resultRtn.msg="flag标志错误";
