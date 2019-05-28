@@ -145,6 +145,15 @@ public class CBook extends Controller {
 	     
 	     SimpleDateFormat sdf3 =   new SimpleDateFormat( "HH:mm" );
 	     
+	     if(wxid==null) {
+    		 
+    		 resultRtn.errCode = 901;
+			 resultRtn.msg="wxid 为空";
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
+    		 
+    	 }
+			
+	     
 //	  	 Date starttime1 =sdf2.parse(starttime);
 //	  	 Date endtime1 =sdf2.parse(endtime);
 	  	 
@@ -361,6 +370,15 @@ public class CBook extends Controller {
       resultRtn.errCode = 0;
 	  resultRtn.msg="ok";
 	  Res res= null;
+	  
+	  if(wxid==null) {
+ 		 
+ 		 resultRtn.errCode = 901;
+			 resultRtn.msg="wxid 为空";
+			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
+ 		 
+ 	 }
+		
 	  
 	  SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
 	  Date startdate1 =null;

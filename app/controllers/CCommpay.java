@@ -128,12 +128,22 @@ public class CCommpay extends Controller {
          
          public Result queryCom(int flag,String wxid) {
         	 
+        	
+        	 
         	ResultRtn resultRtn = new ResultRtn();
  	        resultRtn.errCode = 0;
  			resultRtn.msg="query ok";
  			//SimpleDateFormat sdf =   new SimpleDateFormat( "mm:ss" );
  			SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyy-MM-dd HH:mm:ss" );
  				
+ 			if(wxid==null) {
+        		 
+        		 resultRtn.errCode = 901;
+				 resultRtn.msg="wxid 为空";
+				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
+        		 
+        	 }
+ 			
  			   try {     
  				  
  				  List<ComView> comviewList=new ArrayList<ComView>(); 
@@ -403,11 +413,27 @@ public class CCommpay extends Controller {
 		      ResultRtn resultRtn = new ResultRtn();
 		      resultRtn.errCode = 0;
 			  resultRtn.msg="Comm add ok";
+			  
+			  if(wxid==null) {
+	        		 
+	        		 resultRtn.errCode = 901;
+					 resultRtn.msg="wxid 为空";
+					  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
+	        		 
+	        	 }
+	 			
+			  
+			  
+			  
+			  
 			  Company company= null;
 			  Optional<Company> company1= 
 					  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
 				 
 				
+			  
+			  
+			  
 			  
 			 
 			  if(flag==1) {  //新增
@@ -526,6 +552,16 @@ public class CCommpay extends Controller {
 	      resultRtn.errCode = 0;
 		  resultRtn.msg="Res add ok";
 		  Res res= null;
+		  
+		  if(wxid==null) {
+     		 
+     		 resultRtn.errCode = 901;
+				 resultRtn.msg="wxid 为空";
+				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
+     		 
+     	 }
+			
+		  
 		  Optional<Company> com1= 
 				  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
 		  
