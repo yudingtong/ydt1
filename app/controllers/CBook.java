@@ -145,15 +145,6 @@ public class CBook extends Controller {
 	     
 	     SimpleDateFormat sdf3 =   new SimpleDateFormat( "HH:mm" );
 	     
-	     if(wxid==null) {
-    		 
-    		 resultRtn.errCode = 901;
-			 resultRtn.msg="wxid 为空";
-			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
-    		 
-    	 }
-			
-	     
 //	  	 Date starttime1 =sdf2.parse(starttime);
 //	  	 Date endtime1 =sdf2.parse(endtime);
 	  	 
@@ -371,15 +362,6 @@ public class CBook extends Controller {
 	  resultRtn.msg="ok";
 	  Res res= null;
 	  
-	  if(wxid==null) {
- 		 
- 		 resultRtn.errCode = 901;
-			 resultRtn.msg="wxid 为空";
-			  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\"")); 
- 		 
- 	 }
-		
-	  
 	  SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
 	  Date startdate1 =null;
 	  Date enddate1=null;
@@ -397,7 +379,7 @@ public class CBook extends Controller {
 	  
 	  System.out.println("--->1"+startdate1);
 	  System.out.println("--->2"+enddate1);
-	  List<Book> bookList= new ArrayList();
+	  List<Book> bookList= null;
 	  
 	  List<queryBook> qbList= new ArrayList();
 	  
@@ -405,25 +387,12 @@ public class CBook extends Controller {
 	  if(flag==2) {
 		  
 		    bookList= 
-				  ebeanServer.find(Book.class)   //.fetch("Res.comid.name")
-				                                  .fetch("resid")
-				                                      .where().eq("wxid", wxid)
+				  ebeanServer.find(Book.class).where().eq("wxid", wxid)
 				  									  .eq("status", status)
                                                        .between("bookdate", startdate1, enddate1)  
+                                                       .orderBy()
+                                                       .asc("bookdate")
 				                                       .findList();
-		    
-	  }else if(flag==1) {
-		  
-		  bookList= 
-				  ebeanServer.find(Book.class)   //.fetch("Res.comid.name")
-				                                  .fetch("resid")
-				                                      .where().eq("comid.wxid", wxid)
-				  									  .eq("status", status)
-                                                       .between("bookdate", startdate1, enddate1)  
-				                                       .findList();
-		  
-		  
-	  }
 			 
 //		  if(book1.isPresent()) {
 //				
@@ -448,7 +417,29 @@ public class CBook extends Controller {
 		    	qbList.add(qb);
 		    }
 		    
-	  
+	  }else if(flag==1) {
+		  bookList= 
+				  ebeanServer.find(Book.class).where().eq("resid.d11", wxid)
+				  									  .eq("status", status)
+                                                       .between("bookdate", startdate1, enddate1)
+                                                       .orderBy()
+                                                       .asc("bookdate")
+				                                       .findList()
+				                                       ;
+			   
+		    
+		    for(int i=0; i<bookList.size();i++) {
+		    	queryBook qb=new queryBook();	
+		    	qb.comid =bookList.get(i).resid.comid.comid;
+		    	qb.comname =bookList.get(i).resid.comid.name;
+		    	qb.resid =bookList.get(i).resid.resid;
+		    	qb.resname =bookList.get(i).resid.name;
+		    	qb.bookVeiw =bookList.get(i);
+		    	qbList.add(qb);
+		    }
+		  
+		  
+	  }
 	  
 	  if(bookList.size()==0) {
 		  resultRtn.errCode = -1;
@@ -458,6 +449,114 @@ public class CBook extends Controller {
 	  resultRtn.business.put("book", qbList);
 	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	  
 	  
+  }
+  
+  
+  public Result   checkBook(int flag,String wxid,String comid,String bookid,int modifyflag,String title,String des,String starttime,String endtime)   
+  {
+	 
+	  ResultRtn resultRtn = new ResultRtn();
+      resultRtn.errCode = 0;
+	  resultRtn.msg="ok";
+	  Res res= null;
+	  
+		Optional<Company> com1= 
+				  ebeanServer.find(Company.class).where()
+													  .eq("wxid", wxid)
+													  .eq("comid", comid)
+				                                      .findOneOrEmpty();
+	  	 
+	
+		if(flag==1||flag==2) {
+		
+		  	 if(!com1.isPresent()) {
+					
+				 //company = company1.get();
+				  resultRtn.errCode = 901;
+				  resultRtn.msg="您没有该单位的管理权";
+				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+			  }	 
+		  	 
+			
+			
+	 		 Optional<Book> book1= 
+			   ebeanServer.find(Book.class).where()
+			                               .eq("bookid", bookid)
+			                               .findOneOrEmpty();
+	 		 
+		  	 if(!book1.isPresent()) {
+					
+				  resultRtn.errCode = 601;
+				  resultRtn.msg="bookId错误";
+				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+			  }	 
+	 		 
+		  	System.out.println("starttime.compareTo(book1.get().starttime) " +starttime.compareTo(book1.get().starttime) );
+		  	
+		  	System.out.println("starttime.compareTo( book1.get().endtime) " +starttime.compareTo( book1.get().endtime) );
+		  	
+		  	System.out.println("endtime.compareTo(book1.get().starttime) " +endtime.compareTo(book1.get().starttime));
+		  	
+		  	System.out.println("endtime.compareTo( book1.get().endtime)" +endtime.compareTo( book1.get().endtime) );
+		  	
+		  	
+		  	System.out.println(" starttime.compareTo(book1.get().starttime)" + starttime.compareTo(book1.get().starttime) );
+		  	
+		  	System.out.println(" endtime.compareTo( book1.get().endtime) " + endtime.compareTo( book1.get().endtime));
+		  	
+		//  System.out.println("bendtime" +book1.get().endtime); 
+		  	if((starttime.compareTo(book1.get().starttime)  >=0 && starttime.compareTo( book1.get().endtime)<=0 )
+		  		||	(endtime.compareTo(book1.get().starttime) >=0 && endtime.compareTo( book1.get().endtime) <=0)
+		  		||( starttime.compareTo(book1.get().starttime) >=0 &&  endtime.compareTo( book1.get().endtime) <=0 )
+		  			) {
+		  		
+				  resultRtn.errCode = 701;
+				  resultRtn.msg="该时间段已被预定";
+				  System.out.println("starttime" +book1.get().starttime);
+				  System.out.println("endtime" +book1.get().endtime);
+				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+		  		
+		  	}
+	  	
+		  	book1.get().status = flag+1;
+		  	
+		  	if(modifyflag==1) {
+			  	book1.get().title  = title;
+			  	book1.get().des  = des;
+			  	book1.get().starttime  = starttime;
+			  	book1.get().endtime  = endtime;
+			  	
+		  	}
+		  
+		  	book1.get().save();
+		 }//end flag =1 2
+	  	
+	  	if(flag==3) {
+	  		
+	  		 Optional<Book> book2= 
+					  ebeanServer.find(Book.class).where().eq("bookid", bookid) 
+					                                      .eq("wxid", wxid)
+					  								      .findOneOrEmpty();
+	  		 
+	  		 if(!book2.isPresent()) {
+					
+				 //company = company1.get();
+				  resultRtn.errCode = 903;
+				  resultRtn.msg="您没有该预定信息的管理权";
+				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+			  }	   
+	  		
+	  		book2.get().status = 4;
+	  		book2.get().save();
+	  	}
+	  	 
+	  
+	  
+	  
+	  
+	  
+	  //resultRtn.business.put("book", qbList);
+	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	
   }
   
   

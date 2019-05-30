@@ -38,6 +38,8 @@ GET    /manageRes                        controllers.CCommpay.manageRes(flag:Int
 GET    /bookRes                          controllers.CBook.bookRes(wxid:String,resid:String,bookdate:String,starttime:String,endtime:String,name:String,tel:String,title:String,des:String) 
 GET    /queryBook                        controllers.CBook.queryBook(flag:Integer,wxid:String,status:Integer,startdate:String,enddate:String) 
 GET    /queryBooked                      controllers.CBook.queryBooked(comid:String,startdate:String,enddate:String) 
+GET    /checkBook                        controllers.CBook.checkBook(flag:Integer,wxid:String,comid:String,bookid:String,modifyflag:Integer,title:String,des:String,starttime:String,endtime:String) 
+
 
 
 
