@@ -207,8 +207,11 @@ public class CCommpay extends Controller {
  					 
  					 
  					List<Book> bl=  ebeanServer.find(Book.class)   //.fetch("resid")
- 														.where()
+ 														.setDistinct(true)
+ 														.select("comid")
+ 							                            .where()
  														.ne("status", 3)
+ 														
  														//.("status", status)
  															//.between("bookdate", startdate1, enddate1)  
  														.findList();
