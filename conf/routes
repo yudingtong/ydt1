@@ -40,6 +40,7 @@ GET    /queryBook                        controllers.CBook.queryBook(flag:Intege
 GET    /queryBooked                      controllers.CBook.queryBooked(comid:String,startdate:String,enddate:String) 
 GET    /checkBook                        controllers.CBook.checkBook(flag:Integer,wxid:String,comid:String,bookid:String,modifyflag:Integer,title:String,des:String,starttime:String,endtime:String) 
 
-
+#price
+GET    /getPrice                         controllers.Cprice.getPrice(date:String ) 
 
 

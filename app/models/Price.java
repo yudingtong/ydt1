@@ -17,18 +17,17 @@ public class Price extends BaseModel{
      * 注册日期
      */
     @Formats.DateTime(pattern = "yyyy-MM-dd")
-    @CreatedTimestamp
     public Date pricedate;
 
     public String code;  //代码
     
     public String name;  //姓名
    
-    public double price;  //价格
+    public double price=0.0;  //价格
     
-    public double price1;  //价格
+    public double price1=0.0;  //价格
     
-    public double price2;  //价格
+    public double price2=0.0;  //价格
     
     public String des; 	  //描述
     

@@ -45,18 +45,8 @@ public class Cprice extends Controller {
          public Result getPrice(String date) {
 	        
         	 ResultRtn resultRtn = new ResultRtn();
-        	 SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyy-MM-dd" );
-        	java.util.Date date1 = new Date();
-			try {
-				date1 = sdf1.parse(date);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				resultRtn.errCode = 0;
-				resultRtn.business.put("price", e);
-			}
-        	 
 	    	
-	    	List<Price> pd =ebeanServer.find(Price.class).where().eq("pricedate", date1).findList();
+	    	List<Price> pd =ebeanServer.find(Price.class).where().eq("DATE_FORMAT(pricedate, '%Y-%m-%d')", date).findList();
 	    	resultRtn.errCode = 0;
 			resultRtn.business.put("price", pd);
 	    	

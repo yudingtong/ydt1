@@ -140,6 +140,21 @@ create table news (
   constraint pk_news primary key (id)
 );
 
+create table price (
+  id                            bigint auto_increment not null,
+  code                          varchar(255),
+  name                          varchar(255),
+  price                         double not null,
+  price1                        double not null,
+  price2                        double not null,
+  des                           varchar(255),
+  bak1                          varchar(255),
+  bak2                          varchar(255),
+  pricedate                     datetime(6) not null,
+  createdate                    datetime(6) not null,
+  constraint pk_price primary key (id)
+);
+
 create table res (
   id                            bigint auto_increment not null,
   type                          integer not null,
@@ -304,6 +319,8 @@ drop table if exists discuss;
 drop table if exists favor;
 
 drop table if exists news;
+
+drop table if exists price;
 
 drop table if exists res;
 
