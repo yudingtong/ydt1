@@ -1,0 +1,83 @@
+package controllers;
+
+import play.db.ebean.EbeanConfig;
+import play.libs.Json;
+import models.Price;
+import models.Stock;
+import play.mvc.Controller;
+import play.mvc.Result;
+import repository.DatabaseExecutionContext;
+import util.ResultRtn;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import javax.inject.Inject;
+
+import io.ebean.Ebean;
+import io.ebean.EbeanServer;
+public class Cprice extends Controller {
+    
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+	
+	private final EbeanServer ebeanServer;
+
+    @Inject
+    public Cprice(EbeanConfig ebeanConfig, DatabaseExecutionContext executionContext) {
+        this.ebeanServer = Ebean.getServer(ebeanConfig.defaultServer());
+    }
+	
+
+	    /**
+	     * An action that responds with the {@link Counter}'s current
+	     * count. The result is plain text. This action is mapped to
+	     * <code>GET</code> requests with a path of <code>/count</code>
+	     * requests by an entry in the <code>routes</code> config file.
+	     */
+	
+	    
+	    
+         public Result getPrice(String date) {
+	        
+        	 ResultRtn resultRtn = new ResultRtn();
+        	 SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyy-MM-dd" );
+        	java.util.Date date1 = new Date();
+			try {
+				date1 = sdf1.parse(date);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				resultRtn.errCode = 0;
+				resultRtn.business.put("price", e);
+			}
+        	 
+	    	
+	    	List<Price> pd =ebeanServer.find(Price.class).where().eq("pricedate", date1).findList();
+	    	resultRtn.errCode = 0;
+			resultRtn.business.put("price", pd);
+	    	
+	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//	    	return ok("--->"+Stock.find.query("code").findUnique().name);
+	    	
+	    }
+
+         
+//         public Result mystock(String userId) {
+// 	        
+//// 	    	Stock sk=new Stock("600030");
+// 	    	ResultRtn resultRtn = new ResultRtn();
+// 	    	List<Stock> sc =ebeanServer.find(Stock.class).where().eq("code", Code).findList();
+// 	    	resultRtn.errCode = 0;
+// 			resultRtn.business.put("Stock", sc);
+// 	    	
+// 	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+//// 	    	return ok("--->"+Stock.find.query("code").findUnique().name);
+// 	    	
+// 	    }
+//         
+
+}
