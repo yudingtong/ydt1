@@ -464,14 +464,14 @@ public class CUtil extends Controller {
 					//e1.printStackTrace();
 			 }
 			 
-			 User1 user1=new User1();
-        	 user1.wxid =openid;
-        	 user1.name ="";
-        	 user1.tel ="";
-        	 user1.com ="";
-        	 user1.userinfo ="";
-        	 
-        	 user1.save();
+//			 User1 user1=new User1();
+//        	 user1.wxid =openid;
+//        	 user1.name ="";
+//        	 user1.tel ="";
+//        	 user1.com ="";
+//        	 user1.userinfo ="";
+//        	 
+//        	 user1.save();
 			 
 			 map.put("errcode", errcode);
 	         map.put("errmsg", errmsg);

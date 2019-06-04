@@ -142,7 +142,7 @@ create table news (
 
 create table price (
   id                            bigint auto_increment not null,
-  pricedate                     datetime(6),
+  pricedate                     date,
   code                          varchar(255),
   name                          varchar(255),
   price                         double not null,
@@ -235,6 +235,23 @@ create table user (
   role_id                       integer,
   create_time                   datetime(6) not null,
   constraint pk_user primary key (id)
+);
+
+create table user1 (
+  id                            bigint auto_increment not null,
+  wxid                          varchar(255),
+  name                          varchar(255),
+  type                          integer not null,
+  tel                           varchar(255),
+  com                           varchar(255),
+  userinfo                      varchar(255),
+  bint1                         integer not null,
+  bint2                         integer not null,
+  b1                            varchar(255),
+  b2                            varchar(255),
+  regdate                       datetime(6) not null,
+  constraint uq_user1_wxid unique (wxid),
+  constraint pk_user1 primary key (id)
 );
 
 create table user_stock_r (
@@ -331,6 +348,8 @@ drop table if exists stock;
 drop table if exists transaction_records;
 
 drop table if exists user;
+
+drop table if exists user1;
 
 drop table if exists user_stock_r;
 

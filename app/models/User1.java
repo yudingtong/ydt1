@@ -1,13 +1,11 @@
 package models;
 
 import play.data.format.Formats;
-import play.data.validation.Constraints;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 import io.ebean.annotation.CreatedTimestamp;
 
