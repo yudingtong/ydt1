@@ -45,23 +45,32 @@ public class CUser1 extends Controller {
 	    
          public Result register(String wxid,String name,String tel,String com,String  userInfo) {
 	        
+        	
+        	 
         	 ResultRtn resultRtn = new ResultRtn();
+        	 
         	 User1 user1=new User1();
+        	 
+        	 int count =ebeanServer.find(User1.class).where().eq("wxid", wxid).findCount(); 
+ 	    	
+        	 if(count>0) {
+        		 
+        		 resultRtn.errCode = count; 
+        		 resultRtn.msg = "wxid is 2"; 
+        		 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+        	 }else {
+        	 
         	 user1.wxid =wxid;
         	 user1.name =name;
         	 user1.tel =tel;
         	 user1.com =com;
         	 user1.userinfo =userInfo;
-        	 
         	 user1.save();
-        	 
-	    	//List<Price> pd =ebeanServer.find(Price.class).where().eq("DATE_FORMAT(pricedate, '%Y-%m-%d')", date).findList();
-	    	resultRtn.errCode = 0;
-			//resultRtn.business.put("price", pd);
+	    	 resultRtn.errCode = 0;
 	    	
-	    	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+	    	 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
 //	    	return ok("--->"+Stock.find.query("code").findUnique().name);
-	    	
+	    	}
 	    }
 
          
