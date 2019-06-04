@@ -2,6 +2,8 @@ package models;
 
 import play.data.format.Formats;
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import io.ebean.annotation.CreatedTimestamp;
 
@@ -16,7 +18,8 @@ public class Price extends BaseModel{
 	 /**
      * 注册日期
      */
-    @Formats.DateTime(pattern = "yyyy-MM-dd")
+   // @Formats.DateTime(pattern = "yyyy-MM-dd")
+    @Column(name="pricedate",columnDefinition="DATE") 
     public Date pricedate;
 
     public String code;  //代码

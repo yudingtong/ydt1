@@ -142,6 +142,7 @@ create table news (
 
 create table price (
   id                            bigint auto_increment not null,
+  pricedate                     datetime(6),
   code                          varchar(255),
   name                          varchar(255),
   price                         double not null,
@@ -150,7 +151,6 @@ create table price (
   des                           varchar(255),
   bak1                          varchar(255),
   bak2                          varchar(255),
-  pricedate                     datetime(6) not null,
   createdate                    datetime(6) not null,
   constraint pk_price primary key (id)
 );

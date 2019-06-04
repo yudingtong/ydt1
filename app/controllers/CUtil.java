@@ -4,6 +4,7 @@ import play.db.ebean.EbeanConfig;
 import play.libs.Json;
 import models.ResultData;
 import models.User;
+import models.User1;
 import models.ResultData.MystockView;
 import models.Admin;
 import models.Book;
@@ -418,7 +419,7 @@ public class CUtil extends Controller {
            //小程序唯一标识   (在微信小程序管理后台获取)
              String wxspAppid = "wx964e02850dd92fc7";
              //小程序的 app secret (在微信小程序管理后台获取)
-             String wxspSecret = "73fed17d7d96fc185fc1455194f7282e";
+             String wxspSecret = "7dce83dea4fc15f52ca70bb8d10a7f5f";
              //授权（必填）
              
              
@@ -442,12 +443,11 @@ public class CUtil extends Controller {
              String errmsg ="";
 			 try {
 				
+				
 			
              //获取会话密钥（session_key）
              //session_key = json.getString("session_key");
              //用户的唯一标识（openid）
-              
-			
               
                
                 if(json.has("openid"))
@@ -464,11 +464,19 @@ public class CUtil extends Controller {
 					//e1.printStackTrace();
 			 }
 			 
-			
+			 User1 user1=new User1();
+        	 user1.wxid =openid;
+        	 user1.name ="";
+        	 user1.tel ="";
+        	 user1.com ="";
+        	 user1.userinfo ="";
+        	 
+        	 user1.save();
 			 
 			 map.put("errcode", errcode);
 	         map.put("errmsg", errmsg);
 	         map.put("oid", openid);
+	         map.put("sessionid", (String)json.get("session_key"));
 	         return ok(Json.toJson(map).toString().replaceAll("null", "\"\""));  
 		
 			       

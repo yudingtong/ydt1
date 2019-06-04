@@ -13,7 +13,7 @@ public class formatTool {
 		// TODO Auto-generated method stub
 		
 		//format1();
-		format2();
+		format1();
 		try {
 			test();
 		} catch (ParseException e) {
@@ -25,7 +25,7 @@ public class formatTool {
 	
 	public static void format1(){
 		
-		String t="wxid:String,resid:String,bookdate:String,starttime:String,endtime:String,name:String,tel:String,title:String,des:String";
+		String t="wxid:String,name:String,tel:String,com:String,userInfo:String ";
 		String t1[]=t.split(",");
 		StringBuffer re=new StringBuffer();
 		for(int i=0; i<t1.length;i++) {

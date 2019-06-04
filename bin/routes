@@ -42,5 +42,6 @@ GET    /checkBook                        controllers.CBook.checkBook(flag:Intege
 
 #price
 GET    /getPrice                         controllers.Cprice.getPrice(date:String ) 
+GET    /register                         controllers.CUser1.register(wxid:String,name:String,tel:String,com:String,userInfo:String ) 
 
 
