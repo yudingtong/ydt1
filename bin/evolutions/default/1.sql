@@ -163,7 +163,7 @@ create table node (
 create table post (
   id                            integer auto_increment not null,
   last_reply_by                 varchar(255),
-  title                         integer not null,
+  title                         varchar(255),
   url                           varchar(255),
   content                       varchar(255),
   content_rendered              varchar(255),

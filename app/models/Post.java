@@ -6,7 +6,6 @@ import javax.persistence.*;
 import io.ebean.annotation.CreatedTimestamp;
 import io.ebean.Finder;
 import io.ebean.Model;
-import play.data.validation.*;
 import play.data.format.Formats;
 /**
  * 角色
@@ -21,9 +20,10 @@ public class Post extends Model {
     /**
      * title
      */
-    
+    @ManyToOne
     public Node node;
     
+    @ManyToOne
     public User1 member;
     
     public String last_reply_by;
