@@ -35,7 +35,7 @@ public class Post extends Model {
     @CreatedTimestamp
     public Date last_touched;
     
-    public int title;
+    public String title;
     
     public String url;
     
