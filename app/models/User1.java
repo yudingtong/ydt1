@@ -35,9 +35,36 @@ public class User1 extends BaseModel{
     
     int  bint2 = 0;
     
+    @Column(nullable=true)
     public String b1; 	 //用户信息
     
+    @Column(nullable=true)
     public String b2; 	 //用户信息
+    
+    @Column(nullable=true)
+    public String avatar_large; 	 //用户信息
+    
+    @Column(nullable=true)
+    public String avatar_mini; 	 //用户信息
+    
+    @Column(nullable=true)
+    public String location; 	 //用户信息
+    
+    @Column(nullable=true)
+    public String website; 	 //用户信息
+    
+    @Column(nullable=true)
+    public String avatar_normal; 	 //用户信息
+    
+    @Column(nullable=true)
+    public String bio; 	 //用户信息
+    
+    @Column(nullable=true)
+    public String btc; 	 //用户信息
+    
+    @Column(nullable=true)
+    public String url; 	 //用户信息
+    
     
     /**
      * 注册日期
