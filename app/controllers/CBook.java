@@ -432,7 +432,7 @@ public class CBook extends Controller {
 			  
 		  }else {
 		  
-				  ebeanServer.find(Book.class).where().eq("resid.d11", wxid)
+			  bookList= 	  ebeanServer.find(Book.class).where().eq("resid.d11", wxid)
 				  									  .eq("status", status)
                                                        .between("bookdate", startdate1, enddate1)
                                                        .orderBy()
