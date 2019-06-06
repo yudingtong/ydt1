@@ -21,9 +21,11 @@ public class Post extends Model {
      * title
      */
     @ManyToOne
+    @JoinColumn(name="node")
     public Node node;
     
     @ManyToOne
+    @JoinColumn(name="member")
     public User1 member;
     
     public String last_reply_by;

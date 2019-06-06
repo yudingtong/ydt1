@@ -379,7 +379,7 @@ public class CBook extends Controller {
 	  
 	  System.out.println("--->1"+startdate1);
 	  System.out.println("--->2"+enddate1);
-	  List<Book> bookList= null;
+	  List<Book> bookList= new ArrayList();
 	  
 	  List<queryBook> qbList= new ArrayList();
 	  

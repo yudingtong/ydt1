@@ -162,6 +162,8 @@ create table node (
 
 create table post (
   id                            integer auto_increment not null,
+  node_id                       integer,
+  member_id                     bigint,
   last_reply_by                 varchar(255),
   title                         varchar(255),
   url                           varchar(255),
@@ -320,6 +322,12 @@ create index ix_book_comid on book (comid);
 alter table computer add constraint fk_computer_company_comid foreign key (company_comid) references company (comid) on delete restrict on update restrict;
 create index ix_computer_company_comid on computer (company_comid);
 
+alter table post add constraint fk_post_node_id foreign key (node_id) references node (id) on delete restrict on update restrict;
+create index ix_post_node_id on post (node_id);
+
+alter table post add constraint fk_post_member_id foreign key (member_id) references user1 (id) on delete restrict on update restrict;
+create index ix_post_member_id on post (member_id);
+
 alter table res add constraint fk_res_comid foreign key (comid) references company (comid) on delete restrict on update restrict;
 create index ix_res_comid on res (comid);
 
@@ -345,6 +353,12 @@ drop index ix_book_comid on book;
 
 alter table computer drop foreign key fk_computer_company_comid;
 drop index ix_computer_company_comid on computer;
+
+alter table post drop foreign key fk_post_node_id;
+drop index ix_post_node_id on post;
+
+alter table post drop foreign key fk_post_member_id;
+drop index ix_post_member_id on post;
 
 alter table res drop foreign key fk_res_comid;
 drop index ix_res_comid on res;

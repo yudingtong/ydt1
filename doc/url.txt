@@ -47,3 +47,5 @@ http://127.0.0.1:9000/queryBooked?comid=1234567890&startdate=20100121&enddate=20
 http://127.0.0.1:9000/bookRes?wxid=1111&resid=1555656720429&bookdate=20190506&starttime=16:55&endtime=16:56&name=zzc&tel=13810169858&title=yyy&des=iii
 
 
+################
+http://127.0.0.1:9000/addpost?wxid=o7X1r5VgDd1UeBQ9ZIMv-6iJ3y70&title=11111&content=kkkkk
