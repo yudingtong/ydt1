@@ -49,3 +49,4 @@ http://127.0.0.1:9000/bookRes?wxid=1111&resid=1555656720429&bookdate=20190506&st
 
 ################
 http://127.0.0.1:9000/addpost?wxid=o7X1r5VgDd1UeBQ9ZIMv-6iJ3y70&title=11111&content=kkkkk
+http://127.0.0.1:9000/postlist?wxid=o7X1r5VgDd1UeBQ9ZIMv-6iJ3y70

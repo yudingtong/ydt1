@@ -14,8 +14,10 @@ import repository.DatabaseExecutionContext;
 import util.ResultRtn;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Base64.Decoder;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -113,7 +115,7 @@ public class Cpost extends Controller {
 		resultRtn.errCode = 0;
 		resultRtn.msg = "ok";
 		resultRtn.business.put("discuss", Disobj_list);
-		return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
+		return ok(Json.toJson(Disobj_list).toString().replaceAll("null", "\"\""));
 		// return ok("--->"+Stock.find.query("code").findUnique().name);
 
 	}
