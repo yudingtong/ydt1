@@ -140,6 +140,41 @@ create table news (
   constraint pk_news primary key (id)
 );
 
+create table node (
+  id                            integer auto_increment not null,
+  avatar_large                  varchar(255),
+  name                          varchar(255),
+  avatar_normal                 varchar(255),
+  title                         varchar(255),
+  url                           varchar(255),
+  topics                        integer not null,
+  footer                        varchar(255),
+  header                        varchar(255),
+  title_alternative             varchar(255),
+  avatar_mini                   varchar(255),
+  stars                         integer not null,
+  root                          tinyint(1) default 0,
+  parent_node_name              varchar(255),
+  memo                          varchar(255),
+  createtime                    datetime(6) not null,
+  constraint pk_node primary key (id)
+);
+
+create table post (
+  id                            integer auto_increment not null,
+  last_reply_by                 varchar(255),
+  title                         integer not null,
+  url                           varchar(255),
+  content                       varchar(255),
+  content_rendered              varchar(255),
+  replies                       integer not null,
+  memo                          varchar(255),
+  last_touched                  datetime(6) not null,
+  created                       datetime(6) not null,
+  last_modified                 datetime(6) not null,
+  constraint pk_post primary key (id)
+);
+
 create table price (
   id                            bigint auto_increment not null,
   pricedate                     date,
@@ -249,6 +284,14 @@ create table user1 (
   bint2                         integer not null,
   b1                            varchar(255),
   b2                            varchar(255),
+  avatar_large                  varchar(255),
+  avatar_mini                   varchar(255),
+  location                      varchar(255),
+  website                       varchar(255),
+  avatar_normal                 varchar(255),
+  bio                           varchar(255),
+  btc                           varchar(255),
+  url                           varchar(255),
   regdate                       datetime(6) not null,
   constraint uq_user1_wxid unique (wxid),
   constraint pk_user1 primary key (id)
@@ -336,6 +379,10 @@ drop table if exists discuss;
 drop table if exists favor;
 
 drop table if exists news;
+
+drop table if exists node;
+
+drop table if exists post;
 
 drop table if exists price;
 

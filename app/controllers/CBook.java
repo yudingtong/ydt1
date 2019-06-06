@@ -418,7 +418,20 @@ public class CBook extends Controller {
 		    }
 		    
 	  }else if(flag==1) {
-		  bookList= 
+		  
+		  
+		  if(status==5) {
+			  bookList= 
+					  ebeanServer.find(Book.class).where().eq("resid.d11", wxid)
+					  									  .ne("status", 1)
+	                                                       .between("bookdate", startdate1, enddate1)
+	                                                       .orderBy()
+	                                                       .asc("bookdate")
+					                                       .findList()
+					                                       ;
+			  
+		  }else {
+		  
 				  ebeanServer.find(Book.class).where().eq("resid.d11", wxid)
 				  									  .eq("status", status)
                                                        .between("bookdate", startdate1, enddate1)
@@ -427,7 +440,7 @@ public class CBook extends Controller {
 				                                       .findList()
 				                                       ;
 			   
-		    
+		  } 
 		    for(int i=0; i<bookList.size();i++) {
 		    	queryBook qb=new queryBook();	
 		    	qb.comid =bookList.get(i).resid.comid.comid;
