@@ -17,6 +17,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
 public class CUser1 extends Controller {
@@ -60,11 +62,15 @@ public class CUser1 extends Controller {
         		 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
         	 }else {
         	 
+        	 JsonNode tsonStr= Json.parse(userInfo);
+        	 
+        	
         	 user1.wxid =wxid;
         	 user1.name =name;
         	 user1.tel =tel;
         	 user1.com =com;
         	 user1.userinfo =userInfo;
+        	 user1.avatar_normal=tsonStr.get("avatarUrl").asText();
         	 user1.save();
 	    	 resultRtn.errCode = 0;
 	    	

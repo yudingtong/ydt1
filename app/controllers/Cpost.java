@@ -1,5 +1,6 @@
 package controllers;
 
+import play.data.format.Formats;
 import play.db.ebean.EbeanConfig;
 import play.libs.Json;
 import models.Discuss;
@@ -14,15 +15,19 @@ import repository.DatabaseExecutionContext;
 import util.ResultRtn;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Base64.Decoder;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import io.ebean.Ebean;
 import io.ebean.EbeanServer;
+import io.ebean.annotation.CreatedTimestamp;
 
 public class Cpost extends Controller {
 
@@ -30,6 +35,21 @@ public class Cpost extends Controller {
 
 		public String stockCode;
 		public String stockName;
+
+	}
+	
+	public class postView {
+		
+		public long id;
+
+		public Node node;
+	    
+	    public User1 member;
+	    
+	    public String title;
+	    
+	    public int replies;
+	    
 
 	}
 
@@ -70,6 +90,8 @@ public class Cpost extends Controller {
 	   post1.member =user1List.get(0);
 	   post1.title = title;
 	   post1.content = content;
+	   
+	   //post1.member.avatar_normal = user1List.get(0).userinfo.
 	  // disobj.userid = userid;
 	   
 	   post1.save();
@@ -89,9 +111,9 @@ public class Cpost extends Controller {
 		ResultRtn resultRtn = new ResultRtn();
 		//List<Discuss> sc = ebeanServer.find(User.class).where().eq("name", name).findList();
 		//List<Discuss> Disobj_list = new arrayList();
+		List<postView> listA = new ArrayList();
 		
-		
-		List Disobj_list =ebeanServer.find(Post.class).where()
+		List<Post> Disobj_list =ebeanServer.find(Post.class).where()
 				                                      .setMaxRows(max)
 				                                      .findList();
 	    	if(Disobj_list.size()<=0) {
@@ -102,9 +124,17 @@ public class Cpost extends Controller {
 	    		
 	    	}
 	    	
-
+	    	postView pw=new postView();
+	    	for(int i=0; i< Disobj_list.size() ; i++) {
+	    	  pw.id=Disobj_list.get(i).id;
+	    	  pw.member = Disobj_list.get(i).member;
+	    	  pw.node = Disobj_list.get(i).node;
+	    	  pw.replies = Disobj_list.get(i).replies;
+	    	  pw.title = Disobj_list.get(i).title;
+	    	  
+	    	  listA.add(pw);
 	    	     
-	   
+	    	}
 //	   disobj.title = title;
 //	   disobj.content = content;   
 //	   disobj.userid = Integer.parseInt(userid);
@@ -114,8 +144,8 @@ public class Cpost extends Controller {
 
 		resultRtn.errCode = 0;
 		resultRtn.msg = "ok";
-		resultRtn.business.put("discuss", Disobj_list);
-		return ok(Json.toJson(Disobj_list).toString().replaceAll("null", "\"\""));
+		//resultRtn.business.put("discuss", pw);
+		return ok(Json.toJson(listA).toString().replaceAll("null", "\"\""));
 		// return ok("--->"+Stock.find.query("code").findUnique().name);
 
 	}
