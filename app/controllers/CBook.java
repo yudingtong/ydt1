@@ -306,10 +306,13 @@ public class CBook extends Controller {
   				  ebeanServer.find(Book.class)   //.fetch("resid")
   				                                 //     .fetch("comid")
   				                                      .where()
-  				                                      .ne("status", 3)
+  				                                      //.ne("status", 3)
+  				                                       .eq("status", 2)
   				                                       .eq("resid.resid",  resList1.get(i).resid)
   				  									   //.("status", status)
                                                        //.between("bookdate", startdate1, enddate1)  
+  				                                       .orderBy()
+                                                       .asc("starttime")
   				                                       .findList();
       
       
