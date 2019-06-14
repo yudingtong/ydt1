@@ -389,13 +389,26 @@ public class CBook extends Controller {
 	  
 	  if(flag==2) {
 		  
-		    bookList= 
+		 if(status==0) {
+			 
+			 bookList= 
+					  ebeanServer.find(Book.class).where().eq("wxid", wxid)
+					  									 // .eq("status", status)
+	                                                       .between("bookdate", startdate1, enddate1)  
+	                                                       .orderBy()
+	                                                       .asc("bookdate")
+					                                       .findList();
+			 
+		 }else {
+		  
+			 bookList= 
 				  ebeanServer.find(Book.class).where().eq("wxid", wxid)
 				  									  .eq("status", status)
                                                        .between("bookdate", startdate1, enddate1)  
                                                        .orderBy()
                                                        .asc("bookdate")
 				                                       .findList();
+		 }
 			 
 //		  if(book1.isPresent()) {
 //				
