@@ -397,7 +397,7 @@ public class CBook extends Controller {
 					  									 // .eq("status", status)
 	                                                       .between("bookdate", startdate1, enddate1)  
 	                                                       .orderBy()
-	                                                       .asc("bookdate")
+	                                                       .desc("bookdate")
 					                                       .findList();
 			 
 		 }else {
@@ -407,7 +407,7 @@ public class CBook extends Controller {
 				  									  .eq("status", status)
                                                        .between("bookdate", startdate1, enddate1)  
                                                        .orderBy()
-                                                       .asc("bookdate")
+                                                       .desc("bookdate")
 				                                       .findList();
 		 }
 			 
@@ -444,7 +444,7 @@ public class CBook extends Controller {
 					  									  .ne("status", 1)
 	                                                       .between("bookdate", startdate1, enddate1)
 	                                                       .orderBy()
-	                                                       .asc("bookdate")
+	                                                       .desc("bookdate")
 					                                       .findList()
 					                                       ;
 			  
@@ -454,7 +454,7 @@ public class CBook extends Controller {
 				  									  .eq("status", status)
                                                        .between("bookdate", startdate1, enddate1)
                                                        .orderBy()
-                                                       .asc("bookdate")
+                                                       .desc("bookdate")
 				                                       .findList()
 				                                       ;
 			   
