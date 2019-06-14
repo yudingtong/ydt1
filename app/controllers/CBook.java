@@ -430,6 +430,7 @@ public class CBook extends Controller {
 		    	qb.resid =bookList.get(i).resid.resid;
 		    	qb.resname =bookList.get(i).resid.name;
 		    	qb.bookVeiw =bookList.get(i);
+		    	qb.bookVeiw.bookdate1 =sdf1.format(bookList.get(i).bookdate);
 		    	qbList.add(qb);
 		    }
 		    
@@ -464,6 +465,7 @@ public class CBook extends Controller {
 		    	qb.resid =bookList.get(i).resid.resid;
 		    	qb.resname =bookList.get(i).resid.name;
 		    	qb.bookVeiw =bookList.get(i);
+		    	qb.bookVeiw.bookdate1 =sdf1.format(bookList.get(i).bookdate);
 		    	qbList.add(qb);
 		    }
 		  

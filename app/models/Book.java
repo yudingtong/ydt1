@@ -6,6 +6,7 @@ import play.data.validation.Constraints;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.ebean.Model;
 import io.ebean.annotation.CreatedTimestamp;
-import jdk.nashorn.internal.ir.annotations.Ignore;
 
 
 
@@ -48,11 +48,13 @@ public class Book  extends Model{
     /**
      * 创建时间
      */
+	@JsonIgnore
     @Formats.DateTime(pattern = "yyyy-MM-dd")
     @CreatedTimestamp
     public Date bookdate;
     
-    
+	@Transient
+    public String bookdate1;
    
     public String starttime; //审核时间
         
