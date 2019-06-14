@@ -366,6 +366,7 @@ public class CBook extends Controller {
 	  Res res= null;
 	  
 	  SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
+	  SimpleDateFormat sdf2 =   new SimpleDateFormat( "yyyy年MM月dd日" );
 	  Date startdate1 =null;
 	  Date enddate1=null;
 	
@@ -430,7 +431,7 @@ public class CBook extends Controller {
 		    	qb.resid =bookList.get(i).resid.resid;
 		    	qb.resname =bookList.get(i).resid.name;
 		    	qb.bookVeiw =bookList.get(i);
-		    	qb.bookVeiw.bookdate1 =sdf1.format(bookList.get(i).bookdate);
+		    	qb.bookVeiw.bookdate1 =sdf2.format(bookList.get(i).bookdate);
 		    	qbList.add(qb);
 		    }
 		    
@@ -465,7 +466,7 @@ public class CBook extends Controller {
 		    	qb.resid =bookList.get(i).resid.resid;
 		    	qb.resname =bookList.get(i).resid.name;
 		    	qb.bookVeiw =bookList.get(i);
-		    	qb.bookVeiw.bookdate1 =sdf1.format(bookList.get(i).bookdate);
+		    	qb.bookVeiw.bookdate1 =sdf2.format(bookList.get(i).bookdate);
 		    	qbList.add(qb);
 		    }
 		  
