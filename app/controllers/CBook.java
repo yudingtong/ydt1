@@ -292,32 +292,38 @@ public class CBook extends Controller {
   	  System.out.println("--->1"+startdate1);
   	  System.out.println("--->2"+enddate1);
   	  List<Book> bookList= null;
-  	  
+  	  List<Res> resList1 = new ArrayList();
   	  List<queryBook> qbList= new ArrayList();
   	//先查询所有资源的预定情况
-  	  List<Res> resList1 = 
-			  ebeanServer.find(Res.class).where().eq("comid.comid",comid).findList(); 
+//  	  List<Res> resList1 = 
+//			  ebeanServer.find(Res.class).where().eq("comid.comid",comid).findList(); 
   	  
   	 
-      for(int i=0;i<resList1.size();i++) {
+    //  for(int i=0;i<resList1.size();i++) {
   		
-    	  resList1.get(i).bookList=
-    	  
+    	 // resList1.get(i).bookList=
+    	//先查出时间范围内的预定记录，或得resid  
+  	           bookList=
   				  ebeanServer.find(Book.class)   //.fetch("resid")
   				                                 //     .fetch("comid")
   				                                      .where()
-  				                                      //.ne("status", 3)
+  				                                       .eq("comid.comid", comid)
   				                                       .eq("status", 2)
-  				                                       .eq("resid.resid",  resList1.get(i).resid)
+  				                                      // .eq("resid.resid",  resList1.get(i).resid)
   				  									   //.("status", status)
-                                                       //.between("bookdate", startdate1, enddate1)  
+                                                       .between("DATE_FORMAT(bookdate,'%Y%m%d')", startdate, enddate)  
   				                                       .orderBy()
                                                        .asc("starttime")
   				                                       .findList();
       
       
-    	  
-      }	 
+    	      for(int i=0; i<bookList.size();i++) {
+    	    	  
+	    	  	
+    	    	     resList1.add(bookList.get(i).resid);
+    	    	  
+    	      }
+   //   }	 
   			 
 //  		  if(book1.isPresent()) {
 //  				
