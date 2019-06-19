@@ -297,6 +297,7 @@ public class CBook extends Controller {
   	 
      for(int i=0;i<resList1.size();i++) {
   		
+    	 System.out.println("---"+ resList1.get(i).resid);
     	  resList1.get(i).bookList=
   				  ebeanServer.find(Book.class)   //.fetch("resid")
   				                                 //     .fetch("comid")
@@ -305,8 +306,11 @@ public class CBook extends Controller {
   				                                       .eq("status", 2)
   				                                       .eq("resid.resid",  resList1.get(i).resid)
   				  									   //.("status", status)
-                                                       .between("DATE_FORMAT(bookdate,'%Y%m%d')", startdate, enddate)  
-  				                                       .orderBy()
+                                                       .and()
+  				                                       .ge("DATE_FORMAT(bookdate,'%Y%m%d')", startdate)  
+                                                       .le("DATE_FORMAT(bookdate,'%Y%m%d')",  enddate)  
+                                                       .endAnd()
+                                                       .orderBy()
                                                        .asc("starttime")
   				                                       .findList();
       
