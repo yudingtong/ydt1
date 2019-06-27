@@ -218,8 +218,8 @@ public class CBook extends Controller {
 	  		 
 	  	 }
 	  	 
-	  	 Optional<Book> book1= 
-				  ebeanServer.find(Book.class).where().eq("resid.resid", resid) 
+	  	// Optional<Book> book1= 
+			int count1=	  ebeanServer.find(Book.class).where().eq("resid.resid", resid) 
 				                                      //.eq("bookdate", sdf1.parse(bookdate))
 				                                 .or()
 				  									.and()
@@ -235,9 +235,9 @@ public class CBook extends Controller {
 				  									  .le("endtime", endtime)
 				  									.endAnd() 
 				  								.endOr()    
-				  								.findOneOrEmpty();
+				  								.findCount();
 	  	  
-	  	 if(book1.isPresent()) {
+	  	 if(count1>=0) {
 				
 			 //company = company1.get();
 			  resultRtn.errCode = 701;
@@ -274,20 +274,20 @@ public class CBook extends Controller {
         resultRtn.errCode = 0;
   	  resultRtn.msg="ok";
   	  
-  	  SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
-//  	  Date startdate1 =null;
-//  	  Date enddate1=null;
-//  	
-//  	  try {
-//  		
-//  		 startdate1 = sdf1.parse(startdate);
-//  		 enddate1=sdf1.parse(enddate);
-//  		 
-//  	  } catch (ParseException e) {
-//  		// TODO Auto-generated catch block
-//  		e.printStackTrace();
-//  	  }
-//  	  
+   	  SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
+  	  Date startdate1 =null;
+  	  Date enddate1=null;
+  	
+  	  try {
+  		
+  		 startdate1 = sdf1.parse(startdate);
+  		 enddate1=sdf1.parse(enddate);
+  		 
+  	  } catch (ParseException e) {
+  		// TODO Auto-generated catch block
+  		e.printStackTrace();
+  	  }
+  	  
   	  
   	  List<Res> resList1 = new ArrayList();
   	//先查询所有资源的预定情况
@@ -297,7 +297,7 @@ public class CBook extends Controller {
   	 
      for(int i=0;i<resList1.size();i++) {
   		
-    	 System.out.println("---"+ resList1.get(i).resid);
+    	 System.out.println("---"+ enddate);
     	  resList1.get(i).bookList=
   				  ebeanServer.find(Book.class)   //.fetch("resid")
   				                                 //     .fetch("comid")
@@ -308,6 +308,7 @@ public class CBook extends Controller {
   				  									   //.("status", status)
                                                        .and()
   				                                       .ge("DATE_FORMAT(bookdate,'%Y%m%d')", startdate)  
+                                                      
                                                        .le("DATE_FORMAT(bookdate,'%Y%m%d')",  enddate)  
                                                        .endAnd()
                                                        .orderBy()
