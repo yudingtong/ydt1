@@ -480,8 +480,9 @@ public class CCommpay extends Controller {
 			  
 			  
 			  Company company= null;
-			  Optional<Company> company1= 
-					  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
+			  List<Company> company1= 
+					  ebeanServer.find(Company.class).where().eq("comid", comid).findList()
+					                                 ;// .forUpdate();
 				 
 				
 			  
@@ -491,7 +492,7 @@ public class CCommpay extends Controller {
 			 
 			  if(flag==1) {  //新增
         	  
-				  if(company1.isPresent()) {
+				  if(company1.size()>0) {
 						
 						 //company = company1.get();
 						 resultRtn.errCode = 201;
@@ -521,7 +522,7 @@ public class CCommpay extends Controller {
 //				  Optional<Company> company1= 
 //						  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
 				  
-				  if(company1.isPresent()) {
+				  if(company1.size()!=1) {
 						
 						 //company = company1.get();
 						 resultRtn.errCode = 201;
@@ -534,10 +535,10 @@ public class CCommpay extends Controller {
 //						                                         .eq("comid", comid)
 //						                                         .eq("admintel", admintel)
 //						                                         .findOne();
-				  company1.get().wxid = wxid;
-				  company1.get().admintel = admintel;
-				  company1.get().adminname = adminname;
-				  
+				  company1.get(0).wxid = wxid;
+				  company1.get(0).admintel = admintel;
+				  company1.get(0).adminname = adminname;
+				 
 //				  Optional<Admin>   admin1= 
 //						  ebeanServer.find(Admin.class).where().eq("wxid", wxid)
 //									                           .eq("adminname", adminname)
@@ -552,7 +553,7 @@ public class CCommpay extends Controller {
 //				  Optional<Company> company1= 
 //						  ebeanServer.find(Company.class).where().eq("comid", comid).findOneOrEmpty();
 				  
-				  if(company1.isPresent()) {
+				  if(company1.size()>0) {
 						
 						 //company = company1.get();
 						 resultRtn.errCode = 201;
