@@ -526,7 +526,7 @@ public class CCommpay extends Controller {
 						
 						 //company = company1.get();
 						 resultRtn.errCode = 201;
-						 resultRtn.msg="该单位统一社会信用代码已存在";
+						 resultRtn.msg="该单位不存在"+company1.size();
 						  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
 					 }
 				  
