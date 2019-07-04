@@ -302,7 +302,7 @@ public class CBook extends Controller {
   	 
      for(int i=0;i<resList1.size();i++) {
   		
-    	 System.out.println("---"+ enddate);
+    	// System.out.println("---"+ enddate);
     	  resList1.get(i).bookList=
   				  ebeanServer.find(Book.class)   //.fetch("resid")
   				                                 //     .fetch("comid")
