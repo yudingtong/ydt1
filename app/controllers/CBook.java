@@ -139,11 +139,11 @@ public class CBook extends Controller {
     	 ResultRtn resultRtn = new ResultRtn();
          resultRtn.errCode = 0;
 	   	 resultRtn.msg="ok";
-	     SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
+	 //    SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
 	     
-	     SimpleDateFormat sdf2 =   new SimpleDateFormat( "HH:mm" );
+	 //    SimpleDateFormat sdf2 =   new SimpleDateFormat( "HH:mm" );
 	     
-	     SimpleDateFormat sdf3 =   new SimpleDateFormat( "HH:mm" );
+	  //   SimpleDateFormat sdf3 =   new SimpleDateFormat( "HH:mm" );
 	     
 //	  	 Date starttime1 =sdf2.parse(starttime);
 //	  	 Date endtime1 =sdf2.parse(endtime);
@@ -220,7 +220,7 @@ public class CBook extends Controller {
 	  	 
 	  	// Optional<Book> book1= 
 			int count1=	  ebeanServer.find(Book.class).where().eq("resid.resid", resid) 
-				                                      //.eq("bookdate", sdf1.parse(bookdate))
+				                                  .eq("DATE_FORMAT(bookdate ,'%Y%m%d')", bookdate)
 				                                 .or()
 				  									.and()
 				  									  .lt("starttime", starttime)
@@ -514,6 +514,7 @@ public class CBook extends Controller {
 	 		 Optional<Book> book1= 
 			   ebeanServer.find(Book.class).where()
 			                               .eq("bookid", bookid)
+			                              // .eq("bookdate", value)
 			                               .findOneOrEmpty();
 	 		 
 		  	 if(!book1.isPresent()) {
@@ -523,18 +524,18 @@ public class CBook extends Controller {
 				  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));
 			  }	 
 	 		 
-		  	System.out.println("starttime.compareTo(book1.get().starttime) " +starttime.compareTo(book1.get().starttime) );
-		  	
-		  	System.out.println("starttime.compareTo( book1.get().endtime) " +starttime.compareTo( book1.get().endtime) );
-		  	
-		  	System.out.println("endtime.compareTo(book1.get().starttime) " +endtime.compareTo(book1.get().starttime));
-		  	
-		  	System.out.println("endtime.compareTo( book1.get().endtime)" +endtime.compareTo( book1.get().endtime) );
-		  	
-		  	
-		  	System.out.println(" starttime.compareTo(book1.get().starttime)" + starttime.compareTo(book1.get().starttime) );
-		  	
-		  	System.out.println(" endtime.compareTo( book1.get().endtime) " + endtime.compareTo( book1.get().endtime));
+//		  	System.out.println("starttime.compareTo(book1.get().starttime) " +starttime.compareTo(book1.get().starttime) );
+//		  	
+//		  	System.out.println("starttime.compareTo( book1.get().endtime) " +starttime.compareTo( book1.get().endtime) );
+//		  	
+//		  	System.out.println("endtime.compareTo(book1.get().starttime) " +endtime.compareTo(book1.get().starttime));
+//		  	
+//		  	System.out.println("endtime.compareTo( book1.get().endtime)" +endtime.compareTo( book1.get().endtime) );
+//		  	
+//		  	
+//		  	System.out.println(" starttime.compareTo(book1.get().starttime)" + starttime.compareTo(book1.get().starttime) );
+//		  	
+//		  	System.out.println(" endtime.compareTo( book1.get().endtime) " + endtime.compareTo( book1.get().endtime));
 		  	
 		//  System.out.println("bendtime" +book1.get().endtime); 
 		  	if((starttime.compareTo(book1.get().starttime)  >=0 && starttime.compareTo( book1.get().endtime)<=0 )
