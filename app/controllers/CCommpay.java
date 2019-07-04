@@ -535,10 +535,23 @@ public class CCommpay extends Controller {
 //						                                         .eq("comid", comid)
 //						                                         .eq("admintel", admintel)
 //						                                         .findOne();
+				  
+				  
+			//	  String adminname,String admintel,String comid,String name,String addshort,String addlong,float lat,float lng,String tel
 				  company1.get(0).wxid = wxid;
 				  company1.get(0).admintel = admintel;
 				  company1.get(0).adminname = adminname;
-				 
+				  
+				  company1.get(0).addlong = addlong;
+				  company1.get(0).name = name;
+				  company1.get(0).addshort = addshort;
+				  
+				  company1.get(0).lat = lat;
+				  company1.get(0).ing = lng;
+				  company1.get(0).tel = tel;
+				  
+				  
+				  company1.get(0).save();
 //				  Optional<Admin>   admin1= 
 //						  ebeanServer.find(Admin.class).where().eq("wxid", wxid)
 //									                           .eq("adminname", adminname)
