@@ -50,7 +50,7 @@ public class Book  extends Model{
      */
 	@JsonIgnore
     @Formats.DateTime(pattern = "yyyy-MM-dd")
-    @CreatedTimestamp
+   // @CreatedTimestamp
     public Date bookdate;
     
 	@Transient

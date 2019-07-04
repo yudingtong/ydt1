@@ -139,7 +139,7 @@ public class CBook extends Controller {
     	 ResultRtn resultRtn = new ResultRtn();
          resultRtn.errCode = 0;
 	   	 resultRtn.msg="ok";
-	 //    SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
+	     SimpleDateFormat sdf1 =   new SimpleDateFormat( "yyyyMMdd" );
 	     
 	 //    SimpleDateFormat sdf2 =   new SimpleDateFormat( "HH:mm" );
 	     
@@ -237,7 +237,7 @@ public class CBook extends Controller {
 				  								.endOr()    
 				  								.findCount();
 	  	  
-	  	 if(count1>=0) {
+	  	 if(count1>0) {
 				
 			 //company = company1.get();
 			  resultRtn.errCode = 701;
@@ -261,9 +261,14 @@ public class CBook extends Controller {
 	  	nbook.bookid = "B"+System.currentTimeMillis();
 	  	nbook.resid =res1.get();
 	  	nbook.status =1;
+	  	nbook.bookdate =sdf1.parse(bookdate);
 	  	nbook.save();
 	  	
-	   	 return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	  
+	  	
+	  	
+	   	
+	  	//System.out.println("nbook.bookdate-->"+nbook.bookdate);
+	  	return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	  
 	    	
     }
 	    
