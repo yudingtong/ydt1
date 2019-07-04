@@ -43,6 +43,7 @@ create table book (
   bookid                        varchar(255) not null,
   resid                         bigint,
   comid                         varchar(255),
+  bookdate                      datetime(6),
   starttime                     varchar(255),
   endtime                       varchar(255),
   wxid                          varchar(255),
@@ -53,7 +54,6 @@ create table book (
   attendee                      varchar(255),
   maillist                      varchar(255),
   status                        integer not null,
-  bookdate                      datetime(6) not null,
   booktime                      datetime(6) not null,
   chektime                      datetime(6) not null,
   constraint pk_book primary key (bookid)

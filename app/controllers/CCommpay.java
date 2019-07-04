@@ -100,6 +100,9 @@ public class CCommpay extends Controller {
 	    public int  status;  //单位状态
 	    public String checktime; //审核时间
 	    public String modifytime; //修改时间
+	    public String admintel;   //电话
+	    public String adminname;   //电话
+	    public String adminId;   //电话
 	    public List<Res> resList;
 	}
     
@@ -176,6 +179,10 @@ public class CCommpay extends Controller {
  						comview.status= companyList.get(i).status;
  						comview.checktime= sdf1.format(companyList.get(i).checktime);
  						comview.modifytime= sdf1.format(companyList.get(i).modifytime);
+ 						
+ 						comview.adminId =companyList.get(i).adminId;
+ 						comview.adminname =companyList.get(i).adminname;
+ 						comview.admintel =companyList.get(i).admintel;
  						
  						
  						List<Res> resList1 = 
