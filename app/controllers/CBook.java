@@ -221,6 +221,7 @@ public class CBook extends Controller {
 	  	// Optional<Book> book1= 
 			int count1=	  ebeanServer.find(Book.class).where().eq("resid.resid", resid) 
 				                                  .eq("DATE_FORMAT(bookdate ,'%Y%m%d')", bookdate)
+				                                  .eq("status", 2)
 				                                 .or()
 				  									.and()
 				  									  .lt("starttime", starttime)
@@ -310,6 +311,7 @@ public class CBook extends Controller {
   				                                       //.eq("comid.comid", comid)
   				                                       .eq("status", 2)
   				                                       .eq("resid.resid",  resList1.get(i).resid)
+  				                                       .ne("resid.status", 1)
   				  									   //.("status", status)
                                                        .and()
   				                                       .ge("DATE_FORMAT(bookdate,'%Y%m%d')", startdate)  
