@@ -311,7 +311,7 @@ public class CBook extends Controller {
   				                                       //.eq("comid.comid", comid)
   				                                       .eq("status", 2)
   				                                       .eq("resid.resid",  resList1.get(i).resid)
-  				                                       .ne("status", 1)
+  				                                       //.ne("status", 1)
   				  									   //.("status", status)
                                                        .and()
   				                                       .ge("DATE_FORMAT(bookdate,'%Y%m%d')", startdate)  
