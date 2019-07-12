@@ -29,6 +29,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Vector;
@@ -91,6 +92,30 @@ public class CBook extends Controller {
 		   public String booktime;
 		   
 		   
+		
+		
+	}
+	
+	
+	
+	public  class fo1View{
+		   
+		   
+		   public String comid;
+		   
+		   public String comname;
+		   
+		   fo2View fo2;
+		
+		
+	}
+	
+	public  class fo2View{
+		   
+		   
+		   public String bookdate;
+		   
+		   Book book;
 		
 		
 	}
@@ -597,6 +622,53 @@ public class CBook extends Controller {
 	  
 	  //resultRtn.business.put("book", qbList);
 	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	
+  }
+  
+  
+  
+  public Result   queryFutrueBook(String wxid)   
+  {
+	  
+	  ResultRtn resultRtn = new ResultRtn();
+      resultRtn.errCode = 0;
+	  resultRtn.msg="ok";
+	  
+	  List<Book> list1= 
+			  ebeanServer.find(Book.class)
+			                             // .setDistinct(true)
+			                             // .select("comid")
+			                                      .where()
+			                                      .eq("wxid", wxid)
+			  								      .findList()
+			  								      ;
+	  
+	  fo1View fo1=new fo1View();
+	  fo2View fo2=new fo2View();
+	  
+	  HashMap<String, ArrayList> h =new HashMap<>(); 
+	  
+	  for(int i=0;i<list1.size();i++) {
+		  
+		  fo1.comid=list1.get(i).comid.comid;
+		  fo1.comname=list1.get(i).comid.name;
+		  
+		  fo2.book=list1.get(i);
+		  
+		  
+//		  if(h.containsKey(fo1.comid)) {
+//		  
+//			  List tl= h.get(fo1.comid);
+//			  tl.add(list1.get(i));
+//		  }
+		 // h.put(fo1.comid, list1.get(i));
+		  
+		  
+	  }
+	  
+	 
+	  
+	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	
+	  
   }
   
   
