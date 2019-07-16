@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,7 +18,7 @@ public class ResultRtn2 {
 
 	public int errCode;
 	public String msg = "ok";
-	public List business;
+	public List business=new ArrayList();
 }
 
 

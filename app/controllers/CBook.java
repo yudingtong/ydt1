@@ -18,6 +18,7 @@ import play.mvc.Result;
 import play.mvc.Http.Request;
 import repository.DatabaseExecutionContext;
 import util.ResultRtn;
+import util.ResultRtn2;
 
 import java.net.URL;
 import java.text.ParseException;
@@ -31,6 +32,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Vector;
 
@@ -105,20 +107,12 @@ public class CBook extends Controller {
 		   
 		   public String comname;
 		   
-		   fo2View fo2;
+		   List<Book> bookL=new ArrayList();
 		
 		
 	}
 	
-	public  class fo2View{
-		   
-		   
-		   public String bookdate;
-		   
-		   Book book;
-		
-		
-	}
+
 	
 	
 	
@@ -629,32 +623,40 @@ public class CBook extends Controller {
   public Result   queryFutrueBook(String wxid)   
   {
 	  
-	  ResultRtn resultRtn = new ResultRtn();
+	  ResultRtn2 resultRtn = new ResultRtn2();
       resultRtn.errCode = 0;
 	  resultRtn.msg="ok";
-	  
+	  Date date1=new Date();
 	  List<Book> list1= 
 			  ebeanServer.find(Book.class)
 			                             // .setDistinct(true)
 			                             // .select("comid")
 			                                      .where()
 			                                      .eq("wxid", wxid)
-			  								      .findList()
-			  								      ;
+			                                      .eq("status", 2)
+			                                      .ge("bookdate", date1)  
+			  								      .orderBy()
+                                                  .desc("starttime")
+                                                  .findList()
+			  								      
+                                                  ;
 	  
-	  fo1View fo1=new fo1View();
-	  fo2View fo2=new fo2View();
 	  
-	  HashMap<String, ArrayList> h =new HashMap<>(); 
+	  List<Map> ml=new ArrayList();
 	  
 	  for(int i=0;i<list1.size();i++) {
+		  Map<String,Object> comL=new HashMap<String,Object>();
 		  
-		  fo1.comid=list1.get(i).comid.comid;
-		  fo1.comname=list1.get(i).comid.name;
+		  comL.put("comid", list1.get(i).comid.comid);
+		  comL.put("comname", list1.get(i).comid.name);
+//		  fo1.comid=list1.get(i).comid.comid;
+//		  fo1.comname=list1.get(i).comid.name;
 		  
-		  fo2.book=list1.get(i);
+		 // Book book1=list1.get(i);
+		  comL.put("book",list1);
+		 // fo1.bookL=list1;
 		  
-		  
+		  resultRtn.business.add(comL);
 //		  if(h.containsKey(fo1.comid)) {
 //		  
 //			  List tl= h.get(fo1.comid);
@@ -665,8 +667,9 @@ public class CBook extends Controller {
 		  
 	  }
 	  
+	 // System.out.println("fo1"+fo1);
+	  //resultRtn.business.put("book", list1);
 	 
-	  
 	  return ok(Json.toJson(resultRtn).toString().replaceAll("null", "\"\""));	
 	  
   }
